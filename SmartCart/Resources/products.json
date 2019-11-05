@@ -1,0 +1,36 @@
+{
+    "products": [
+        {
+            "ean": "12345678",
+            "title": "Tatranka",
+            "description": "Mléčná čokoláda",
+            "price": 4.50,
+            "category": "sweets",
+            "size": 0.055
+        },
+        {
+            "ean": "456123789",
+            "title": "Horalka",
+            "description": "Bílá čokoláda",
+            "price": 3.80,  
+            "category": "sweets",
+            "size": 0.042
+        },
+        {
+            "ean": "789123456",
+            "title": "Coca-Cola",
+            "description": "Light",
+            "price": 23.90,  
+            "category": "drinks",
+            "size": 2
+        },
+        {
+            "ean": "789123456",
+            "title": "Axe Hair & Body",
+            "description": "Shampoo and Body Gel",
+            "price": 31.90,  
+            "category": "drugstore",
+            "size": 0.2
+        }
+    ]
+}
