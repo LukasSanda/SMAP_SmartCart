@@ -9,7 +9,6 @@
 import AVFoundation
 import UIKit
 
-// https://medium.com/programming-with-swift/how-to-read-a-barcode-or-qrcode-with-swift-programming-with-swift-10d4315141d2
 internal class Scanner: NSObject {
     
     // MARK: - Properties
@@ -17,6 +16,10 @@ internal class Scanner: NSObject {
     private var viewController: UIViewController
     private var captureSession: AVCaptureSession?
     private let eanHandler: (_ code: String) -> Void
+    
+    private var metaObjectTypes: [AVMetadataObject.ObjectType] {
+        return [.code128, .code39, .code39Mod43, .code93, .ean13, .ean8, .interleaved2of5, .itf14, .pdf417, .upce]
+    }
     
     // MARK: - Initialization
     
@@ -44,7 +47,22 @@ internal class Scanner: NSObject {
         captureSession.stopRunning()
     }
     
-    private func createCaptureSession() -> AVCaptureSession? {
+    internal func scannerDelegate(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        requestCaptureSessionStopRunning()
+        
+        guard
+            let readableObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
+            let code = readableObject.stringValue else {
+                return
+        }
+        
+        self.eanHandler(code)
+    }
+}
+
+// MARK: - Helpers
+private extension Scanner {
+    func createCaptureSession() -> AVCaptureSession? {
         let session = AVCaptureSession()
         
         guard let device = AVCaptureDevice.default(for: .video) else {
@@ -69,7 +87,7 @@ internal class Scanner: NSObject {
             
             if let viewController = self.viewController as? AVCaptureMetadataOutputObjectsDelegate {
                 metadataOutput.setMetadataObjectsDelegate(viewController, queue: .main)
-                metadataOutput.metadataObjectTypes = self.metaObjectTypes()
+                metadataOutput.metadataObjectTypes = self.metaObjectTypes
             }
             
         } catch let error {
@@ -80,25 +98,11 @@ internal class Scanner: NSObject {
         return session
     }
     
-    private func createPreviewLayer(withSession session: AVCaptureSession, view: UIView) ->AVCaptureVideoPreviewLayer {
+    func createPreviewLayer(withSession session: AVCaptureSession, view: UIView) ->AVCaptureVideoPreviewLayer {
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         
         return previewLayer
-    }
-    
-    private func metaObjectTypes() -> [AVMetadataObject.ObjectType] {
-        return [
-            .code128,
-            .code39,
-            .code39Mod43,
-            .code93,
-            .ean13,
-            .ean8,
-            .interleaved2of5,
-            .itf14,
-            .pdf417,
-            .upce]
     }
 }
