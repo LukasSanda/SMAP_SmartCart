@@ -14,7 +14,7 @@ class CoreDataTests: XCTestCase {
     
     // MARK: - Properties
     
-    private var service = DatabaseService()
+    private var service = DatabaseServiceImpl()
     
     // MARK: - Methods
     

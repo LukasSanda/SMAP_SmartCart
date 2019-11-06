@@ -17,8 +17,8 @@ extension Cart {
         return NSFetchRequest<Cart>(entityName: "Cart")
     }
 
-    @NSManaged public var created: Date?
-    @NSManaged public var title: String?
+    @NSManaged public var created: Date
+    @NSManaged public var id: String
     @NSManaged public var items: NSSet?
 
 }
