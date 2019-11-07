@@ -6,6 +6,7 @@
         <relationship name="items" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="cart" inverseEntity="Item"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="1"/>
         <attribute name="category" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="ean" attributeType="String"/>
@@ -17,6 +18,6 @@
     </entity>
     <elements>
         <element name="Cart" positionX="-54" positionY="9" width="128" height="88"/>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="178"/>
     </elements>
 </model>

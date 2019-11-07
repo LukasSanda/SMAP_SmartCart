@@ -21,6 +21,8 @@
 		CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */; };
 		CF6E0C71237179920091CEC8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; };
 		CF6E0C72237179920091CEC8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CF6E0C7723717F9C0091CEC8 /* CartContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C7623717F9C0091CEC8 /* CartContentController.swift */; };
+		CF6E0C7923717FB70091CEC8 /* CartContentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C7823717FB70091CEC8 /* CartContentPresenter.swift */; };
 		CF6E0C7D237182610091CEC8 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C7C237182610091CEC8 /* UIColor+Colors.swift */; };
 		CF6E0C7F2371834D0091CEC8 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C7E2371834D0091CEC8 /* HomeScreenController.swift */; };
 		CF6E0C81237183770091CEC8 /* HomeScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C80237183770091CEC8 /* HomeScreenPresenter.swift */; };
@@ -37,11 +39,15 @@
 		CF6E0C9A2371D9300091CEC8 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C992371D9300091CEC8 /* CartCell.swift */; };
 		CF6E0C9C2371E2EE0091CEC8 /* UIStackView+Maker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C9B2371E2EE0091CEC8 /* UIStackView+Maker.swift */; };
 		CF6E0C9E2371E3540091CEC8 /* UITableView+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C9D2371E3540091CEC8 /* UITableView+Registration.swift */; };
-		CF6E0CA32372C0AA0091CEC8 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C9F2372C0AA0091CEC8 /* Cart+CoreDataClass.swift */; };
-		CF6E0CA42372C0AA0091CEC8 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CA02372C0AA0091CEC8 /* Cart+CoreDataProperties.swift */; };
-		CF6E0CA52372C0AA0091CEC8 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CA12372C0AA0091CEC8 /* Item+CoreDataClass.swift */; };
-		CF6E0CA62372C0AA0091CEC8 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CA22372C0AA0091CEC8 /* Item+CoreDataProperties.swift */; };
 		CF6E0CA82372CB090091CEC8 /* HomeScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CA72372CB090091CEC8 /* HomeScreenHeaderView.swift */; };
+		CF6E0CAB2372EF170091CEC8 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CAA2372EF170091CEC8 /* ItemCell.swift */; };
+		CF6E0CAD2372F2410091CEC8 /* CartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CAC2372F2410091CEC8 /* CartContentView.swift */; };
+		CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */; };
+		CF6E0CB123742ACB0091CEC8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0CB023742ACB0091CEC8 /* libz.tbd */; };
+		CF6E0CB6237433D40091CEC8 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */; };
+		CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */; };
+		CF6E0CB8237433D40091CEC8 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */; };
+		CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */; };
 		CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78743D235D7D7F0061AC90 /* AppDelegate.swift */; };
 		CF787447235D7D800061AC90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF787446235D7D800061AC90 /* Assets.xcassets */; };
 		CF78744A235D7D800061AC90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF787448235D7D800061AC90 /* LaunchScreen.storyboard */; };
@@ -87,6 +93,8 @@
 		CF6E0C5D237167390091CEC8 /* CartEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartEntity.swift; sourceTree = "<group>"; };
 		CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		CF6E0C70237179920091CEC8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		CF6E0C7623717F9C0091CEC8 /* CartContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartContentController.swift; sourceTree = "<group>"; };
+		CF6E0C7823717FB70091CEC8 /* CartContentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartContentPresenter.swift; sourceTree = "<group>"; };
 		CF6E0C7C237182610091CEC8 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		CF6E0C7E2371834D0091CEC8 /* HomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		CF6E0C80237183770091CEC8 /* HomeScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenPresenter.swift; sourceTree = "<group>"; };
@@ -103,11 +111,15 @@
 		CF6E0C992371D9300091CEC8 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		CF6E0C9B2371E2EE0091CEC8 /* UIStackView+Maker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Maker.swift"; sourceTree = "<group>"; };
 		CF6E0C9D2371E3540091CEC8 /* UITableView+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Registration.swift"; sourceTree = "<group>"; };
-		CF6E0C9F2372C0AA0091CEC8 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CF6E0CA02372C0AA0091CEC8 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CF6E0CA12372C0AA0091CEC8 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CF6E0CA22372C0AA0091CEC8 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF6E0CA72372CB090091CEC8 /* HomeScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenHeaderView.swift; sourceTree = "<group>"; };
+		CF6E0CAA2372EF170091CEC8 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		CF6E0CAC2372F2410091CEC8 /* CartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartContentView.swift; sourceTree = "<group>"; };
+		CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Formatting.swift"; sourceTree = "<group>"; };
+		CF6E0CB023742ACB0091CEC8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF78743A235D7D7F0061AC90 /* SmartCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF78743D235D7D7F0061AC90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF787446235D7D800061AC90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6E0CB123742ACB0091CEC8 /* libz.tbd in Frameworks */,
 				CF6E0C71237179920091CEC8 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,10 +219,10 @@
 		CF6E0C55237167390091CEC8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CF6E0C9F2372C0AA0091CEC8 /* Cart+CoreDataClass.swift */,
-				CF6E0CA02372C0AA0091CEC8 /* Cart+CoreDataProperties.swift */,
-				CF6E0CA12372C0AA0091CEC8 /* Item+CoreDataClass.swift */,
-				CF6E0CA22372C0AA0091CEC8 /* Item+CoreDataProperties.swift */,
+				CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */,
+				CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */,
+				CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */,
+				CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */,
 				CF6E0C57237167390091CEC8 /* ItemModel.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -220,6 +233,7 @@
 			children = (
 				CF6E0C9123719D740091CEC8 /* MainViewCoordinator.swift */,
 				CF6E0C7A237180720091CEC8 /* Home Screen */,
+				CF6E0C7523717F710091CEC8 /* Cart Content */,
 				CF6E0C7423717F690091CEC8 /* Scanner */,
 				CF6E0C89237199E40091CEC8 /* ScreenAssembly.swift */,
 			);
@@ -240,6 +254,7 @@
 		CF6E0C6F237179920091CEC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF6E0CB023742ACB0091CEC8 /* libz.tbd */,
 				CF6E0C70237179920091CEC8 /* SnapKit.framework */,
 			);
 			name = Frameworks;
@@ -251,6 +266,17 @@
 				CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		CF6E0C7523717F710091CEC8 /* Cart Content */ = {
+			isa = PBXGroup;
+			children = (
+				CF6E0CA92372EF0B0091CEC8 /* Views */,
+				CF6E0C7623717F9C0091CEC8 /* CartContentController.swift */,
+				CF6E0C7823717FB70091CEC8 /* CartContentPresenter.swift */,
+				CF6E0CAC2372F2410091CEC8 /* CartContentView.swift */,
+			);
+			path = "Cart Content";
 			sourceTree = "<group>";
 		};
 		CF6E0C7A237180720091CEC8 /* Home Screen */ = {
@@ -270,6 +296,7 @@
 				CF6E0C7C237182610091CEC8 /* UIColor+Colors.swift */,
 				CF6E0C9B2371E2EE0091CEC8 /* UIStackView+Maker.swift */,
 				CF6E0C9D2371E3540091CEC8 /* UITableView+Registration.swift */,
+				CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +316,14 @@
 			children = (
 				CF6E0C992371D9300091CEC8 /* CartCell.swift */,
 				CF6E0CA72372CB090091CEC8 /* HomeScreenHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF6E0CA92372EF0B0091CEC8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF6E0CAA2372EF170091CEC8 /* ItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,22 +480,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF6E0CA52372C0AA0091CEC8 /* Item+CoreDataClass.swift in Sources */,
 				CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */,
+				CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */,
 				CF6E0CA82372CB090091CEC8 /* HomeScreenHeaderView.swift in Sources */,
-				CF6E0CA32372C0AA0091CEC8 /* Cart+CoreDataClass.swift in Sources */,
 				CF6E0C83237184A90091CEC8 /* DataError.swift in Sources */,
 				CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */,
 				CF6E0C952371A2C10091CEC8 /* Logger.swift in Sources */,
 				CF6E0C88237199BF0091CEC8 /* ScreenAssembler.swift in Sources */,
-				CF6E0CA62372C0AA0091CEC8 /* Item+CoreDataProperties.swift in Sources */,
+				CF6E0CB6237433D40091CEC8 /* Item+CoreDataClass.swift in Sources */,
 				CF6E0C6A237167390091CEC8 /* ItemEntity.swift in Sources */,
 				CF6E0C7F2371834D0091CEC8 /* HomeScreenController.swift in Sources */,
+				CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */,
 				CF6E0C8C23719A1C0091CEC8 /* ModuleAssembler.swift in Sources */,
-				CF6E0CA42372C0AA0091CEC8 /* Cart+CoreDataProperties.swift in Sources */,
+				CF6E0CAD2372F2410091CEC8 /* CartContentView.swift in Sources */,
+				CF6E0C7923717FB70091CEC8 /* CartContentPresenter.swift in Sources */,
+				CF6E0CAB2372EF170091CEC8 /* ItemCell.swift in Sources */,
 				CF6E0C9023719AF00091CEC8 /* DomainAssembly.swift in Sources */,
 				CF6E0C85237196910091CEC8 /* HomeScreenView.swift in Sources */,
 				CF6E0C8A237199E40091CEC8 /* ScreenAssembly.swift in Sources */,
+				CF6E0C7723717F9C0091CEC8 /* CartContentController.swift in Sources */,
 				CF6E0C9E2371E3540091CEC8 /* UITableView+Registration.swift in Sources */,
 				CF6E0C81237183770091CEC8 /* HomeScreenPresenter.swift in Sources */,
 				CF6E0C6B237167390091CEC8 /* CartEntity.swift in Sources */,
@@ -471,10 +509,12 @@
 				CF6E0C972371D87C0091CEC8 /* Assets.swift in Sources */,
 				CF6E0C9A2371D9300091CEC8 /* CartCell.swift in Sources */,
 				CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */,
+				CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */,
 				CF6E0C9C2371E2EE0091CEC8 /* UIStackView+Maker.swift in Sources */,
 				CF6E0C9223719D740091CEC8 /* MainViewCoordinator.swift in Sources */,
 				CF6E0C8E23719ADD0091CEC8 /* DomainAssembler.swift in Sources */,
 				CF6E0C63237167390091CEC8 /* Scanner.swift in Sources */,
+				CF6E0CB8237433D40091CEC8 /* Cart+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@ internal extension UIColor {
     
     static let primaryColor: UIColor = UIColor(red: 74, green: 165, blue: 104)
     static let secondaryColor: UIColor = .white
+    static let cellBackgroundColor: UIColor = UIColor.lightGray.withAlphaComponent(0.3)
     
     // MARK: - Initialization
     
