@@ -48,7 +48,7 @@ class ScannerViewController: UIViewController {
     // MARK: - Methods
     
     func handleScannedCode(_ code: String) {
-        print(code)
+        //print(code)
     }
 }
 
@@ -67,7 +67,7 @@ private extension ScannerViewController {
     
     func setupScanOverlay() {
         overlayView.backgroundColor = .clear
-        overlayView.layer.borderColor = UIColor.green.cgColor
+        overlayView.layer.borderColor = UIColor.primaryColor.cgColor
         overlayView.layer.borderWidth = 2
         view.addSubview(overlayView)
         

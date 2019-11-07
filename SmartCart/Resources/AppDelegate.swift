@@ -8,8 +8,14 @@
 
 import UIKit
 
+internal let logger = Logger()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    // MARK: - Private Properties
+    
+    private var mainCoordinator: MainViewCoordinator?
     
     // MARK: - Properties
     
@@ -21,12 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let viewController = ScannerViewController()
+        let navigationController = UINavigationController()
+        let assembler = ModuleAssembler()
+        mainCoordinator = MainViewCoordinatorImpl(navigationController: navigationController, assembler: assembler)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = viewController
+        window?.rootViewController = navigationController
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
-        
+
+        mainCoordinator?.showHomescreen()
         return true
     }
     

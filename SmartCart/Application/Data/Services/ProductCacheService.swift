@@ -90,12 +90,11 @@ internal class ProductServiceImpl: ProductService {
                 let jsonData = try JSONSerialization.data(withJSONObject: cache, options: .init(rawValue: 0))
                 file.write(jsonData)
             } catch let error {
-                print(error.localizedDescription)
+                logger.logError(inFunction: "addItem", message: error.localizedDescription)
             }
-            // Write it to the file
             
-            // Close the file
             file.closeFile()
+            
         } else {
             _ = getItems()
             addItem(item)

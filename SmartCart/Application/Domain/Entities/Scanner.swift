@@ -91,7 +91,9 @@ private extension Scanner {
             }
             
         } catch let error {
-            print(error.localizedDescription)
+            logger.logError(
+                inFunction: "createCaptureSession",
+                message: error.localizedDescription)
             return nil
         }
         
