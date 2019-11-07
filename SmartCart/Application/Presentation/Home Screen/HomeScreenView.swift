@@ -16,17 +16,16 @@ internal class HomeScreenView: UIView {
     private let contentView = UIView()
     private let gradientView = UIView()
     private let buttonCreateNewCart = UIButton()
-    private let labelNoHistory = UILabel()
+    private let emptyTableLabel = UILabel()
     
     // MARK: - Internal Properties
     
     internal let tableView = UITableView()
-    
     internal var isTableHidden: Bool {
         get { tableView.isHidden }
         set {
             tableView.isHidden = newValue
-            labelNoHistory.isHidden = !newValue
+            emptyTableLabel.isHidden = !newValue
         }
     }
     
@@ -43,6 +42,7 @@ internal class HomeScreenView: UIView {
     }
 }
 
+// MARK: - Setup View Appereance
 private extension HomeScreenView {
     func setup() {
         backgroundColor = .white
@@ -51,36 +51,36 @@ private extension HomeScreenView {
             make.edges.equalToSuperview()
         }
     
-        setupNoHistoryLabel()
+        setupEmptyTableLabel()
         setupTable()
         setupGradientView()
         setupCreateNewButton()
-        
         setupTextation()
-
     }
     
-    func setupNoHistoryLabel() {
-        labelNoHistory.textColor = .lightGray
-        labelNoHistory.font = UIFont.systemFont(ofSize: 16)
-        labelNoHistory.numberOfLines = 0
-        labelNoHistory.textAlignment = .center
-        contentView.addSubview(labelNoHistory)
+    func setupEmptyTableLabel() {
+        emptyTableLabel.textColor = .lightGray
+        emptyTableLabel.font = UIFont.systemFont(ofSize: 16)
+        emptyTableLabel.numberOfLines = 0
+        emptyTableLabel.textAlignment = .center
+        contentView.addSubview(emptyTableLabel)
         
-        labelNoHistory.snp.makeConstraints { make in
+        emptyTableLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.left.equalToSuperview().inset(24)
         }
     }
     
     func setupTable() {
+        tableView.showsVerticalScrollIndicator = false
         tableView.isHidden = true
         tableView.separatorStyle = .none
         contentView.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(70)
         }
     }
     
@@ -117,12 +117,12 @@ private extension HomeScreenView {
             UIColor.white.cgColor
         ]
         
-        gradient.locations = [0.0, 0.25]
+        gradient.locations = [0.0, 0.15]
         gradientView.layer.insertSublayer(gradient, at: 0)
     }
     
     func setupTextation() {
         buttonCreateNewCart.setTitle("Create new".uppercased(), for: .normal)
-        labelNoHistory.text = "There is no history. Create new cart to fill-up with your products!"
+        emptyTableLabel.text = "Collection is empty. Create new cart to fill-up with your products!"
     }
 }

@@ -39,12 +39,16 @@ internal class CartCell: UITableViewCell {
         didSet {
             removeButton.isHidden = isLastCreated
             
-            guard isLastCreated else { return }
-            
             view.snp.remakeConstraints { remake in
-                remake.top.bottom.equalToSuperview().inset(8)
+                if self.isLastCreated {
+                    remake.right.equalToSuperview().inset(20)
+                } else {
+                    remake.right.equalTo(removeButton.snp.left).offset(-16)
+                }
+                
+                remake.top.equalToSuperview().inset(8)
                 remake.left.equalToSuperview().inset(16)
-                remake.right.equalToSuperview().inset(20)
+                remake.bottom.equalToSuperview().inset(12)
             }
         }
     }
@@ -78,22 +82,23 @@ private extension CartCell {
         selectedBackgroundView = UIView()
         
         removeButton.addTarget(self, action: #selector(removeDidTap), for: .touchUpInside)
-        removeButton.setImage(Assets.HomeScreen.delete, for: .normal)
+        removeButton.setImage(Assets.delete, for: .normal)
         removeButton.contentMode = .scaleAspectFit
         contentView.addSubview(removeButton)
         
         removeButton.snp.makeConstraints { make in
-            make.right.centerY.equalToSuperview().inset(16)
+            make.right.centerY.equalToSuperview().inset(20)
             make.size.equalTo(32)
         }
         
-        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        view.backgroundColor = .cellBackgroundColor
         contentView.addSubview(view)
         
         view.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(8)
+            make.top.equalToSuperview().inset(8)
             make.left.equalToSuperview().inset(16)
             make.right.equalTo(removeButton.snp.left).offset(-16)
+            make.bottom.equalToSuperview().inset(12)
         }
         
         setupImageView()
@@ -140,7 +145,7 @@ private extension CartCell {
 // MARK: - Formatters
 private extension CartCell {
     func handleTotalPriceLabel(withPrice price: Double) {
-        totalPriceLabel.attributedText = setupPrice(
+        totalPriceLabel.attributedText = NSMutableAttributedString.setupPrice(
             highlightedText: String(format: "%.00f,- Kč", price),
             normalText: "Total Price:")
     }
@@ -149,20 +154,5 @@ private extension CartCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE, dd. MM. YYYY"
         dateLabel.text = formatter.string(from: date).description
-    }
-    
-    func setupPrice(highlightedText: String, normalText: String) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(
-            string: "\(normalText) \(highlightedText)",
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 12, weight: .heavy),
-                .foregroundColor: UIColor.gray])
-        
-        attributedString.addAttributes(
-            [.foregroundColor: UIColor.black,
-             .font: UIFont.systemFont(ofSize: 14, weight: .heavy)],
-            range: NSRange(location: normalText.count + 1, length: highlightedText.count))
-        
-        return attributedString
     }
 }

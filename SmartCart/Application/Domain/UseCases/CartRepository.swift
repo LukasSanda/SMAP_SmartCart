@@ -83,7 +83,7 @@ internal class CartRepositoryImpl: CartRepository {
 private extension CartRepositoryImpl {
     func initMockData() {
         databaseService.removeAll { _ in
-            for _ in 1...5 {
+            for _ in 1...10 {
                 let cart = Cart(context: self.databaseService.viewContext)
                 cart.id = Date().hashValue.description
                 cart.created = Date(timeIntervalSinceNow: TimeInterval(-(Int.random(in: 100000...10000000))))
@@ -94,9 +94,10 @@ private extension CartRepositoryImpl {
                     item.title = "title \(y.description)"
                     item.ean = "EAN\(y.description)"
                     item.desc = "desc"
-                    item.category = y % 2 == 0 ? ItemCategoryType.drugstore.rawValue : ItemCategoryType.drinks.rawValue
+                    item.category = y % 2 == 0 ? ItemCategoryType.snacks.rawValue : ItemCategoryType.drinks.rawValue
                     item.price = Double(y) * 2.5
                     item.size = Double(y) * 4.5
+                    item.amount = NSDecimalNumber(value: y)
                     
                     cart.addToItems(item)
                 }

@@ -5,7 +5,7 @@
             "title": "Tatranka",
             "description": "Mléčná čokoláda",
             "price": 4.50,
-            "category": "sweets",
+            "category": "snacks",
             "size": 0.055
         },
         {
@@ -29,7 +29,7 @@
             "title": "Axe Hair & Body",
             "description": "Shampoo and Body Gel",
             "price": 31.90,  
-            "category": "drugstore",
+            "category": "hygiene",
             "size": 0.2
         }
     ]

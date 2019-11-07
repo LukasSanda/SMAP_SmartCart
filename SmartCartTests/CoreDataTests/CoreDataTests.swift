@@ -21,7 +21,6 @@ class CoreDataTests: XCTestCase {
     func test_should_save_cart_properly() {
         let cart = Cart(context: service.viewContext)
         cart.created = Date()
-        cart.title = "test cart"
         
         let item = Item(context: service.viewContext)
         item.ean = "1234556"
@@ -30,13 +29,20 @@ class CoreDataTests: XCTestCase {
         item.price = 2.5
         item.category = ItemCategoryType.sweets.rawValue
         item.size = 0.05
+        item.amount = NSDecimalNumber(value: 4)
         cart.addToItems(item)
-        service.saveContext()
+        service.save()
         
         // Load property
         let repository = CartRepositoryImpl(service: service)
-        let lastCart = repository.loadLastCart()
-        XCTAssertNotNil(lastCart, "Should be loaded!")
-        XCTAssertTrue(lastCart?.title == "test cart", "Property is not set properly!")
+        repository.loadLastCart { result in
+            switch result {
+            case .success(let cart):
+                XCTAssertNotNil(cart, "Should be loaded!")
+            case .failure:
+                XCTFail("Should not happened!")
+            }
+        }
+        
     }
 }

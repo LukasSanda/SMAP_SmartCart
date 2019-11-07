@@ -48,7 +48,7 @@ internal class HomeScreenController: UIViewController {
 // MARK: - UITableViewDelegate
 extension HomeScreenController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 75
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -60,6 +60,13 @@ extension HomeScreenController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let presenter = CartContentPresenterImpl(cart: dataSet[indexPath.row], databaseService: DatabaseServiceImpl())
+        let controller = CartContentController(presenter: presenter)
+        presenter.delegate = controller
+        navigationController?.show(controller, sender: nil)
     }
 }
 
@@ -81,20 +88,18 @@ extension HomeScreenController: UITableViewDataSource {
         guard let cell = cell as? CartCell else { return }
         let cart: Cart
         
-        switch indexPath.section {
-        case 0:
-            guard let cart = dataSet.first else { return }
-            cell.delegate = self
-            cell.isLastCreated = true
-            cell.date = cart.created
-            cell.totalPrice = 25.4
-        default:
-            cell.delegate = self
-            cell.isLastCreated = false
+        if indexPath.section == 0 {
+            guard let firstCart = dataSet.first else { return }
+            
+            cart = firstCart
+        } else {
             cart = dataSet[indexPath.row]
-            cell.date = cart.created
-            cell.totalPrice = Double.random(in: 0...100)
         }
+        
+        cell.delegate = self
+        cell.isLastCreated = indexPath.section == 0
+        cell.date = cart.created
+        cell.totalPrice = calculateTotalPrice(forCart: cart)
     }
 }
 
@@ -105,7 +110,7 @@ extension HomeScreenController: CartCellDelegate {
             return
         }
         
-        presenter.removeCart(dataSet[index.row])
+        deleteConfirmation(forCart: dataSet[index.row])
     }
 }
 
@@ -150,6 +155,19 @@ private extension HomeScreenController {
     }
 }
 
+// MARK: - Price Helper
+private extension HomeScreenController {
+    func calculateTotalPrice(forCart cart: Cart) -> Double {
+        var price: Double = 0.0
+        cart.items?.forEach { item in
+            guard let item = item as? Item else { return }
+            price += item.price * Double(truncating: item.amount)
+        }
+        
+        return price
+    }
+}
+
 // MARK: - Setup View Appereance
 private extension HomeScreenController {
     func setup() {
@@ -168,5 +186,24 @@ private extension HomeScreenController {
             barButtonSystemItem: .trash,
             target: self,
             action: #selector(removeButtonDidTap))
+    }
+    
+    func deleteConfirmation(forCart cart: Cart) {
+        let alertController = UIAlertController(
+            title: "Remove Item",
+            message: "You are about to delete selected cart. Are you sure you want to continue?",
+            preferredStyle: .alert)
+        alertController.view.tintColor = .black
+        
+        alertController.addAction(
+            UIAlertAction(
+                title: "Delete",
+                style: .destructive) { _ in
+                    self.presenter.removeCart(cart)
+        })
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        navigationController?.present(alertController, animated: true, completion: nil)
     }
 }
