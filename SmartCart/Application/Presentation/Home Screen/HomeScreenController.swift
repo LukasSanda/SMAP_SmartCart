@@ -13,17 +13,19 @@ internal class HomeScreenController: UIViewController {
     
     // MARK: - Properties
     
-    private var dataSet = [Cart]() {
+    private var carts = [Cart]() {
         didSet { contentView.tableView.reloadData() }
     }
     
     private let contentView = HomeScreenView()
     private let presenter: HomeScreenPresenter
+    private let coordinator: HomeScreenCoordinator
     
     // MARK: - Initialization
     
-    internal init(presenter: HomeScreenPresenter) {
+    internal init(presenter: HomeScreenPresenter, coordinator: HomeScreenCoordinator) {
         self.presenter = presenter
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,6 +47,40 @@ internal class HomeScreenController: UIViewController {
     }
 }
 
+// MARK: - CartCellDelegate
+extension HomeScreenController: CartCellDelegate {
+    func removeDidTap(inCell cell: CartCell) {
+        guard let index = contentView.tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        deleteConfirmation(forCart: carts[index.row])
+    }
+}
+
+// MARK: - HomeScreenDelegate
+extension HomeScreenController: HomeScreenDelegate {
+    func didLoadAvailableCarts(_ carts: [Cart]) {
+        guard !carts.isEmpty else {
+            contentView.isTableHidden = true
+            logger.logWarning(
+                inFunction: "didLoadAvailableCarts",
+                message: "Successfully fetched but loaded empty array.")
+            return
+        }
+        
+        contentView.isTableHidden = false
+        self.carts = carts
+    }
+}
+
+// MARK: - HomeScreenCoordinatorDelegate
+extension HomeScreenController: HomeScreenCoordinatorDelegate {
+    func showController(_ controller: UIViewController) {
+        navigationController?.show(controller, sender: nil)
+    }
+}
+
 // MARK: - UITableViewDelegate
 extension HomeScreenController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,10 +99,7 @@ extension HomeScreenController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let presenter = CartContentPresenterImpl(cart: dataSet[indexPath.row], databaseService: DatabaseServiceImpl())
-        let controller = CartContentController(presenter: presenter)
-        presenter.delegate = controller
-        navigationController?.show(controller, sender: nil)
+        coordinator.showDetail(forCart: carts[indexPath.row])
     }
 }
 
@@ -77,7 +110,7 @@ extension HomeScreenController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : dataSet.count
+        return section == 0 ? 1 : carts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,44 +122,17 @@ extension HomeScreenController: UITableViewDataSource {
         let cart: Cart
         
         if indexPath.section == 0 {
-            guard let firstCart = dataSet.first else { return }
+            guard let firstCart = carts.first else { return }
             
             cart = firstCart
         } else {
-            cart = dataSet[indexPath.row]
+            cart = carts[indexPath.row]
         }
         
         cell.delegate = self
         cell.isLastCreated = indexPath.section == 0
         cell.date = cart.created
         cell.totalPrice = calculateTotalPrice(forCart: cart)
-    }
-}
-
-// MARK: - CartCellDelegate
-extension HomeScreenController: CartCellDelegate {
-    func removeDidTap(inCell cell: CartCell) {
-        guard let index = contentView.tableView.indexPath(for: cell) else {
-            return
-        }
-        
-        deleteConfirmation(forCart: dataSet[index.row])
-    }
-}
-
-// MARK: - HomeScreenDelegate
-extension HomeScreenController: HomeScreenDelegate {
-    func didLoadAvailableCarts(_ carts: [Cart]) {
-        guard !carts.isEmpty else {
-            contentView.isTableHidden = true
-            logger.logWarning(
-                inFunction: "didLoadAvailableCarts",
-                message: "Successfully fetched but loaded empty array.")
-            return
-        }
-        
-        contentView.isTableHidden = false
-        self.dataSet = carts
     }
 }
 
