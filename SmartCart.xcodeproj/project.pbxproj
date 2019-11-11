@@ -48,6 +48,7 @@
 		CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */; };
 		CF6E0CB8237433D40091CEC8 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */; };
 		CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */; };
+		CF6E0CBB2379396E0091CEC8 /* HomeScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CBA2379396E0091CEC8 /* HomeScreenCoordinator.swift */; };
 		CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78743D235D7D7F0061AC90 /* AppDelegate.swift */; };
 		CF787447235D7D800061AC90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF787446235D7D800061AC90 /* Assets.xcassets */; };
 		CF78744A235D7D800061AC90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF787448235D7D800061AC90 /* LaunchScreen.storyboard */; };
@@ -120,6 +121,7 @@
 		CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CF6E0CBA2379396E0091CEC8 /* HomeScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCoordinator.swift; sourceTree = "<group>"; };
 		CF78743A235D7D7F0061AC90 /* SmartCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF78743D235D7D7F0061AC90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF787446235D7D800061AC90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				CF6E0C7E2371834D0091CEC8 /* HomeScreenController.swift */,
 				CF6E0C80237183770091CEC8 /* HomeScreenPresenter.swift */,
 				CF6E0C84237196910091CEC8 /* HomeScreenView.swift */,
+				CF6E0CBA2379396E0091CEC8 /* HomeScreenCoordinator.swift */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */,
 				CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */,
 				CF6E0CA82372CB090091CEC8 /* HomeScreenHeaderView.swift in Sources */,
+				CF6E0CBB2379396E0091CEC8 /* HomeScreenCoordinator.swift in Sources */,
 				CF6E0C83237184A90091CEC8 /* DataError.swift in Sources */,
 				CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */,
 				CF6E0C952371A2C10091CEC8 /* Logger.swift in Sources */,
