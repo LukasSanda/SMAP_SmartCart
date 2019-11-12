@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF3D5BF5237B4B5D00F5D484 /* CartContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D5BF4237B4B5D00F5D484 /* CartContentCoordinator.swift */; };
 		CF6E0C0C2370415B0091CEC8 /* SmartCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C0B2370415B0091CEC8 /* SmartCartTests.swift */; };
 		CF6E0C3623704DBA0091CEC8 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = CF6E0C3523704DBA0091CEC8 /* products.json */; };
 		CF6E0C462371672B0091CEC8 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C442371672B0091CEC8 /* CoreDataTests.swift */; };
@@ -79,6 +80,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF3D5BF4237B4B5D00F5D484 /* CartContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartContentCoordinator.swift; sourceTree = "<group>"; };
 		CF6E0C092370415B0091CEC8 /* SmartCartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartCartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6E0C0B2370415B0091CEC8 /* SmartCartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCartTests.swift; sourceTree = "<group>"; };
 		CF6E0C0D2370415B0091CEC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				CF6E0C7623717F9C0091CEC8 /* CartContentController.swift */,
 				CF6E0C7823717FB70091CEC8 /* CartContentPresenter.swift */,
 				CF6E0CAC2372F2410091CEC8 /* CartContentView.swift */,
+				CF3D5BF4237B4B5D00F5D484 /* CartContentCoordinator.swift */,
 			);
 			path = "Cart Content";
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */,
 				CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */,
 				CF6E0CA82372CB090091CEC8 /* HomeScreenHeaderView.swift in Sources */,
+				CF3D5BF5237B4B5D00F5D484 /* CartContentCoordinator.swift in Sources */,
 				CF6E0CBB2379396E0091CEC8 /* HomeScreenCoordinator.swift in Sources */,
 				CF6E0C83237184A90091CEC8 /* DataError.swift in Sources */,
 				CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */,

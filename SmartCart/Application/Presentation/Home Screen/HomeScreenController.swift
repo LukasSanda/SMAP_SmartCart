@@ -19,13 +19,11 @@ internal class HomeScreenController: UIViewController {
     
     private let contentView = HomeScreenView()
     private let presenter: HomeScreenPresenter
-    private let coordinator: HomeScreenCoordinator
     
     // MARK: - Initialization
     
-    internal init(presenter: HomeScreenPresenter, coordinator: HomeScreenCoordinator) {
+    internal init(presenter: HomeScreenPresenter) {
         self.presenter = presenter
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,6 +41,7 @@ internal class HomeScreenController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.rightBarButtonItem?.isEnabled = false
         presenter.load()
     }
 }
@@ -62,13 +61,15 @@ extension HomeScreenController: CartCellDelegate {
 extension HomeScreenController: HomeScreenDelegate {
     func didLoadAvailableCarts(_ carts: [Cart]) {
         guard !carts.isEmpty else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
             contentView.isTableHidden = true
-            logger.logWarning(
+            logger.logInfo(
                 inFunction: "didLoadAvailableCarts",
                 message: "Successfully fetched but loaded empty array.")
             return
         }
         
+        navigationItem.rightBarButtonItem?.isEnabled = true
         contentView.isTableHidden = false
         self.carts = carts
     }
@@ -78,6 +79,12 @@ extension HomeScreenController: HomeScreenDelegate {
 extension HomeScreenController: HomeScreenCoordinatorDelegate {
     func showController(_ controller: UIViewController) {
         navigationController?.show(controller, sender: nil)
+    }
+}
+
+extension HomeScreenController: HomeScreenViewDelegate {
+    func createNewDidTap() {
+        presenter.createNewCart()
     }
 }
 
@@ -99,7 +106,7 @@ extension HomeScreenController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator.showDetail(forCart: carts[indexPath.row])
+        presenter.showDetail(forCart: carts[indexPath.row])
     }
 }
 
@@ -178,6 +185,7 @@ private extension HomeScreenController {
 private extension HomeScreenController {
     func setup() {
         title = "Available Carts"
+        contentView.delegate = self
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.register(cell: CartCell.self)

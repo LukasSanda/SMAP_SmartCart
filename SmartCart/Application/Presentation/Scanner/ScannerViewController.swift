@@ -10,19 +10,26 @@ import UIKit
 import AVFoundation
 import SnapKit
 
-class ScannerViewController: UIViewController {
+internal protocol ScannerDelegate: class {
+    func codeDidLoad(_ code: String)
+}
 
-    // MARK: - Properties
+internal class ScannerViewController: UIViewController {
+
+    // MARK: - Private Properties
     
     private var scanner: Scanner?
     private let overlayView = UIView()
+    private let cancelButton = UIButton()
+    
+    // MARK: - Internal Properties
+    
+    internal weak var delegate: ScannerDelegate?
     
     // MARK: - Intialization
     
     internal init() {
         super.init(nibName: nil, bundle: nil)
-        self.scanner = Scanner(withViewController: self, view: self.view, eanHandler: handleScannedCode(_:))
-        
     }
     
     @available(*, unavailable)
@@ -38,17 +45,28 @@ class ScannerViewController: UIViewController {
         guard let scanner = scanner else { return }
         scanner.requestCaptureSessionStartRunning()
         view.bringSubviewToFront(overlayView)
+        view.bringSubviewToFront(cancelButton)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        self.scanner = Scanner(withViewController: self, view: self.view, eanHandler: handleScannedCode(_:))
+    }
+}
+
+// MARK: - Actions
+extension ScannerViewController {
+    func handleScannedCode(_ code: String) {
+        self.dismiss(animated: true) {
+            self.delegate?.codeDidLoad(code)
+        }
     }
     
-    // MARK: - Methods
-    
-    func handleScannedCode(_ code: String) {
-        //print(code)
+    @objc
+    func buttonDidTap() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -59,13 +77,10 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+// MARK: - Setup View Appereance
 private extension ScannerViewController {
     func setup() {
         // Overlay frame
-        setupScanOverlay()
-    }
-    
-    func setupScanOverlay() {
         overlayView.backgroundColor = .clear
         overlayView.layer.borderColor = UIColor.primaryColor.cgColor
         overlayView.layer.borderWidth = 2
@@ -75,6 +90,19 @@ private extension ScannerViewController {
             make.center.equalToSuperview()
             make.left.equalToSuperview().inset(32)
             make.height.equalTo(150)
+        }
+        
+        cancelButton.layer.cornerRadius = 25
+        cancelButton.backgroundColor = .primaryColor
+        cancelButton.tintColor = .secondaryColor
+        cancelButton.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
+        cancelButton.setTitle("Cancel", for: .normal)
+        view.addSubview(cancelButton)
+        
+        cancelButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(32)
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 internal protocol CartRepository {
-    func addCart(_ cart: Cart)
+    func addNewCart() -> Cart
     func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void)
     func loadCarts(_ completion: @escaping (Result<[Cart], Error>) -> Void)
     func removeAllCarts(_ completion: @escaping (Result<Void, Error>) -> Void)
@@ -32,8 +32,13 @@ internal class CartRepositoryImpl: CartRepository {
     
     // MARK: - Protocol
     
-    internal func addCart(_ cart: Cart) {
+    internal func addNewCart() -> Cart {
+        let cart = Cart(context: databaseService.viewContext)
+        cart.created = Date()
+        cart.id = Date().hashValue.description
+        
         databaseService.save()
+        return cart
     }
     
     internal func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void) {
