@@ -11,4 +11,9 @@ import Foundation
 internal protocol DomainAssembly {
     func resolve() -> DatabaseService
     func resolve() -> CartRepository
+    func resolve() -> CreateNewCart
+    func resolve() -> LoadLastCart
+    func resolve() -> LoadAllCarts
+    func resolve() -> RemoveAllCarts
+    func resolve() -> RemoveCart
 }

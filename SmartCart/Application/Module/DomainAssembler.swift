@@ -23,5 +23,27 @@ extension ModuleAssembler: DomainAssembly {
         return CartRepositoryImpl(service: resolve())
     }
     
+    func resolve() -> CreateNewCart {
+        return CreateNewCartImpl(repository: resolve())
+    }
     
+    func resolve() -> LoadLastCart {
+        return LoadLastCartImpl(repository: resolve())
+    }
+    
+    func resolve() -> LoadAllCarts {
+        return LoadAllCartsImpl(repository: resolve())
+    }
+    
+    func resolve() -> RemoveAllCarts {
+        return RemoveAllCartsImpl(repository: resolve())
+    }
+    
+    func resolve() -> RemoveCart {
+        return RemoveCartImpl(repository: resolve())
+    }
+    
+    func resolve() -> CommitChange {
+        return CommitChangeImpl(service: resolve())
+    }
 }

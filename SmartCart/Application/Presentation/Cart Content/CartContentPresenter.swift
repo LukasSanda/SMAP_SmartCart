@@ -27,7 +27,7 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     // MARK: - Private Properties
     
     private let cart: Cart
-    private let databaseService: DatabaseService
+    private let commitChange: CommitChange
     private let coordinator: CartContentCoordinator
     
     // MARK: - Internal Properties
@@ -36,9 +36,9 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     
     // MARK: - Initialization
     
-    internal init(cart: Cart, databaseService: DatabaseService, coordinator: CartContentCoordinator) {
+    internal init(cart: Cart, commitChange: CommitChange, coordinator: CartContentCoordinator) {
         self.cart = cart
-        self.databaseService = databaseService
+        self.commitChange = commitChange
         self.coordinator = coordinator
     }
     
@@ -56,12 +56,12 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     internal func removeAllItems() {
         guard let items = cart.items else { return }
         cart.removeFromItems(items)
-        databaseService.save()
+        commitChange.commit()
         load()
     }
     internal func removeItem(_ item: Item) {
         cart.removeFromItems(item)
-        databaseService.save()
+        commitChange.commit()
         load()
     }
     
@@ -79,6 +79,7 @@ internal class CartContentPresenterImpl: CartContentPresenter {
                 }
                 
                 item.amount  = NSDecimalNumber(value: newValue)
+                commitChange.commit()
             }
         }
         

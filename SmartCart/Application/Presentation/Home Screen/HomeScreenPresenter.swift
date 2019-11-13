@@ -24,7 +24,10 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     
     // MARK: - Private Properties
     
-    private let cartRepository: CartRepository
+    private let loadCarts: LoadAllCarts
+    private let removeCart: RemoveCart
+    private let removeAllCarts: RemoveAllCarts
+    private let createCart: CreateNewCart
     private let coordinator: HomeScreenCoordinator
     
     // MARK: - Internal Properties
@@ -33,13 +36,16 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     
     // MARK: - Initialization
     
-    internal init(cartRepository: CartRepository, coordinator: HomeScreenCoordinator) {
-        self.cartRepository = cartRepository
+    internal init(loadCarts: LoadAllCarts, removeCart: RemoveCart, removeAllCarts: RemoveAllCarts, createCart: CreateNewCart, coordinator: HomeScreenCoordinator) {
+        self.loadCarts = loadCarts
+        self.removeCart = removeCart
+        self.removeAllCarts = removeAllCarts
+        self.createCart = createCart
         self.coordinator = coordinator
     }
     
     internal func load() {
-        cartRepository.loadCarts { [weak self] result in
+        loadCarts.load { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -55,7 +61,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     }
     
     internal func removeCart(_ cart: Cart) {
-        cartRepository.removeCart(cart) { [weak self] result in
+        removeCart.remove(cart: cart) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -71,7 +77,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     }
     
     internal func removeAllCarts(_ completion: @escaping () -> Void) {
-        cartRepository.removeAllCarts { result in
+        removeAllCarts.remove { result in
             switch result {
             case .success:
                 completion()
@@ -85,7 +91,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     }
     
     internal func createNewCart() {
-        showDetail(forCart: cartRepository.addNewCart())
+        showDetail(forCart: createCart.create())
     }
     
     func showDetail(forCart cart: Cart) {
