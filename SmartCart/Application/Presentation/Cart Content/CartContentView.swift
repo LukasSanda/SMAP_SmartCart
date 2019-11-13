@@ -8,6 +8,15 @@
 
 import UIKit
 
+internal enum CartItemButtonsTag: Int {
+    case addManually
+    case scan
+}
+
+internal protocol CartContentViewDelegate: class {
+    func buttonDidTap(_ sender: UIButton)
+}
+
 internal class CartContentView: UIView {
     
     // MARK: - Private Properties
@@ -22,6 +31,7 @@ internal class CartContentView: UIView {
     
     // MARK: - Internal Properties
     
+    internal weak var delegate: CartContentViewDelegate?
     internal let tableView = UITableView()
     internal var isTableHidden: Bool {
         get { tableView.isHidden }
@@ -52,6 +62,14 @@ internal class CartContentView: UIView {
     @available(*, unavailable)
     internal required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Action Selectors
+private extension CartContentView {
+    @objc
+    func buttonDidTap(_ sender: UIButton) {
+        delegate?.buttonDidTap(sender)
     }
 }
 
@@ -129,7 +147,9 @@ private extension CartContentView {
             make.width.equalTo(2)
         }
         
+        buttonManualAdd.tag = CartItemButtonsTag.addManually.rawValue
         buttonManualAdd.setImage(Assets.CartItems.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonScan.tag = CartItemButtonsTag.scan.rawValue
         buttonScan.setImage(Assets.CartItems.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
         let stack = UIStackView
             .horizontal
@@ -150,6 +170,9 @@ private extension CartContentView {
         buttonScan.tintColor = .secondaryColor
         buttonScan.imageView?.contentMode = .scaleAspectFit
         buttonScan.imageEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        
+        buttonManualAdd.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
+        buttonScan.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
     }
     
     func setupGradientView() {

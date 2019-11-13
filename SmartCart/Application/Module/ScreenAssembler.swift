@@ -11,9 +11,9 @@ import Foundation
 extension ModuleAssembler: ScreenAssembly {
     
     func homeScreenController() -> HomeScreenController {
-        let presenter = HomeScreenPresenterImpl(cartRepository: resolve())
         let coordinator = HomeScreenCoordinatorImpl(databaseService: resolve())
-        let controller = HomeScreenController(presenter: presenter, coordinator: coordinator)
+        let presenter = HomeScreenPresenterImpl(cartRepository: resolve(), coordinator: coordinator)
+        let controller = HomeScreenController(presenter: presenter)
         presenter.delegate = controller
         coordinator.delegate = controller
         return controller

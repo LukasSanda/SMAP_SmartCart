@@ -12,6 +12,8 @@ internal protocol HomeScreenPresenter {
     func load()
     func removeCart(_ cart: Cart)
     func removeAllCarts(_ completion: @escaping () -> Void)
+    func createNewCart()
+    func showDetail(forCart cart: Cart)
 }
 
 internal protocol HomeScreenDelegate: class {
@@ -23,6 +25,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     // MARK: - Private Properties
     
     private let cartRepository: CartRepository
+    private let coordinator: HomeScreenCoordinator
     
     // MARK: - Internal Properties
     
@@ -30,8 +33,9 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     
     // MARK: - Initialization
     
-    internal init(cartRepository: CartRepository) {
+    internal init(cartRepository: CartRepository, coordinator: HomeScreenCoordinator) {
         self.cartRepository = cartRepository
+        self.coordinator = coordinator
     }
     
     internal func load() {
@@ -78,5 +82,13 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
             
             }
         }
+    }
+    
+    internal func createNewCart() {
+        showDetail(forCart: cartRepository.addNewCart())
+    }
+    
+    func showDetail(forCart cart: Cart) {
+        coordinator.showDetail(forCart: cart)
     }
 }

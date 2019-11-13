@@ -9,6 +9,10 @@
 import UIKit
 import SnapKit
 
+internal protocol HomeScreenViewDelegate: class {
+    func createNewDidTap()
+}
+
 internal class HomeScreenView: UIView {
     
     // MARK: - Private Properties
@@ -20,6 +24,7 @@ internal class HomeScreenView: UIView {
     
     // MARK: - Internal Properties
     
+    internal weak var delegate: HomeScreenViewDelegate?
     internal let tableView = UITableView()
     internal var isTableHidden: Bool {
         get { tableView.isHidden }
@@ -39,6 +44,14 @@ internal class HomeScreenView: UIView {
     @available(*, unavailable)
     internal required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Action Selectors
+private extension HomeScreenView {
+    @objc
+    func buttonDidTap() {
+        delegate?.createNewDidTap()
     }
 }
 
@@ -85,6 +98,7 @@ private extension HomeScreenView {
     }
     
     func setupCreateNewButton() {
+        buttonCreateNewCart.addTarget(self, action: #selector(buttonDidTap), for: .touchUpInside)
         buttonCreateNewCart.titleLabel?.font = UIFont.systemFont(ofSize: UIFont.buttonFontSize, weight: .semibold)
         buttonCreateNewCart.setTitleColor(.white, for: .normal)
         buttonCreateNewCart.backgroundColor = UIColor.primaryColor

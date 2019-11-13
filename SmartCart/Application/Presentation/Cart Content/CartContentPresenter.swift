@@ -6,18 +6,20 @@
 //  Copyright © 2019 Lukáš Šanda. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal protocol CartContentPresenter {
     func load()
     func removeItem(_ item: Item)
     func removeAllItems()
     func editAmount(forItem item: Item, increase: Bool)
+    func presentScanner(forController controller: CartContentController)
 }
 
 internal protocol CartContentDelegate: class {
     func didLoadItems(_ items: [Item])
     func removingItemDelegate(_ item: Item)
+    func presentController(_ controller: UIViewController)
 }
 
 internal class CartContentPresenterImpl: CartContentPresenter {
@@ -26,6 +28,7 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     
     private let cart: Cart
     private let databaseService: DatabaseService
+    private let coordinator: CartContentCoordinator
     
     // MARK: - Internal Properties
     
@@ -33,9 +36,10 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     
     // MARK: - Initialization
     
-    internal init(cart: Cart, databaseService: DatabaseService) {
+    internal init(cart: Cart, databaseService: DatabaseService, coordinator: CartContentCoordinator) {
         self.cart = cart
         self.databaseService = databaseService
+        self.coordinator = coordinator
     }
     
     // MARK: - Protocol
@@ -79,5 +83,9 @@ internal class CartContentPresenterImpl: CartContentPresenter {
         }
         
         load()
+    }
+    
+    internal func presentScanner(forController controller: CartContentController) {
+        delegate?.presentController(coordinator.presentScanner(forController: controller))
     }
 }

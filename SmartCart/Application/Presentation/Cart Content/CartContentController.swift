@@ -42,6 +42,30 @@ class CartContentController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.load()
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+}
+
+// MARK: - ScannerDelegate
+extension CartContentController: ScannerDelegate {
+    func codeDidLoad(_ code: String) {
+        let alertController = UIAlertController(title: "Scanner Code", message: "You have scanned following code: \(code)", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Indeed", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - CartContentViewDelegate
+extension CartContentController: CartContentViewDelegate {
+    func buttonDidTap(_ sender: UIButton) {
+        guard let tag = CartItemButtonsTag(rawValue: sender.tag) else { return }
+        
+        switch tag {
+        case .addManually:
+            break
+        case .scan:
+            presenter.presentScanner(forController: self)
+        }
     }
 }
 
@@ -69,19 +93,26 @@ extension CartContentController: ItemCellDelegate {
 
 //MARK: - CartContentDelegate
 extension CartContentController: CartContentDelegate {
+    func presentController(_ controller: UIViewController) {
+        controller.modalPresentationStyle = .overFullScreen
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
     func removingItemDelegate(_ item: Item) {
         deleteConfirmation(forItem: item)
     }
     
     func didLoadItems(_ items: [Item]) {
         guard !items.isEmpty else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
             contentView.isTableHidden = true
-            logger.logWarning(
+            logger.logInfo(
                 inFunction: "didLoadItems",
                 message: "Successfully fetched but loaded empty array.")
             return
         }
         
+        navigationItem.rightBarButtonItem?.isEnabled = true
         contentView.totalPrice = calculateTotalPrice(forItems: items)
         contentView.isTableHidden = false
         self.items = items
@@ -160,6 +191,7 @@ private extension CartContentController {
 private extension CartContentController {
     func setup() {
         title = "Cart Items"
+        contentView.delegate = self
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
         contentView.tableView.register(cell: ItemCell.self)

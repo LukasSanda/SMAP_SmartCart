@@ -35,7 +35,8 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     // MARK: - Protocol
     
     internal func showDetail(forCart cart: Cart) {
-        let presenter = CartContentPresenterImpl(cart: cart, databaseService: databaseService)
+        let coordinator = CartContentCoordinatorImpl()
+        let presenter = CartContentPresenterImpl(cart: cart, databaseService: databaseService, coordinator: coordinator)
         let controller = CartContentController(presenter: presenter)
         presenter.delegate = controller
         delegate?.showController(controller)
