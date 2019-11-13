@@ -20,7 +20,7 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     
     // MARK: - Private Properties
     
-    private let databaseService: DatabaseService
+    private let commitChange: CommitChange
     
     // MARK: - Internal Propertries
     
@@ -28,15 +28,15 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     
     // MARK: - Initialization
     
-    internal init(databaseService: DatabaseService) {
-        self.databaseService = databaseService
+    internal init(commitChange: CommitChange) {
+        self.commitChange = commitChange
     }
     
     // MARK: - Protocol
     
     internal func showDetail(forCart cart: Cart) {
         let coordinator = CartContentCoordinatorImpl()
-        let presenter = CartContentPresenterImpl(cart: cart, databaseService: databaseService, coordinator: coordinator)
+        let presenter = CartContentPresenterImpl(cart: cart, commitChange: commitChange, coordinator: coordinator)
         let controller = CartContentController(presenter: presenter)
         presenter.delegate = controller
         delegate?.showController(controller)

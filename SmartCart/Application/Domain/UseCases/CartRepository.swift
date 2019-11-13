@@ -11,7 +11,6 @@ import CoreData
 
 internal protocol CartRepository {
     func addNewCart() -> Cart
-    func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void)
     func loadCarts(_ completion: @escaping (Result<[Cart], Error>) -> Void)
     func removeAllCarts(_ completion: @escaping (Result<Void, Error>) -> Void)
     func removeCart(_ cart: Cart, _ completion: @escaping (Result<Void, Error>) -> Void)
@@ -39,23 +38,6 @@ internal class CartRepositoryImpl: CartRepository {
         
         databaseService.save()
         return cart
-    }
-    
-    internal func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void) {
-        loadCarts { result in
-            switch result {
-            case .success(let carts):
-                guard let cart = carts.first else {
-                    completion(.failure(DataError.noData))
-                    return
-                }
-                
-                completion(.success(cart))
-                
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
     }
     
     internal func loadCarts(_ completion: @escaping (Result<[Cart], Error>) -> Void) {
