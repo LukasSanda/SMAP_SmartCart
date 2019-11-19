@@ -53,9 +53,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
                 self.delegate?.didLoadAvailableCarts(carts)
                 
             case .failure(let error):
-                logger.logError(
-                    inFunction: "loadAvailableCarts",
-                    message: (error as? DataError)?.localizedDescription ?? error.localizedDescription)
+                logger.logError(message: (error as? DataError)?.localizedDescription ?? error.localizedDescription)
             }
         }
     }
@@ -68,9 +66,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
             case .success:
                 self.load()
             case .failure(let error):
-                logger.logError(
-                    inFunction: "removeCart",
-                    message: error.localizedDescription)
+                logger.logError(message: error.localizedDescription)
             
             }
         }
@@ -82,9 +78,7 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
             case .success:
                 completion()
             case .failure(let error):
-                logger.logError(
-                    inFunction: "removeAllCarts",
-                    message: error.localizedDescription)
+                logger.logError(message: error.localizedDescription)
             
             }
         }

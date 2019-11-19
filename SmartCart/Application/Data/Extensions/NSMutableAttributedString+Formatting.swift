@@ -9,7 +9,7 @@
 import UIKit
 
 internal extension NSMutableAttributedString {
-    static func setupPrice(
+    static func setupAttributedText(
         highlightedText: String,
         normalText: String,
         highlightedFontSize: CGFloat = 14,

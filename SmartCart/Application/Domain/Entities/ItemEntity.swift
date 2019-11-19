@@ -9,12 +9,29 @@
 import UIKit
 
 internal enum ItemCategoryType: String {
-    case sweets = "Sweets"
-    case drinks = "Drinks"
-    case hygiene = "Hygiene"
-    case dairyProducts = "Dairy Products"
-    case sausages = "Sausages"
-    case snacks = "Snacks"
+    case sweets
+    case drinks
+    case hygiene
+    case dairyProducts
+    case sausages
+    case snacks
+    
+    func getTitle() -> String {
+        switch self {
+        case .sweets:
+            return "Sweets"
+        case .drinks:
+            return "Drinks"
+        case .hygiene:
+            return "Hygiene"
+        case .dairyProducts:
+            return "Dairy Products"
+        case .sausages:
+            return "Sausages"
+        case .snacks:
+            return "Snacks"
+        }
+    }
     
     func getImage() -> UIImage {
         switch self {
@@ -32,13 +49,24 @@ internal enum ItemCategoryType: String {
             return Assets.Products.snacks
         }
     }
+    
+    func getSizeUnit() -> String {
+        switch self {
+        case .sweets, .dairyProducts, .sausages, .snacks:
+            return UnitMass.grams.symbol
+        case .drinks:
+            return UnitVolume.liters.symbol
+        case .hygiene:
+            return UnitVolume.milliliters.symbol
+        }
+    }
 }
 
-internal struct ItemEntity {
+internal struct ItemEntity: Hashable {
     let ean: String
     let title: String
-    var desc: String?
-    var price: Double?
+    var desc: String
+    var price: Double
     let category: String
     let size: Double
 }

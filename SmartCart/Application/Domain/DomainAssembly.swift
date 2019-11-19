@@ -9,11 +9,23 @@
 import Foundation
 
 internal protocol DomainAssembly {
+    // MARK: - Services
     func resolve() -> DatabaseService
+    func resolve() -> ProductCacheService
+    
+    // MARK: - Repositories
     func resolve() -> CartRepository
+    
+    // MARK: - Use-Cases Cart
     func resolve() -> CreateNewCart
     func resolve() -> LoadLastCart
     func resolve() -> LoadAllCarts
     func resolve() -> RemoveAllCarts
     func resolve() -> RemoveCart
+    
+    // MARK: - Use-Cases Database
+    func resolve() -> CommitChange
+    
+    // MARK: - Use-Cases Products
+    func resolve() -> GetKnownProducts
 }

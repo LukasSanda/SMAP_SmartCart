@@ -11,8 +11,10 @@ import Foundation
 extension ModuleAssembler: ScreenAssembly {
     
     func homeScreenController() -> HomeScreenController {
-        let coordinator = HomeScreenCoordinatorImpl(commitChange: resolve())
-        
+        let coordinator = HomeScreenCoordinatorImpl(
+            commitChange: resolve(),
+            getKnownProducts: resolve(),
+            addItem: resolve())
         let presenter = HomeScreenPresenterImpl(
             loadCarts: resolve(),
             removeCart: resolve(),

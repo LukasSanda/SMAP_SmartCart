@@ -15,7 +15,7 @@ class ProductServiceTests: XCTestCase {
     // MARK: - Methods
     
     func test_data_are_properly_fetched() {
-        let service = ProductServiceImpl()
+        let service = ProductCacheServiceImpl()
         let items = service.getItems()
         XCTAssertNotNil(items, "Products should be loaded!")
     }

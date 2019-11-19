@@ -45,8 +45,8 @@ internal class CartContentView: UIView {
     internal var totalPrice: Double = 0.0 {
         didSet {
             totalPriceLabel.attributedText = NSMutableAttributedString
-                .setupPrice(
-                    highlightedText: String(format: "%0.00f,- Kč", totalPrice),
+                .setupAttributedText(
+                    highlightedText: String(format: "%0.2f,- Kč", totalPrice),
                     normalText: "Cart Summary:",
                     highlightedFontSize: 18,
                     normalFontSize: 16) }

@@ -54,15 +54,15 @@ internal class ItemCell: UITableViewCell {
     
     internal var price = 0.0 {
         didSet {
-            priceLabel.text = String(format: "Price: %.00f,- Kč", price)
+            priceLabel.text = String(format: "Price: %.2f,- Kč", price)
         }
     }
     
     internal var amount: Int = 1 {
         didSet {
             amountLabel.text = amount.description
-            totalPriceLabel.attributedText = NSMutableAttributedString.setupPrice(
-                highlightedText: String(format: "%.00f,- Kč", price * Double(amount)),
+            totalPriceLabel.attributedText = NSMutableAttributedString.setupAttributedText(
+                highlightedText: String(format: "%.2f,- Kč", price * Double(amount)),
                 normalText: "Total Price:",
                 highlightedFontSize: 16,
                 normalFontSize: 14)
