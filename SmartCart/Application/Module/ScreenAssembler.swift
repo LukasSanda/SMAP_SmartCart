@@ -12,6 +12,7 @@ extension ModuleAssembler: ScreenAssembly {
     
     func homeScreenController() -> HomeScreenController {
         let coordinator = HomeScreenCoordinatorImpl(commitChange: resolve())
+        
         let presenter = HomeScreenPresenterImpl(
             loadCarts: resolve(),
             removeCart: resolve(),

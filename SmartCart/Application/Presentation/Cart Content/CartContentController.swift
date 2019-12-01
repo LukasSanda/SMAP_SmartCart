@@ -14,7 +14,7 @@ class CartContentController: UIViewController {
     // MARK: - Properties
     
     private var items = [Item]() {
-        didSet { contentView.tableView.reloadData() }
+        didSet  { contentView.tableView.reloadSections(IndexSet(integer: 0), with: .fade) }
     }
     
     private let contentView = CartContentView()

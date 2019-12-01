@@ -14,7 +14,7 @@ internal class HomeScreenController: UIViewController {
     // MARK: - Properties
     
     private var carts = [Cart]() {
-        didSet { contentView.tableView.reloadData() }
+        didSet { contentView.tableView.reloadSections(IndexSet(integersIn: 0...1), with: .fade) }
     }
     
     private let contentView = HomeScreenView()
