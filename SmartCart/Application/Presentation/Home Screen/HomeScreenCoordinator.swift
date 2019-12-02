@@ -21,6 +21,8 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     // MARK: - Private Properties
     
     private let commitChange: CommitChange
+    private let getKnownProducts: GetKnownProducts
+    private let addItem: AddItem
     
     // MARK: - Internal Propertries
     
@@ -28,14 +30,16 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     
     // MARK: - Initialization
     
-    internal init(commitChange: CommitChange) {
+    internal init(commitChange: CommitChange, getKnownProducts: GetKnownProducts, addItem: AddItem) {
         self.commitChange = commitChange
+        self.getKnownProducts = getKnownProducts
+        self.addItem = addItem
     }
     
     // MARK: - Protocol
     
     internal func showDetail(forCart cart: Cart) {
-        let coordinator = CartContentCoordinatorImpl()
+        let coordinator = CartContentCoordinatorImpl(getKnownProducts: getKnownProducts, addItem: addItem)
         let presenter = CartContentPresenterImpl(cart: cart, commitChange: commitChange, coordinator: coordinator)
         let controller = CartContentController(presenter: presenter)
         presenter.delegate = controller

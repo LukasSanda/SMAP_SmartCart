@@ -30,9 +30,7 @@ internal class DatabaseServiceImpl: DatabaseService {
 
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                logger.logError(
-                    inFunction: "persistentContainer",
-                    message: error.localizedDescription)
+                logger.logError(message: error.localizedDescription)
             }
         })
         return container
@@ -68,9 +66,7 @@ private extension DatabaseServiceImpl {
             do {
                 try viewContext.save()
             } catch let error {
-                logger.logError(
-                    inFunction: "saveContext",
-                    message: "Problem with saving Core Data. \(error)")
+                logger.logError(message: "Problem with saving Core Data. \(error)")
             }
         }
     }

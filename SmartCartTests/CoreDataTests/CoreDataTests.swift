@@ -35,7 +35,8 @@ class CoreDataTests: XCTestCase {
         
         // Load property
         let repository = CartRepositoryImpl(service: service)
-        repository.loadLastCart { result in
+        let loadLastCart = LoadLastCartImpl(repository: repository)
+        loadLastCart.load { result in
             switch result {
             case .success(let cart):
                 XCTAssertNotNil(cart, "Should be loaded!")

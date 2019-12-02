@@ -10,10 +10,6 @@ import UIKit
 import AVFoundation
 import SnapKit
 
-internal protocol ScannerDelegate: class {
-    func codeDidLoad(_ code: String)
-}
-
 internal class ScannerViewController: UIViewController {
 
     // MARK: - Private Properties
@@ -21,14 +17,12 @@ internal class ScannerViewController: UIViewController {
     private var scanner: Scanner?
     private let overlayView = UIView()
     private let cancelButton = UIButton()
-    
-    // MARK: - Internal Properties
-    
-    internal weak var delegate: ScannerDelegate?
+    private let presenter: ScannerViewPresenter
     
     // MARK: - Intialization
     
-    internal init() {
+    internal init(presenter: ScannerViewPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,6 +47,8 @@ internal class ScannerViewController: UIViewController {
         setup()
         
         self.scanner = Scanner(withViewController: self, view: self.view, eanHandler: handleScannedCode(_:))
+        
+        handleScannedCode("")
     }
 }
 
@@ -60,7 +56,8 @@ internal class ScannerViewController: UIViewController {
 extension ScannerViewController {
     func handleScannedCode(_ code: String) {
         self.dismiss(animated: true) {
-            self.delegate?.codeDidLoad(code)
+            self.presenter.checkCode("456123789")
+            //self.presenter.checkCode(code)
         }
     }
     

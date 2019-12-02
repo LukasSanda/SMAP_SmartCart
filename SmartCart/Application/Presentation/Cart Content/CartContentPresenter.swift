@@ -14,6 +14,7 @@ internal protocol CartContentPresenter {
     func removeAllItems()
     func editAmount(forItem item: Item, increase: Bool)
     func presentScanner(forController controller: CartContentController)
+    func presentScannedItem(_ item: ItemEntity, forController controller: CartContentController)
 }
 
 internal protocol CartContentDelegate: class {
@@ -46,7 +47,7 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     
     internal func load() {
         guard let items = cart.items?.allObjects as? [Item] else {
-            logger.logError(inFunction: "load", message: "Could not map items to an array.")
+            logger.logError(message: "Could not map items to an array.")
             return
         }
         
@@ -88,5 +89,9 @@ internal class CartContentPresenterImpl: CartContentPresenter {
     
     internal func presentScanner(forController controller: CartContentController) {
         delegate?.presentController(coordinator.presentScanner(forController: controller))
+    }
+    
+    internal func presentScannedItem(_ item: ItemEntity, forController controller: CartContentController) {
+        delegate?.presentController(coordinator.presentScannedItem(item, forController: controller))
     }
 }

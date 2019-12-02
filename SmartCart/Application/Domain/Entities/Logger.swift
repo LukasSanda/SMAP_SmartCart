@@ -16,15 +16,15 @@ internal class Logger {
     
     // MARK: - Methods
     
-    func logError(inFunction function: String, message: String) {
-        print("⛔️ Error – " + function +  ": " + message)
+    func logError(inFunction function: String = #function, inFile fileName: String = #file, message: String) {
+        print(" ⛔️ Error\n File: [\(fileName)]\n Function: \(function)\n Message: \(message)\n")
     }
     
-    func logWarning(inFunction function: String, message: String) {
-        print("⚠️ Warning – " + function +  ": " + message)
+    func logWarning(inFunction function: String = #function, inFile fileName: String = #file, message: String) {
+        print(" ⚠️ Warning\n File: [\(fileName)]\n Function: \(function)\n Message: \(message)\n")
     }
     
-    func logInfo(inFunction function: String, message: String) {
-        print("ℹ️ Info – " + function +  ": " + message)
+    func logInfo(inFunction function: String = #function, inFile fileName: String = #file, message: String) {
+        print(" ℹ️ Info\n File: [\(fileName)]\n Function: \(function)\n Message: \(message)\n")
     }
 }

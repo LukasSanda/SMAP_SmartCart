@@ -34,6 +34,7 @@ internal class MainViewCoordinatorImpl: MainViewCoordinator {
     }
 }
 
+// MARK: - Setup Bar Appereance
 private extension MainViewCoordinatorImpl {
     func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()

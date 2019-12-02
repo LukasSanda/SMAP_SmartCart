@@ -12,6 +12,7 @@ import CoreData
 internal protocol CartRepository {
     func addNewCart() -> Cart
     func loadCarts(_ completion: @escaping (Result<[Cart], Error>) -> Void)
+    func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void)
     func removeAllCarts(_ completion: @escaping (Result<Void, Error>) -> Void)
     func removeCart(_ cart: Cart, _ completion: @escaping (Result<Void, Error>) -> Void)
 }
@@ -26,7 +27,7 @@ internal class CartRepositoryImpl: CartRepository {
     
     internal init(service: DatabaseService) {
         self.databaseService = service
-        initMockData()
+        //initMockData()
     }
     
     // MARK: - Protocol
@@ -48,6 +49,26 @@ internal class CartRepositoryImpl: CartRepository {
         do {
             let carts = try databaseService.viewContext.fetch(fetchRequest)
             completion(.success(carts))
+            
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    internal func loadLastCart(_ completion: @escaping (Result<Cart, Error>) -> Void) {
+        let fetchRequest: NSFetchRequest<Cart> = Cart.fetchRequest()
+        let primarySortDescriptor = NSSortDescriptor(key: "created", ascending: false)
+        fetchRequest.sortDescriptors = [primarySortDescriptor]
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let carts = try databaseService.viewContext.fetch(fetchRequest)
+            guard let lastCart = carts.first else {
+                completion(.failure(DataError.loadData))
+                return
+            }
+            
+            completion(.success(lastCart))
             
         } catch let error {
             completion(.failure(error))

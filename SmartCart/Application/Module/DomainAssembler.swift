@@ -9,6 +9,7 @@
 import Foundation
 
 extension ModuleAssembler: DomainAssembly {
+    // MARK: - Services
     func resolve() -> DatabaseService {
         if let databaseService = databaseService {
             return databaseService
@@ -19,10 +20,22 @@ extension ModuleAssembler: DomainAssembly {
         return databaseService
     }
     
+    func resolve() -> ProductCacheService {
+        if let cacheService = productCacheService {
+            return cacheService
+        }
+        
+        let cacheService = ProductCacheServiceImpl()
+        self.productCacheService = cacheService
+        return cacheService
+    }
+    
+    // MARK: - Repositories
     func resolve() -> CartRepository {
         return CartRepositoryImpl(service: resolve())
     }
     
+    // MARK: - Use-Cases Cart
     func resolve() -> CreateNewCart {
         return CreateNewCartImpl(repository: resolve())
     }
@@ -43,7 +56,17 @@ extension ModuleAssembler: DomainAssembly {
         return RemoveCartImpl(repository: resolve())
     }
     
+    // MARK: - Use-Cases Database
     func resolve() -> CommitChange {
         return CommitChangeImpl(service: resolve())
+    }
+    
+    // MARK: - Use-Cases Products
+    func resolve() -> GetKnownProducts {
+        return GetKnownProductsImpl(cacheService: resolve())
+    }
+    
+    func resolve() -> AddItem {
+        return AddItemImpl(loadLastCart: resolve(), databaseService: resolve())
     }
 }

@@ -8,33 +8,17 @@
 
 import Foundation
 
-internal protocol ProductService {
-    func getItems() -> [ItemEntity]?
+internal protocol ProductCacheService {
+    func getItems(_ completion: @escaping (Result<Set<ItemEntity>, ProductError>) -> Void)
     func addItem(_ item: ItemEntity)
 }
 
-internal class ProductServiceImpl: ProductService {
-    
-    // MARK: - Constats
-    
-    private enum Keys {
-        static let products = "ProductService.products"
-    }
-    
-    private let fetchLimit: TimeInterval = 300
-    private var lastTimeFetched: Date?
+internal class ProductCacheServiceImpl: ProductCacheService {
     
     // MARK: - Properties
     
     
-    private var cache: [ItemEntity]?
-    private var isCacheValid: Bool {
-        guard let fetched = lastTimeFetched else {
-            return false
-        }
-        
-        return Date().timeIntervalSince(fetched) < fetchLimit
-    }
+    private var cache: Set<ItemEntity>?
     
     // MARK: - Initialization
     
@@ -42,62 +26,76 @@ internal class ProductServiceImpl: ProductService {
     
     // MARK: - Protocol
     
-    internal func getItems() -> [ItemEntity]? {
-        if let _ = cache, isCacheValid {
-            return cache
-        }
-        
-        var result = [ItemEntity]()
-        
-        guard let path = Bundle.main.path(forResource: "products", ofType: "json") else {
-            return nil
-        }
-        
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+    internal func getItems(_ completion: @escaping (Result<Set<ItemEntity>, ProductError>) -> Void) {
+        if let cache = cache {
+            completion(.success(cache))
             
-            guard let json = jsonResult as? Dictionary<String, AnyObject>,
-                let products = json["products"] as? [Dictionary<String, AnyObject>] else {
-                    return nil
+        } else {
+            var result = Set<ItemEntity>()
+            
+            guard let path = Bundle.main.path(forResource: "products", ofType: "json") else {
+                completion(.failure(ProductError.noFile))
+                return
             }
             
-            for product in products {
-                let item = ItemEntity(
-                    ean: product["ean"] as? String ?? "",
-                    title: product["title"] as? String ?? "",
-                    desc: product["description"] as? String ?? nil,
-                    price: product["price"] as? Double ?? nil,
-                    category: product["category"] as? String ?? "",
-                    size: product["size"] as? Double ?? 0.0)
-                result.append(item)
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                
+                guard let json = jsonResult as? Dictionary<String, AnyObject>,
+                    let products = json["products"] as? [Dictionary<String, AnyObject>] else {
+                        completion(.failure(ProductError.parsing))
+                        return
+                }
+                
+                for product in products {
+                    let item = ItemEntity(
+                        ean: product["ean"] as? String ?? "",
+                        title: product["title"] as? String ?? "",
+                        desc: product["description"] as? String ?? "",
+                        price: product["price"] as? Double ?? 0.0,
+                        category: product["category"] as? String ?? "",
+                        size: product["size"] as? Double ?? 0.0)
+                    result.insert(item)
+                }
+                
+                cache = result
+                completion(.success(result))
+                
+            } catch let error {
+                completion(.failure(ProductError.nativeError(error)))
             }
-            
-            cache = result
-            return result
-            
-        } catch let error {
-            fatalError(error.localizedDescription)
         }
     }
     
     internal func addItem(_ item: ItemEntity) {
         if var cache = cache {
-            cache.append(item)
+            cache.insert(item)
             guard let file = FileHandle(forWritingAtPath: "products.json") else { return }
             
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: cache, options: .init(rawValue: 0))
                 file.write(jsonData)
             } catch let error {
-                logger.logError(inFunction: "addItem", message: error.localizedDescription)
+                logger.logError(message: error.localizedDescription)
             }
             
             file.closeFile()
             
         } else {
-            _ = getItems()
-            addItem(item)
+            
+            getItems { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .failure(let error):
+                    logger.logError(message: error.localizedDescription)
+                case .success:
+                    self.addItem(item)
+                }
+                
+            }
+            
         }
     }
 }

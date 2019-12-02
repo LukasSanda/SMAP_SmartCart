@@ -1,11 +1,11 @@
 {
     "products": [
         {
-            "ean": "12345678",
+            "ean": "123456789",
             "title": "Tatranka",
             "description": "Mléčná čokoláda",
             "price": 4.50,
-            "category": "snacks",
+            "category": "sweets",
             "size": 0.055
         },
         {

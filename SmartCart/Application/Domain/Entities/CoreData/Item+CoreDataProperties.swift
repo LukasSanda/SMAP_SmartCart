@@ -28,3 +28,18 @@ extension Item {
     @NSManaged public var cart: Cart
 
 }
+
+internal extension Item {
+    func setProperties(withItemEntity entity: ItemEntity, ofAmount amount: Int) {
+        self.id = Date().hashValue.description
+        self.category = entity.category
+        self.desc = entity.desc
+        self.title = entity.title
+        self.ean = entity.ean
+        self.desc = entity.desc
+        self.category = entity.category
+        self.price = entity.price
+        self.size = entity.size
+        self.amount = NSDecimalNumber(value: amount)
+    }
+}

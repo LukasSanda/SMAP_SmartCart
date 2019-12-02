@@ -27,8 +27,8 @@ internal class LoadLastCartImpl: LoadLastCart {
     // MARK: - Protocol
     
     internal func load(_ completion: @escaping (Result<Cart, Error>) -> Void) {
-//        repository.loadLastCart { result in
-//            completion(result)
-//        }
+        repository.loadLastCart { result in
+            completion(result)
+        }
     }
 }

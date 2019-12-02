@@ -145,8 +145,8 @@ private extension CartCell {
 // MARK: - Formatters
 private extension CartCell {
     func handleTotalPriceLabel(withPrice price: Double) {
-        totalPriceLabel.attributedText = NSMutableAttributedString.setupPrice(
-            highlightedText: String(format: "%.00f,- Kč", price),
+        totalPriceLabel.attributedText = NSMutableAttributedString.setupAttributedText(
+            highlightedText: String(format: "%.2f,- Kč", price),
             normalText: "Total Price:")
     }
     

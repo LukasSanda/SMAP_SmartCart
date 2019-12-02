@@ -63,9 +63,7 @@ extension HomeScreenController: HomeScreenDelegate {
         guard !carts.isEmpty else {
             navigationItem.rightBarButtonItem?.isEnabled = false
             contentView.isTableHidden = true
-            logger.logInfo(
-                inFunction: "didLoadAvailableCarts",
-                message: "Successfully fetched but loaded empty array.")
+            logger.logInfo(message: "Successfully fetched but loaded empty array.")
             return
         }
         
