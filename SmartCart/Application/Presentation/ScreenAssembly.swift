@@ -9,5 +9,5 @@
 import Foundation
 
 internal protocol ScreenAssembly {
-    func homeScreenController() -> HomeScreenController
+    func cartListController() -> CartListController
 }

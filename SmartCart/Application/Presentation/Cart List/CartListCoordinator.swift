@@ -1,5 +1,5 @@
 //
-//  HomeScreenCoordinator.swift
+//  CartListCoordinator.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 11/11/2019.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-internal protocol HomeScreenCoordinator {
+internal protocol CartListCoordinator {
     func showDetail(forCart cart: Cart)
 }
 
-internal protocol HomeScreenCoordinatorDelegate: class {
+internal protocol CartListCoordinatorDelegate: class {
     func showController(_ controller: UIViewController)
 }
 
-internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
+internal class CartListCoordinatorImpl: CartListCoordinator {
     
     // MARK: - Private Properties
     
@@ -26,7 +26,7 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     
     // MARK: - Internal Propertries
     
-    internal weak var delegate: HomeScreenCoordinatorDelegate?
+    internal weak var delegate: CartListCoordinatorDelegate?
     
     // MARK: - Initialization
     
@@ -39,9 +39,9 @@ internal class HomeScreenCoordinatorImpl: HomeScreenCoordinator {
     // MARK: - Protocol
     
     internal func showDetail(forCart cart: Cart) {
-        let coordinator = CartContentCoordinatorImpl(getKnownProducts: getKnownProducts, addItem: addItem)
-        let presenter = CartContentPresenterImpl(cart: cart, commitChange: commitChange, coordinator: coordinator)
-        let controller = CartContentController(presenter: presenter)
+        let coordinator = ItemListCoordinatorImpl(getKnownProducts: getKnownProducts, addItem: addItem)
+        let presenter = ItemListPresenterImpl(cart: cart, commitChange: commitChange, coordinator: coordinator)
+        let controller = ItemListController(presenter: presenter)
         presenter.delegate = controller
         delegate?.showController(controller)
     }

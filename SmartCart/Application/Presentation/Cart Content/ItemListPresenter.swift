@@ -1,5 +1,5 @@
 //
-//  CartContentPresenter.swift
+//  ItemListPresenter.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -8,36 +8,38 @@
 
 import UIKit
 
-internal protocol CartContentPresenter {
+internal protocol ItemListPresenter {
     func load()
     func removeItem(_ item: Item)
     func removeAllItems()
     func editAmount(forItem item: Item, increase: Bool)
-    func presentScanner(forController controller: CartContentController)
-    func presentScannedItem(_ item: ItemEntity, forController controller: CartContentController)
+    func presentManualAdd()
+    func presentScanner(forController controller: ItemListController)
+    func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController)
 }
 
-internal protocol CartContentDelegate: class {
+internal protocol ItemListDelegate: class {
     func didLoadItems(_ items: [Item])
     func removingItemDelegate(_ item: Item)
     func presentController(_ controller: UIViewController)
+    func showController(_ controller: UIViewController)
 }
 
-internal class CartContentPresenterImpl: CartContentPresenter {
+internal class ItemListPresenterImpl: ItemListPresenter {
     
     // MARK: - Private Properties
     
     private let cart: Cart
     private let commitChange: CommitChange
-    private let coordinator: CartContentCoordinator
+    private let coordinator: ItemListCoordinator
     
     // MARK: - Internal Properties
     
-    internal weak var delegate: CartContentDelegate?
+    internal weak var delegate: ItemListDelegate?
     
     // MARK: - Initialization
     
-    internal init(cart: Cart, commitChange: CommitChange, coordinator: CartContentCoordinator) {
+    internal init(cart: Cart, commitChange: CommitChange, coordinator: ItemListCoordinator) {
         self.cart = cart
         self.commitChange = commitChange
         self.coordinator = coordinator
@@ -87,11 +89,14 @@ internal class CartContentPresenterImpl: CartContentPresenter {
         load()
     }
     
-    internal func presentScanner(forController controller: CartContentController) {
+    internal func presentManualAdd() {
+        delegate?.showController(coordinator.presentManualAdd())
+    }
+    internal func presentScanner(forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentScanner(forController: controller))
     }
     
-    internal func presentScannedItem(_ item: ItemEntity, forController controller: CartContentController) {
+    internal func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentScannedItem(item, forController: controller))
     }
 }

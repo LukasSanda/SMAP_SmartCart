@@ -1,5 +1,5 @@
 //
-//  HomeScreenView.swift
+//  CartListView.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -9,11 +9,11 @@
 import UIKit
 import SnapKit
 
-internal protocol HomeScreenViewDelegate: class {
+internal protocol CartListViewDelegate: class {
     func createNewDidTap()
 }
 
-internal class HomeScreenView: UIView {
+internal class CartListView: UIView {
     
     // MARK: - Private Properties
     
@@ -24,7 +24,7 @@ internal class HomeScreenView: UIView {
     
     // MARK: - Internal Properties
     
-    internal weak var delegate: HomeScreenViewDelegate?
+    internal weak var delegate: CartListViewDelegate?
     internal let tableView = UITableView()
     internal var isTableHidden: Bool {
         get { tableView.isHidden }
@@ -48,7 +48,7 @@ internal class HomeScreenView: UIView {
 }
 
 // MARK: - Action Selectors
-private extension HomeScreenView {
+private extension CartListView {
     @objc
     func buttonDidTap() {
         delegate?.createNewDidTap()
@@ -56,7 +56,7 @@ private extension HomeScreenView {
 }
 
 // MARK: - Setup View Appereance
-private extension HomeScreenView {
+private extension CartListView {
     func setup() {
         backgroundColor = .white
         addSubview(contentView)

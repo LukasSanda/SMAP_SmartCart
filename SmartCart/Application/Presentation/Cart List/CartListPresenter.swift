@@ -1,5 +1,5 @@
 //
-//  HomeScreenPresenter.swift
+//  CartListPresenter.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal protocol HomeScreenPresenter {
+internal protocol CartListPresenter {
     func load()
     func removeCart(_ cart: Cart)
     func removeAllCarts(_ completion: @escaping () -> Void)
@@ -16,11 +16,11 @@ internal protocol HomeScreenPresenter {
     func showDetail(forCart cart: Cart)
 }
 
-internal protocol HomeScreenDelegate: class {
+internal protocol CartListDelegate: class {
     func didLoadAvailableCarts(_ carts: [Cart])
 }
 
-internal class HomeScreenPresenterImpl: HomeScreenPresenter {
+internal class CartListPresenterImpl: CartListPresenter {
     
     // MARK: - Private Properties
     
@@ -28,15 +28,15 @@ internal class HomeScreenPresenterImpl: HomeScreenPresenter {
     private let removeCart: RemoveCart
     private let removeAllCarts: RemoveAllCarts
     private let createCart: CreateNewCart
-    private let coordinator: HomeScreenCoordinator
+    private let coordinator: CartListCoordinator
     
     // MARK: - Internal Properties
     
-    internal weak var delegate: HomeScreenDelegate?
+    internal weak var delegate: CartListDelegate?
     
     // MARK: - Initialization
     
-    internal init(loadCarts: LoadAllCarts, removeCart: RemoveCart, removeAllCarts: RemoveAllCarts, createCart: CreateNewCart, coordinator: HomeScreenCoordinator) {
+    internal init(loadCarts: LoadAllCarts, removeCart: RemoveCart, removeAllCarts: RemoveAllCarts, createCart: CreateNewCart, coordinator: CartListCoordinator) {
         self.loadCarts = loadCarts
         self.removeCart = removeCart
         self.removeAllCarts = removeAllCarts

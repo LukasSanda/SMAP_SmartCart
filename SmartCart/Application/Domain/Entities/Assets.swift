@@ -17,11 +17,11 @@ internal enum Assets {
     
     // MARK: - Home Screen
     
-    enum HomeScreen {
+    enum CartList {
         static let shoppingCart: UIImage = UIImage(named: "shoppingCart") ?? UIImage()
     }
     
-    enum CartItems {
+    enum ItemList {
         static let barCodeScanner: UIImage = UIImage(named: "barCodeScanner") ?? UIImage()
         static let addToCart: UIImage = UIImage(named: "addToCart") ?? UIImage()
         static let increase: UIImage = UIImage(named: "plus") ?? UIImage()

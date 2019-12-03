@@ -1,5 +1,5 @@
 //
-//  CartContentView.swift
+//  ItemListView.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 06/11/2019.
@@ -13,11 +13,11 @@ internal enum CartItemButtonsTag: Int {
     case scan
 }
 
-internal protocol CartContentViewDelegate: class {
+internal protocol ItemListViewDelegate: class {
     func buttonDidTap(_ sender: UIButton)
 }
 
-internal class CartContentView: UIView {
+internal class ItemListView: UIView {
     
     // MARK: - Private Properties
     
@@ -31,7 +31,7 @@ internal class CartContentView: UIView {
     
     // MARK: - Internal Properties
     
-    internal weak var delegate: CartContentViewDelegate?
+    internal weak var delegate: ItemListViewDelegate?
     internal let tableView = UITableView()
     internal var isTableHidden: Bool {
         get { tableView.isHidden }
@@ -66,7 +66,7 @@ internal class CartContentView: UIView {
 }
 
 // MARK: - Action Selectors
-private extension CartContentView {
+private extension ItemListView {
     @objc
     func buttonDidTap(_ sender: UIButton) {
         delegate?.buttonDidTap(sender)
@@ -74,7 +74,7 @@ private extension CartContentView {
 }
 
 // MARK: - Setup View Appereance
-private extension CartContentView {
+private extension ItemListView {
     func setup() {
         backgroundColor = .white
         addSubview(contentView)
@@ -148,9 +148,9 @@ private extension CartContentView {
         }
         
         buttonManualAdd.tag = CartItemButtonsTag.addManually.rawValue
-        buttonManualAdd.setImage(Assets.CartItems.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonManualAdd.setImage(Assets.ItemList.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
         buttonScan.tag = CartItemButtonsTag.scan.rawValue
-        buttonScan.setImage(Assets.CartItems.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonScan.setImage(Assets.ItemList.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
         let stack = UIStackView
             .horizontal
             .align(by: .center)

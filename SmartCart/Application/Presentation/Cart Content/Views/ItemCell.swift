@@ -49,13 +49,14 @@ internal class ItemCell: UITableViewCell {
     }
     
     internal var size = 0.0 {
-        didSet { sizeLabel.text = "Size: " + size.description }
+        didSet {
+            guard let category = category else { return }
+            sizeLabel.text = "Size: " + size.description + category.getSizeUnit()
+        }
     }
     
     internal var price = 0.0 {
-        didSet {
-            priceLabel.text = String(format: "Price: %.2f,- Kč", price)
-        }
+        didSet { priceLabel.text = String(format: "Price: %.2f,- Kč", price) }
     }
     
     internal var amount: Int = 1 {
@@ -132,7 +133,7 @@ private extension ItemCell {
     
     func setupItemView() {
         view.backgroundColor = .cellBackgroundColor
-        view.layer.cornerRadius = 32.5
+        view.layer.cornerRadius = 35
         contentView.addSubview(view)
         view.snp.makeConstraints { make in
             make.top.left.equalToSuperview().inset(16)
@@ -151,16 +152,16 @@ private extension ItemCell {
         imageContainerView.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(8)
             make.centerY.equalTo(view)
-            make.size.equalTo(44)
+            make.size.equalTo(50)
         }
         
-        imageContainerView.layer.cornerRadius = 22
+        imageContainerView.layer.cornerRadius = 25
         
         productImageView.contentMode = .scaleAspectFit
         imageContainerView.addSubview(productImageView)
         productImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(26)
+            make.size.equalTo(30)
         }
     }
     
@@ -171,14 +172,13 @@ private extension ItemCell {
         descriptionLabel.font = UIFont.systemFont(ofSize: 12, weight: .heavy)
         descriptionLabel.textColor = .gray
         
-        sizeLabel.font = UIFont.systemFont(ofSize: 12, weight: .heavy)
+        sizeLabel.font = UIFont.systemFont(ofSize: 10, weight: .heavy)
         sizeLabel.textColor = .gray
         
         let stack = UIStackView
             .vertical
             .align(by: .leading)
             .distribute(by: .fillProportionally)
-            .space(by: 5)
             .stack(titleLabel, descriptionLabel, sizeLabel)
         view.addSubview(stack)
         
@@ -192,7 +192,7 @@ private extension ItemCell {
     func setupBottomControlView() {
         increaseButton.tag = ItemCellButtonTagType.increase.rawValue
         increaseButton.contentMode = .scaleAspectFit
-        increaseButton.setImage(Assets.CartItems.increase, for: .normal)
+        increaseButton.setImage(Assets.ItemList.increase, for: .normal)
         contentView.addSubview(increaseButton)
         
         increaseButton.snp.makeConstraints { make in
@@ -204,7 +204,7 @@ private extension ItemCell {
         
         decreaseButton.tag = ItemCellButtonTagType.decrease.rawValue
         decreaseButton.contentMode = .scaleAspectFit
-        decreaseButton.setImage(Assets.CartItems.decrease, for: .normal)
+        decreaseButton.setImage(Assets.ItemList.decrease, for: .normal)
         contentView.addSubview(decreaseButton)
         
         decreaseButton.snp.makeConstraints { make in
@@ -243,7 +243,7 @@ private extension ItemCell {
         
         stack.snp.makeConstraints { make in
             make.top.bottom.equalTo(deleteButton)
-            make.left.equalTo(productImageView.snp.centerX)
+            make.left.equalTo(view)
             make.right.lessThanOrEqualTo(deleteButton.snp.left).inset(-8)
         }
     }

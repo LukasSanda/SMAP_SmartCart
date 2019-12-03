@@ -9,7 +9,7 @@
 import UIKit
 
 internal protocol MainViewCoordinator {
-    func showHomescreen()
+    func showCartList()
 }
 
 internal class MainViewCoordinatorImpl: MainViewCoordinator {
@@ -29,8 +29,8 @@ internal class MainViewCoordinatorImpl: MainViewCoordinator {
     
     // MARK: - Protocol
     
-    internal func showHomescreen() {
-        navigationController.show(screenAssembly.homeScreenController(), sender: nil)
+    internal func showCartList() {
+        navigationController.show(screenAssembly.cartListController(), sender: nil)
     }
 }
 

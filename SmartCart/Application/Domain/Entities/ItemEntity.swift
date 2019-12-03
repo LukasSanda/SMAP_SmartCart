@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal enum ItemCategoryType: String {
+internal enum ItemCategoryType: String, CaseIterable {
     case sweets
     case drinks
     case hygiene

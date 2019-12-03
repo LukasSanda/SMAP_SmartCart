@@ -1,5 +1,5 @@
 //
-//  HomeScreenController.swift
+//  CartListController.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-internal class HomeScreenController: UIViewController {
+internal class CartListController: UIViewController {
     
     // MARK: - Properties
     
@@ -17,12 +17,12 @@ internal class HomeScreenController: UIViewController {
         didSet { contentView.tableView.reloadSections(IndexSet(integersIn: 0...1), with: .fade) }
     }
     
-    private let contentView = HomeScreenView()
-    private let presenter: HomeScreenPresenter
+    private let contentView = CartListView()
+    private let presenter: CartListPresenter
     
     // MARK: - Initialization
     
-    internal init(presenter: HomeScreenPresenter) {
+    internal init(presenter: CartListPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +47,7 @@ internal class HomeScreenController: UIViewController {
 }
 
 // MARK: - CartCellDelegate
-extension HomeScreenController: CartCellDelegate {
+extension CartListController: CartCellDelegate {
     func removeDidTap(inCell cell: CartCell) {
         guard let index = contentView.tableView.indexPath(for: cell) else {
             return
@@ -57,8 +57,8 @@ extension HomeScreenController: CartCellDelegate {
     }
 }
 
-// MARK: - HomeScreenDelegate
-extension HomeScreenController: HomeScreenDelegate {
+// MARK: - CartListDelegate
+extension CartListController: CartListDelegate {
     func didLoadAvailableCarts(_ carts: [Cart]) {
         guard !carts.isEmpty else {
             navigationItem.rightBarButtonItem?.isEnabled = false
@@ -73,27 +73,27 @@ extension HomeScreenController: HomeScreenDelegate {
     }
 }
 
-// MARK: - HomeScreenCoordinatorDelegate
-extension HomeScreenController: HomeScreenCoordinatorDelegate {
+// MARK: - CartListCoordinatorDelegate
+extension CartListController: CartListCoordinatorDelegate {
     func showController(_ controller: UIViewController) {
         navigationController?.show(controller, sender: nil)
     }
 }
 
-extension HomeScreenController: HomeScreenViewDelegate {
+extension CartListController: CartListViewDelegate {
     func createNewDidTap() {
         presenter.createNewCart()
     }
 }
 
 // MARK: - UITableViewDelegate
-extension HomeScreenController: UITableViewDelegate {
+extension CartListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = HomeScreenHeaderView()
+        let view = CartListHeaderView()
         view.text = section == 0 ? "Last Created" : "All Created"
         
         return view
@@ -109,7 +109,7 @@ extension HomeScreenController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension HomeScreenController: UITableViewDataSource {
+extension CartListController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -142,7 +142,7 @@ extension HomeScreenController: UITableViewDataSource {
 }
 
 // MARK: - Action Selector
-private extension HomeScreenController {
+private extension CartListController {
     @objc
     func removeButtonDidTap() {
         let alertController = UIAlertController(
@@ -167,7 +167,7 @@ private extension HomeScreenController {
 }
 
 // MARK: - Price Helper
-private extension HomeScreenController {
+private extension CartListController {
     func calculateTotalPrice(forCart cart: Cart) -> Double {
         var price: Double = 0.0
         cart.items?.forEach { item in
@@ -180,7 +180,7 @@ private extension HomeScreenController {
 }
 
 // MARK: - Setup View Appereance
-private extension HomeScreenController {
+private extension CartListController {
     func setup() {
         title = "Available Carts"
         contentView.delegate = self
