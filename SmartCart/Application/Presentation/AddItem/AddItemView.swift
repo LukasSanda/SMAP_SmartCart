@@ -51,7 +51,7 @@ internal class AddItemView: UIView {
     }
     
     internal var size: String = "" {
-        didSet { sizeLabel.text = size }
+        didSet { sizeLabel.text = "Size: " + size }
     }
     
     internal var amount: Int = 0 {
@@ -147,7 +147,7 @@ private extension AddItemView {
     func setupAmountLabels() {
         increaseButton.tag = ButtonTag.increase.rawValue
         increaseButton.contentMode = .scaleAspectFit
-        increaseButton.setImage(Assets.CartItems.increase, for: .normal)
+        increaseButton.setImage(Assets.ItemList.increase, for: .normal)
         contentView.addSubview(increaseButton)
         
         increaseButton.snp.makeConstraints { make in
@@ -158,7 +158,7 @@ private extension AddItemView {
         
         decreaseButton.tag = ButtonTag.decrease.rawValue
         decreaseButton.contentMode = .scaleAspectFit
-        decreaseButton.setImage(Assets.CartItems.decrease, for: .normal)
+        decreaseButton.setImage(Assets.ItemList.decrease, for: .normal)
         contentView.addSubview(decreaseButton)
         
         decreaseButton.isEnabled = false

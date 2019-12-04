@@ -13,7 +13,7 @@ internal protocol AddItemPresenter {
 }
 
 internal protocol AddItemDelegate: class {
-    func willDisplayCartContent()
+    func willDisplayItemList()
 }
 
 internal class AddItemPresenterImpl: AddItemPresenter {
@@ -38,8 +38,8 @@ internal class AddItemPresenterImpl: AddItemPresenter {
         addItem.add(item, ofAmount: amount) { result in
             switch result {
             case .success:
-                self.delegate?.willDisplayCartContent()
                 completion()
+                self.delegate?.willDisplayItemList()
                 
             case .failure(let error):
                 logger.logError(message: error.localizedDescription)

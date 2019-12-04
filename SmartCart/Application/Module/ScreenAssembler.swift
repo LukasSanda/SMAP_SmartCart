@@ -10,19 +10,19 @@ import Foundation
 
 extension ModuleAssembler: ScreenAssembly {
     
-    func homeScreenController() -> HomeScreenController {
-        let coordinator = HomeScreenCoordinatorImpl(
+    func cartListController() -> CartListController {
+        let coordinator = CartListCoordinatorImpl(
             commitChange: resolve(),
             getKnownProducts: resolve(),
             addItem: resolve())
-        let presenter = HomeScreenPresenterImpl(
+        let presenter = CartListPresenterImpl(
             loadCarts: resolve(),
             removeCart: resolve(),
             removeAllCarts: resolve(),
             createCart: resolve(),
             coordinator: coordinator)
         
-        let controller = HomeScreenController(presenter: presenter)
+        let controller = CartListController(presenter: presenter)
         presenter.delegate = controller
         coordinator.delegate = controller
         return controller

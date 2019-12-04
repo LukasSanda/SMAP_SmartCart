@@ -18,7 +18,7 @@ internal class CartCell: UITableViewCell {
 
     private let view = UIView()
     private let imageContainerView = UIView()
-    private let cartImageView = UIImageView(image: Assets.HomeScreen.shoppingCart)
+    private let cartImageView = UIImageView(image: Assets.CartList.shoppingCart)
     private let dateLabel = UILabel()
     private let totalPriceLabel = UILabel()
     private let removeButton = UIButton()

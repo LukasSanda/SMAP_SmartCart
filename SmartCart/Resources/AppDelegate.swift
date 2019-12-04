@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
 
-        mainCoordinator?.showHomescreen()
+        mainCoordinator?.showCartList()
         return true
     }
     

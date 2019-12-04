@@ -1,5 +1,5 @@
 //
-//  HomesSreenHeaderView.swift
+//  CartListHeaderView.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 06/11/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class HomeScreenHeaderView: UITableViewHeaderFooterView {
+internal class CartListHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Private Properties
     
@@ -33,7 +33,7 @@ internal class HomeScreenHeaderView: UITableViewHeaderFooterView {
     }
 }
 
-private extension HomeScreenHeaderView {
+private extension CartListHeaderView {
     func setup() {
         contentView.backgroundColor = .white
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)

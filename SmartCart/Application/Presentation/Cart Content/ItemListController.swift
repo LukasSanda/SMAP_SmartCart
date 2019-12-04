@@ -1,5 +1,5 @@
 //
-//  CartContentController.swift
+//  ItemListController.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class CartContentController: UIViewController {
+class ItemListController: UIViewController {
     
     // MARK: - Properties
     
@@ -17,12 +17,12 @@ class CartContentController: UIViewController {
         didSet  { contentView.tableView.reloadSections(IndexSet(integer: 0), with: .fade) }
     }
     
-    private let contentView = CartContentView()
-    private let presenter: CartContentPresenter
+    private let contentView = ItemListView()
+    private let presenter: ItemListPresenter
     
     // MARK: - Initialization
     
-    internal init(presenter: CartContentPresenter) {
+    internal init(presenter: ItemListPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,8 +46,8 @@ class CartContentController: UIViewController {
     }
 }
 
-//MARK: - CartContentDelegate
-extension CartContentController: CartContentDelegate {
+//MARK: - ItemListDelegate
+extension ItemListController: ItemListDelegate {
     func didLoadItems(_ items: [Item]) {
         guard !items.isEmpty else {
             navigationItem.rightBarButtonItem?.isEnabled = false
@@ -67,32 +67,36 @@ extension CartContentController: CartContentDelegate {
         navigationController?.present(controller, animated: true, completion: nil)
     }
     
+    func showController(_ controller: UIViewController) {
+        navigationController?.show(controller, sender: nil)
+    }
+    
     func removingItemDelegate(_ item: Item) {
         deleteConfirmation(forItem: item)
     }
 }
 
 // MARK: - ScannerViewDelegate
-extension CartContentController: ScannerViewDelegate {
+extension ItemListController: ScannerViewDelegate {
     func didScanItem(_ item: ItemEntity) {
         presenter.presentScannedItem(item, forController: self)
     }
 }
 
-extension CartContentController: AddItemDelegate {
-    func willDisplayCartContent() {
+extension ItemListController: AddItemDelegate {
+    func willDisplayItemList() {
         presenter.load()
     }
 }
 
-// MARK: - CartContentViewDelegate
-extension CartContentController: CartContentViewDelegate {
+// MARK: - ItemListViewDelegate
+extension ItemListController: ItemListViewDelegate {
     func buttonDidTap(_ sender: UIButton) {
         guard let tag = CartItemButtonsTag(rawValue: sender.tag) else { return }
         
         switch tag {
         case .addManually:
-            break
+            presenter.presentManualAdd()
         case .scan:
             presenter.presentScanner(forController: self)
         }
@@ -100,7 +104,7 @@ extension CartContentController: CartContentViewDelegate {
 }
 
 // MARK: - ItemCellDelegate
-extension CartContentController: ItemCellDelegate {
+extension ItemListController: ItemCellDelegate {
     func controlButtonDidTap(_ sender: UIButton, inCell cell: ItemCell) {
         guard
             let index = contentView.tableView.indexPath(for: cell),
@@ -122,14 +126,14 @@ extension CartContentController: ItemCellDelegate {
 }
 
 // MARK: - UITableViewDelegate
-extension CartContentController: UITableViewDelegate {
+extension ItemListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 135
+        return 140
     }
 }
 
 // MARK: - UITableViewDelegate
-extension CartContentController: UITableViewDataSource {
+extension ItemListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -154,7 +158,7 @@ extension CartContentController: UITableViewDataSource {
 }
 
 // MARK: - Action Selector
-private extension CartContentController {
+private extension ItemListController {
     @objc
     func removeButtonDidTap() {
         let alertController = UIAlertController(
@@ -178,7 +182,7 @@ private extension CartContentController {
 }
 
 // MARK: - Price Helper
-private extension CartContentController {
+private extension ItemListController {
     func calculateTotalPrice(forItems items: [Item]) -> Double {
         var price: Double = 0.0
         
@@ -190,7 +194,7 @@ private extension CartContentController {
     }
 }
 // MARK: - Setup View Appereance
-private extension CartContentController {
+private extension ItemListController {
     func setup() {
         title = "Cart Items"
         contentView.delegate = self
