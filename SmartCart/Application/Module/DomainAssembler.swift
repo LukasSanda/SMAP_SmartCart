@@ -20,19 +20,23 @@ extension ModuleAssembler: DomainAssembly {
         return databaseService
     }
     
-    func resolve() -> ProductCacheService {
-        if let cacheService = productCacheService {
+    func resolve() -> ProductService {
+        if let cacheService = productService {
             return cacheService
         }
         
-        let cacheService = ProductCacheServiceImpl()
-        self.productCacheService = cacheService
+        let cacheService = ProductServiceImpl()
+        self.productService = cacheService
         return cacheService
     }
     
     // MARK: - Repositories
     func resolve() -> CartRepository {
         return CartRepositoryImpl(service: resolve())
+    }
+    
+    func resolve() -> ProductRepository {
+        return ProductRepositoryImpl(service: resolve(), productService: resolve())
     }
     
     // MARK: - Use-Cases Cart
@@ -63,7 +67,7 @@ extension ModuleAssembler: DomainAssembly {
     
     // MARK: - Use-Cases Products
     func resolve() -> GetKnownProducts {
-        return GetKnownProductsImpl(cacheService: resolve())
+        return GetKnownProductsImpl(repository: resolve())
     }
     
     func resolve() -> AddItem {

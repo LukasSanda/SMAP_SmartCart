@@ -11,7 +11,7 @@ import Foundation
 internal protocol DomainAssembly {
     // MARK: - Services
     func resolve() -> DatabaseService
-    func resolve() -> ProductCacheService
+    func resolve() -> ProductService
     
     // MARK: - Repositories
     func resolve() -> CartRepository

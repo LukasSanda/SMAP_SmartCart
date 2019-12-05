@@ -17,7 +17,7 @@
 		CF6E0C3623704DBA0091CEC8 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = CF6E0C3523704DBA0091CEC8 /* products.json */; };
 		CF6E0C462371672B0091CEC8 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C442371672B0091CEC8 /* CoreDataTests.swift */; };
 		CF6E0C472371672B0091CEC8 /* ProductServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C452371672B0091CEC8 /* ProductServiceTests.swift */; };
-		CF6E0C61237167390091CEC8 /* ProductCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C4D237167390091CEC8 /* ProductCacheService.swift */; };
+		CF6E0C61237167390091CEC8 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C4D237167390091CEC8 /* ProductService.swift */; };
 		CF6E0C62237167390091CEC8 /* DatabaseServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C4E237167390091CEC8 /* DatabaseServiceImpl.swift */; };
 		CF6E0C63237167390091CEC8 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C51237167390091CEC8 /* Scanner.swift */; };
 		CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C53237167390091CEC8 /* CartRepository.swift */; };
@@ -69,6 +69,10 @@
 		CFE308A92396D96800EF0601 /* ManualAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308A82396D96800EF0601 /* ManualAddView.swift */; };
 		CFE308AC2397B62C00EF0601 /* ManualAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AB2397B62C00EF0601 /* ManualAddCell.swift */; };
 		CFE308AE2397BF5E00EF0601 /* ManualAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AD2397BF5E00EF0601 /* ManualAddCoordinator.swift */; };
+		CFE308B02397C43C00EF0601 /* AddItemProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AF2397C43C00EF0601 /* AddItemProduct.swift */; };
+		CFE308B3239942F300EF0601 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */; };
+		CFE308B4239942F300EF0601 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */; };
+		CFE308B62399435F00EF0601 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B52399435F00EF0601 /* ProductRepository.swift */; };
 		CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */; };
 		CFE78D1F237EFE4400EBE2AA /* ScannerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */; };
 /* End PBXBuildFile section */
@@ -110,7 +114,7 @@
 		CF6E0C3523704DBA0091CEC8 /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		CF6E0C442371672B0091CEC8 /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		CF6E0C452371672B0091CEC8 /* ProductServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductServiceTests.swift; sourceTree = "<group>"; };
-		CF6E0C4D237167390091CEC8 /* ProductCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCacheService.swift; sourceTree = "<group>"; };
+		CF6E0C4D237167390091CEC8 /* ProductService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		CF6E0C4E237167390091CEC8 /* DatabaseServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseServiceImpl.swift; sourceTree = "<group>"; };
 		CF6E0C51237167390091CEC8 /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		CF6E0C53237167390091CEC8 /* CartRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartRepository.swift; sourceTree = "<group>"; };
@@ -163,6 +167,10 @@
 		CFE308A82396D96800EF0601 /* ManualAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddView.swift; sourceTree = "<group>"; };
 		CFE308AB2397B62C00EF0601 /* ManualAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddCell.swift; sourceTree = "<group>"; };
 		CFE308AD2397BF5E00EF0601 /* ManualAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddCoordinator.swift; sourceTree = "<group>"; };
+		CFE308AF2397C43C00EF0601 /* AddItemProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemProduct.swift; sourceTree = "<group>"; };
+		CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFE308B52399435F00EF0601 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKnownProducts.swift; sourceTree = "<group>"; };
 		CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				CF6E0C53237167390091CEC8 /* CartRepository.swift */,
+				CFE308B52399435F00EF0601 /* ProductRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */,
+				CFE308AF2397C43C00EF0601 /* AddItemProduct.swift */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -281,7 +291,7 @@
 		CF6E0C4C237167390091CEC8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CF6E0C4D237167390091CEC8 /* ProductCacheService.swift */,
+				CF6E0C4D237167390091CEC8 /* ProductService.swift */,
 				CF6E0C4E237167390091CEC8 /* DatabaseServiceImpl.swift */,
 			);
 			path = Services;
@@ -326,6 +336,8 @@
 		CF6E0C55237167390091CEC8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */,
+				CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */,
 				CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */,
 				CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */,
 				CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */,
@@ -623,11 +635,13 @@
 				CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */,
 				CF6E0C952371A2C10091CEC8 /* Logger.swift in Sources */,
 				CF6E0C88237199BF0091CEC8 /* ScreenAssembler.swift in Sources */,
+				CFE308B3239942F300EF0601 /* Product+CoreDataClass.swift in Sources */,
 				CF6E0CB6237433D40091CEC8 /* Item+CoreDataClass.swift in Sources */,
 				CF6E0C6A237167390091CEC8 /* ItemEntity.swift in Sources */,
 				CF6E0C7F2371834D0091CEC8 /* CartListController.swift in Sources */,
 				CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */,
 				CF1EF040239447CB00336EAA /* AddItem.swift in Sources */,
+				CFE308B62399435F00EF0601 /* ProductRepository.swift in Sources */,
 				CFE308AE2397BF5E00EF0601 /* ManualAddCoordinator.swift in Sources */,
 				CF1EF039239415E300336EAA /* AddItemView.swift in Sources */,
 				CF6E0C8C23719A1C0091CEC8 /* ModuleAssembler.swift in Sources */,
@@ -651,7 +665,8 @@
 				CF6E0C62237167390091CEC8 /* DatabaseServiceImpl.swift in Sources */,
 				CF6E0C66237167390091CEC8 /* ItemModel.xcdatamodeld in Sources */,
 				CF6E0C7D237182610091CEC8 /* UIColor+Colors.swift in Sources */,
-				CF6E0C61237167390091CEC8 /* ProductCacheService.swift in Sources */,
+				CF6E0C61237167390091CEC8 /* ProductService.swift in Sources */,
+				CFE308B02397C43C00EF0601 /* AddItemProduct.swift in Sources */,
 				CF6E0C972371D87C0091CEC8 /* Assets.swift in Sources */,
 				CF6E3927237C45DA007F92F2 /* LoadAllCarts.swift in Sources */,
 				CF6E0C9A2371D9300091CEC8 /* CartCell.swift in Sources */,
@@ -660,6 +675,7 @@
 				CF6E392D237C49E3007F92F2 /* CommitChange.swift in Sources */,
 				CFE308AC2397B62C00EF0601 /* ManualAddCell.swift in Sources */,
 				CF417864237D2F19009A11D6 /* ProductError.swift in Sources */,
+				CFE308B4239942F300EF0601 /* Product+CoreDataProperties.swift in Sources */,
 				CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */,
 				CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */,
 				CF6E0C9C2371E2EE0091CEC8 /* UIStackView+Maker.swift in Sources */,

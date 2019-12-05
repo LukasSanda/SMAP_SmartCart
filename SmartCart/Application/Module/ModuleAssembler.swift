@@ -13,7 +13,7 @@ internal class ModuleAssembler {
     // MARK: - Properties
     
     internal var databaseService: DatabaseService?
-    internal var productCacheService: ProductCacheService?
+    internal var productService: ProductService?
     
     // MARK: - Initialization
     

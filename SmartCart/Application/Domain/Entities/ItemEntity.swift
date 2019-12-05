@@ -62,11 +62,23 @@ internal enum ItemCategoryType: String, CaseIterable {
     }
 }
 
-internal struct ItemEntity: Hashable {
+internal struct ItemEntity: Hashable, Codable {
     let ean: String
     let title: String
     var desc: String
     var price: Double
     let category: String
     let size: Double
+}
+
+// MARK: - Initialization from Product
+internal extension ItemEntity {
+    init(product: Product) {
+        ean = product.ean
+        title = product.title
+        desc = product.desc
+        price = product.price
+        category = product.category
+        size = product.size
+    }
 }
