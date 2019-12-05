@@ -14,9 +14,33 @@ class ProductServiceTests: XCTestCase {
     
     // MARK: - Methods
     
-    func test_data_are_properly_fetched() {
-        let service = ProductCacheServiceImpl()
-        let items = service.getItems()
-        XCTAssertNotNil(items, "Products should be loaded!")
+    func test_add_new_product_works_correctly() {
+        let newItem = ItemEntity(
+            ean: "asdqwertz",
+            title: "Marmeláda",
+            desc: "Jahodová",
+            price: 34.5,
+            category: ItemCategoryType.sweets.rawValue,
+            size: 0.5)
+        
+        let productCache = ProductServiceImpl()
+        let useCase = AddItemProductImpl(productService: productCache)
+        useCase.add(newItem) { result in
+            switch result {
+            case .success:
+                productCache.getItems(forceLoad: true) { result in
+                    switch result {
+                    case .success(let products):
+                        XCTAssertTrue(products.contains(newItem), "Should contains newItem!")
+                        
+                    case .failure:
+                        XCTFail("Should not fail!")
+                    }
+                }
+                
+            case .failure:
+                XCTFail("Should not fail!")
+            }
+        }
     }
 }

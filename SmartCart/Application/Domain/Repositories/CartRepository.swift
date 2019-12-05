@@ -27,7 +27,6 @@ internal class CartRepositoryImpl: CartRepository {
     
     internal init(service: DatabaseService) {
         self.databaseService = service
-        //initMockData()
     }
     
     // MARK: - Protocol
@@ -84,34 +83,6 @@ internal class CartRepositoryImpl: CartRepository {
     internal func removeCart(_ cart: Cart, _ completion: @escaping (Result<Void, Error>) -> Void) {
         databaseService.removeObject(cart) { result in
             completion(result)
-        }
-    }
-}
-
-private extension CartRepositoryImpl {
-    func initMockData() {
-        databaseService.removeAll { _ in
-            for _ in 1...10 {
-                let cart = Cart(context: self.databaseService.viewContext)
-                cart.id = Date().hashValue.description
-                cart.created = Date(timeIntervalSinceNow: TimeInterval(-(Int.random(in: 100000...10000000))))
-                
-                for y in 1...10 {
-                    let item = Item(context: self.databaseService.viewContext)
-                    item.id = Date().hashValue.description
-                    item.title = "title \(y.description)"
-                    item.ean = "EAN\(y.description)"
-                    item.desc = "desc"
-                    item.category = y % 2 == 0 ? ItemCategoryType.snacks.rawValue : ItemCategoryType.drinks.rawValue
-                    item.price = Double(y) * 2.5
-                    item.size = Double(y) * 4.5
-                    item.amount = NSDecimalNumber(value: y)
-                    
-                    cart.addToItems(item)
-                }
-            }
-            
-            self.databaseService.save()
         }
     }
 }

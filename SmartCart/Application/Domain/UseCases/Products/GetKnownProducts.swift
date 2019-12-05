@@ -16,18 +16,18 @@ internal class GetKnownProductsImpl: GetKnownProducts {
     
     // MARK: - Properties
     
-    private let cacheService: ProductCacheService
+    private let repository: ProductRepository
     
     // MARK: - Initialization
     
-    internal init(cacheService: ProductCacheService) {
-        self.cacheService = cacheService
+    internal init(repository: ProductRepository) {
+        self.repository = repository
     }
     
     // MARK: - Protocol
     
     internal func get(_ completion: @escaping (Result<Set<ItemEntity>, ProductError>) -> Void) {
-        cacheService.getItems { result in
+        repository.getProducts { result in
             switch result {
             case .success(let products):
                 completion(.success(products))
