@@ -62,6 +62,10 @@ extension ManualAddController: ManualAddDelegate {
         controller.modalPresentationStyle = .overCurrentContext
         navigationController?.present(controller, animated: true, completion: nil)
     }
+    
+    func showController(_ controller: UIViewController) {
+        navigationController?.show(controller, sender: self)
+    }
 }
 
 // MARK: - AddItemDelegate
@@ -146,7 +150,7 @@ private extension ManualAddController {
             title: "Proceed",
             style: .default) { [weak self] _ in
                 guard let self = self else { return }
-                
+                self.presenter.showAddNewProduct(withController: self)
         })
         
         alertController.addAction(UIAlertAction(

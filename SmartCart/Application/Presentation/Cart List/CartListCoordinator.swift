@@ -23,6 +23,7 @@ internal class CartListCoordinatorImpl: CartListCoordinator {
     private let commitChange: CommitChange
     private let getKnownProducts: GetKnownProducts
     private let addItem: AddItem
+    private let addItemProduct: AddItemProduct
     
     // MARK: - Internal Propertries
     
@@ -30,16 +31,17 @@ internal class CartListCoordinatorImpl: CartListCoordinator {
     
     // MARK: - Initialization
     
-    internal init(commitChange: CommitChange, getKnownProducts: GetKnownProducts, addItem: AddItem) {
+    internal init(commitChange: CommitChange, getKnownProducts: GetKnownProducts, addItemProduct: AddItemProduct, addItem: AddItem) {
         self.commitChange = commitChange
         self.getKnownProducts = getKnownProducts
         self.addItem = addItem
+        self.addItemProduct = addItemProduct
     }
     
     // MARK: - Protocol
     
     internal func showDetail(forCart cart: Cart) {
-        let coordinator = ItemListCoordinatorImpl(getKnownProducts: getKnownProducts, addItem: addItem)
+        let coordinator = ItemListCoordinatorImpl(getKnownProducts: getKnownProducts, addItem: addItem, addItemProduct: addItemProduct)
         let presenter = ItemListPresenterImpl(cart: cart, commitChange: commitChange, coordinator: coordinator)
         let controller = ItemListController(presenter: presenter)
         presenter.delegate = controller

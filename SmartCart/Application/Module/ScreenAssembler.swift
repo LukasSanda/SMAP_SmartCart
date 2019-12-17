@@ -14,6 +14,7 @@ extension ModuleAssembler: ScreenAssembly {
         let coordinator = CartListCoordinatorImpl(
             commitChange: resolve(),
             getKnownProducts: resolve(),
+            addItemProduct: resolve(),
             addItem: resolve())
         let presenter = CartListPresenterImpl(
             loadCarts: resolve(),

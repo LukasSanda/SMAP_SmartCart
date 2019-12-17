@@ -37,11 +37,8 @@ internal class ManualAddCell: UITableViewCell {
         didSet { descriptionLabel.text = descriptionText }
     }
     
-    internal var size: Double = 0.0 {
-        didSet {
-            guard let category = category else { return }
-            sizeLabel.text = "Size: " + size.description + category.getSizeUnit()
-        }
+    internal var size: String = "" {
+        didSet { sizeLabel.text = "Size: \(size)" }
     }
     
     internal var price = 0.0 {

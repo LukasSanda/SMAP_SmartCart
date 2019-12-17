@@ -10,6 +10,7 @@ import UIKit
 
 internal protocol ManualAddCoordinator {
     func presentAddItem(_ item: ItemEntity, forController: ManualAddController) -> UIViewController
+    func showAddNewProduct() -> UIViewController
 }
 
 internal class ManualAddCoordinatorImpl: ManualAddCoordinator {
@@ -17,11 +18,13 @@ internal class ManualAddCoordinatorImpl: ManualAddCoordinator {
     // MARK: - Private Properties
     
     private let addItem: AddItem
+    private let addItemProduct: AddItemProduct
     
     // MARK: - Initialiation
     
-    internal init(addItem: AddItem) {
+    internal init(addItem: AddItem, addItemProduct: AddItemProduct) {
         self.addItem = addItem
+        self.addItemProduct = addItemProduct
     }
     
     // MARK: - Protocol
@@ -30,6 +33,13 @@ internal class ManualAddCoordinatorImpl: ManualAddCoordinator {
         let presenter = AddItemPresenterImpl(addItem: addItem)
         let controller = AddItemController(presenter: presenter, item: item)
         presenter.delegate = forController
+        return controller
+    }
+    
+    internal func showAddNewProduct() -> UIViewController {
+        let presenter = AddProductPresenterImpl(addItemProduct: addItemProduct)
+        let controller = AddProductController(presenter: presenter)
+        presenter.delegate = controller
         return controller
     }
 }

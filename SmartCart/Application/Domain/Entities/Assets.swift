@@ -36,4 +36,8 @@ internal enum Assets {
         static let sausages: UIImage = UIImage(named: "sausages") ?? UIImage()
         static let snacks: UIImage = UIImage(named: "snacks") ?? UIImage()
     }
+    
+    enum AddProduct {
+        static let select: UIImage = UIImage(named: "select") ?? UIImage()
+    }
 }
