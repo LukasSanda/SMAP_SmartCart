@@ -39,6 +39,10 @@ extension ModuleAssembler: DomainAssembly {
         return ProductRepositoryImpl(service: resolve(), productService: resolve())
     }
     
+    func resolve() -> SupermarketRepository {
+        return SupermarketRepositoryImpl()
+    }
+    
     // MARK: - Use-Cases Cart
     func resolve() -> CreateNewCart {
         return CreateNewCartImpl(repository: resolve())

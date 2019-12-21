@@ -29,7 +29,6 @@ internal class AddItemImpl: AddItem {
     // MARK: - Protocol
     
     internal func add(_ item: ItemEntity, ofAmount amount: Int, _ completion: @escaping (Result<Void, Error>) -> Void) {
-        
         loadLastCart.load { result in
             switch result {
             case .success(let cart):
