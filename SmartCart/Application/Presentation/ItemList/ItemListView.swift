@@ -11,6 +11,7 @@ import UIKit
 internal enum CartItemButtonsTag: Int {
     case addManually
     case scan
+    case title
 }
 
 internal protocol ItemListViewDelegate: class {
@@ -27,7 +28,8 @@ internal class ItemListView: UIView {
     private let emptyTableLabel = UILabel()
     private let buttonContainer = UIView()
     private let buttonManualAdd = UIButton()
-    private let buttonScan = UIButton()
+    private let buttonBarcodeScan = UIButton()
+    private let buttonTitleScan = UIButton()
     
     // MARK: - Internal Properties
     
@@ -149,30 +151,54 @@ private extension ItemListView {
         
         buttonManualAdd.tag = CartItemButtonsTag.addManually.rawValue
         buttonManualAdd.setImage(Assets.ItemList.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
-        buttonScan.tag = CartItemButtonsTag.scan.rawValue
-        buttonScan.setImage(Assets.ItemList.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonBarcodeScan.tag = CartItemButtonsTag.scan.rawValue
+        buttonBarcodeScan.setImage(Assets.ItemList.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
         let stack = UIStackView
             .horizontal
             .align(by: .center)
             .distribute(by: .fillEqually)
             .space(by: 10)
-            .stack(buttonManualAdd, buttonScan)
+            .stack(buttonManualAdd, buttonBarcodeScan, buttonTitleScan)
         buttonContainer.addSubview(stack)
         
         stack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
         }
         
+        setupButtonManualAdd()
+        setupButtonBarcodeScan()
+        setupButtonTitleScan()
+    }
+    
+    func setupButtonManualAdd() {
+        buttonManualAdd.tag = CartItemButtonsTag.addManually.rawValue
+        buttonManualAdd.setImage(Assets.ItemList.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
         buttonManualAdd.tintColor = .secondaryColor
         buttonManualAdd.imageView?.contentMode = .scaleAspectFit
         buttonManualAdd.imageEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         
-        buttonScan.tintColor = .secondaryColor
-        buttonScan.imageView?.contentMode = .scaleAspectFit
-        buttonScan.imageEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        
         buttonManualAdd.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
-        buttonScan.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
+    }
+    
+    func setupButtonBarcodeScan() {
+        buttonBarcodeScan.tag = CartItemButtonsTag.scan.rawValue
+        buttonBarcodeScan.setImage(Assets.ItemList.barCodeScanner.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonBarcodeScan.tintColor = .secondaryColor
+        buttonBarcodeScan.imageView?.contentMode = .scaleAspectFit
+        buttonBarcodeScan.imageEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        
+        buttonBarcodeScan.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
+    }
+    
+    func setupButtonTitleScan() {
+        buttonTitleScan.tag = CartItemButtonsTag.title.rawValue
+        buttonTitleScan.setImage(Assets.ItemList.titleScanner.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonTitleScan.tintColor = .secondaryColor
+        buttonTitleScan.imageView?.contentMode = .scaleAspectFit
+        buttonTitleScan.imageEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        
+        buttonTitleScan.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
     }
     
     func setupGradientView() {

@@ -13,8 +13,9 @@ internal protocol ItemListPresenter {
     func removeItem(_ item: Item)
     func removeAllItems()
     func editAmount(forItem item: Item, increase: Bool)
+    func presentTitleScanner()
     func presentManualAdd()
-    func presentScanner(forController controller: ItemListController)
+    func presentBarcodeScanner(forController controller: ItemListController)
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController)
 }
 
@@ -92,8 +93,13 @@ internal class ItemListPresenterImpl: ItemListPresenter {
     internal func presentManualAdd() {
         delegate?.showController(coordinator.presentManualAdd())
     }
-    internal func presentScanner(forController controller: ItemListController) {
+    
+    internal func presentBarcodeScanner(forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentScanner(forController: controller))
+    }
+    
+    internal func presentTitleScanner() {
+        delegate?.presentController(TextScannerViewController())
     }
     
     internal func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) {

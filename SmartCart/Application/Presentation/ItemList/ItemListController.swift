@@ -98,7 +98,9 @@ extension ItemListController: ItemListViewDelegate {
         case .addManually:
             presenter.presentManualAdd()
         case .scan:
-            presenter.presentScanner(forController: self)
+            presenter.presentBarcodeScanner(forController: self)
+        case .title:
+            presenter.presentTitleScanner()
         }
     }
 }

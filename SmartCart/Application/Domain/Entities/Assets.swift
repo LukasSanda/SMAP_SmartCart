@@ -24,6 +24,7 @@ internal enum Assets {
     
     enum ItemList {
         static let barCodeScanner: UIImage = UIImage(named: "barCodeScanner") ?? UIImage()
+        static let titleScanner: UIImage = UIImage(named: "titleScanner") ?? UIImage()
         static let addToCart: UIImage = UIImage(named: "addToCart") ?? UIImage()
         static let increase: UIImage = UIImage(named: "plus") ?? UIImage()
         static let decrease: UIImage = UIImage(named: "minus") ?? UIImage()

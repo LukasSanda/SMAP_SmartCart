@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import CoreLocation
 
 internal let logger = Logger()
@@ -31,12 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Methods
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         setupNotifications()
-        if let region = locationManager.monitoredRegions.first {
-            scheduleNotification(forRegion: region)
-        }
-        
+
         let navigationController = UINavigationController()
         let assembler = ModuleAssembler()
         mainCoordinator = MainViewCoordinatorImpl(navigationController: navigationController, assembler: assembler)
@@ -45,8 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
-        
-        mainCoordinator?.notifyLastCart()
+
+        mainCoordinator?.showCartList()
         
         return true
     }
