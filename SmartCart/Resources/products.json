@@ -6,7 +6,7 @@
             "description": "Mléčná čokoláda",
             "price": 4.50,
             "category": "sweets",
-            "size": 0.055
+            "size": "52 g"
         },
         {
             "ean": "456123789",
@@ -14,7 +14,7 @@
             "description": "Bílá čokoláda",
             "price": 3.80,  
             "category": "sweets",
-            "size": 0.042
+            "size": "45 g"
         },
         {
             "ean": "789123456",
@@ -22,7 +22,7 @@
             "description": "Light",
             "price": 23.90,  
             "category": "drinks",
-            "size": 2
+            "size": "2 l"
         },
         {
             "ean": "789123456",
@@ -30,7 +30,7 @@
             "description": "Shampoo and Body Gel",
             "price": 31.90,  
             "category": "hygiene",
-            "size": 0.2
+            "size": "500 ml"
         }
     ]
 }

@@ -48,11 +48,8 @@ internal class ItemCell: UITableViewCell {
         didSet { descriptionLabel.text = desc }
     }
     
-    internal var size = 0.0 {
-        didSet {
-            guard let category = category else { return }
-            sizeLabel.text = "Size: " + size.description + category.getSizeUnit()
-        }
+    internal var size = "" {
+        didSet { sizeLabel.text = "Size: \(size)" }
     }
     
     internal var price = 0.0 {

@@ -49,26 +49,15 @@ internal enum ItemCategoryType: String, CaseIterable {
             return Assets.Products.snacks
         }
     }
-    
-    func getSizeUnit() -> String {
-        switch self {
-        case .sweets, .dairyProducts, .sausages, .snacks:
-            return UnitMass.grams.symbol
-        case .drinks:
-            return UnitVolume.liters.symbol
-        case .hygiene:
-            return UnitVolume.milliliters.symbol
-        }
-    }
 }
 
 internal struct ItemEntity: Hashable, Codable {
-    let ean: String
-    let title: String
-    var desc: String
-    var price: Double
-    let category: String
-    let size: Double
+    var ean: String = ""
+    var title: String = ""
+    var desc: String = ""
+    var price: Double = .nan
+    var category: String = ""
+    var size: String = ""
 }
 
 // MARK: - Initialization from Product

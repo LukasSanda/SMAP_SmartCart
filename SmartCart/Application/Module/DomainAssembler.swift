@@ -73,4 +73,8 @@ extension ModuleAssembler: DomainAssembly {
     func resolve() -> AddItem {
         return AddItemImpl(loadLastCart: resolve(), databaseService: resolve())
     }
+    
+    func resolve() -> AddItemProduct {
+        return AddItemProductImpl(productRepository: resolve())
+    }
 }

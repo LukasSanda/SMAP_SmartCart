@@ -45,7 +45,7 @@ internal class ProductServiceImpl: ProductService {
                     desc: product["description"] as? String ?? "",
                     price: product["price"] as? Double ?? 0.0,
                     category: product["category"] as? String ?? "",
-                    size: product["size"] as? Double ?? 0.0)
+                    size: product["size"] as? String ?? "")
                 result.insert(item)
             }
             

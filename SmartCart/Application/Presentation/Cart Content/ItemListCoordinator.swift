@@ -20,18 +20,20 @@ internal class ItemListCoordinatorImpl: ItemListCoordinator {
     
     private let getKnownProducts: GetKnownProducts
     private let addItem: AddItem
+    private let addItemProduct: AddItemProduct
     
     // MARK: - Initialization
     
-    internal init(getKnownProducts: GetKnownProducts, addItem: AddItem) {
+    internal init(getKnownProducts: GetKnownProducts, addItem: AddItem, addItemProduct: AddItemProduct) {
         self.getKnownProducts = getKnownProducts
         self.addItem = addItem
+        self.addItemProduct = addItemProduct
     }
     
     // MARK: - Protocol
     
     internal func presentManualAdd() -> UIViewController {
-        let coordinator = ManualAddCoordinatorImpl(addItem: addItem)
+        let coordinator = ManualAddCoordinatorImpl(addItem: addItem, addItemProduct: addItemProduct)
         let presenter = ManualAddPresenterImpl(coordinator: coordinator, getKnownProducts: getKnownProducts)
         let controller = ManualAddController(presenter: presenter)
         presenter.delegate = controller

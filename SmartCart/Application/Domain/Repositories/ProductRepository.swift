@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 internal protocol ProductRepository {
+    func addProduct(itemEntity: ItemEntity,_ completion: @escaping () -> Void)
     func getProducts(_ completion: @escaping (Result<Set<ItemEntity>, ProductError>) -> Void)
 }
 
@@ -48,6 +49,18 @@ internal class ProductRepositoryImpl: ProductRepository {
         } catch let error {
             completion(.failure(ProductError.nativeError(error)))
         }
+    }
+    
+    internal func addProduct(itemEntity: ItemEntity,_ completion: @escaping () -> Void) {
+        let product = Product(context: databaseService.viewContext)
+        product.title = itemEntity.title
+        product.ean = itemEntity.ean
+        product.desc = itemEntity.desc
+        product.price = itemEntity.price
+        product.category = itemEntity.category
+        product.size = itemEntity.size
+        databaseService.save()
+        completion()
     }
 }
 

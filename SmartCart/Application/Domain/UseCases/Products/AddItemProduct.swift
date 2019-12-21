@@ -9,31 +9,24 @@
 import Foundation
 
 internal protocol AddItemProduct {
-    func add(_ item: ItemEntity, _ completion: @escaping (Result<Void, ProductError>) -> Void)
+    func add(_ item: ItemEntity, _ completion: @escaping () -> Void)
 }
 
 internal class AddItemProductImpl: AddItemProduct {
     
     // MARK: - Private Properties
     
-    private let productService: ProductService
+    private let productRepository: ProductRepository
     
     // MARK: - Initialization
     
-    internal init(productService: ProductService) {
-        self.productService = productService
+    internal init(productRepository: ProductRepository) {
+        self.productRepository = productRepository
     }
     
     // MARK: - Protocol
     
-    internal func add(_ item: ItemEntity, _ completion: @escaping (Result<Void, ProductError>) -> Void) {
-//        productService.addItem(item) { result in
-//            switch result {
-//            case .success:
-//                completion(.success(()))
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
+    internal func add(_ item: ItemEntity, _ completion: @escaping () -> Void) {
+        productRepository.addProduct(itemEntity: item, completion)
     }
 }

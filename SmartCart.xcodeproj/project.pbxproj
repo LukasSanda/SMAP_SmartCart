@@ -50,8 +50,6 @@
 		CF6E0CAD2372F2410091CEC8 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CAC2372F2410091CEC8 /* ItemListView.swift */; };
 		CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */; };
 		CF6E0CB123742ACB0091CEC8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0CB023742ACB0091CEC8 /* libz.tbd */; };
-		CF6E0CB6237433D40091CEC8 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */; };
-		CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */; };
 		CF6E0CB8237433D40091CEC8 /* Cart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */; };
 		CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */; };
 		CF6E0CBB2379396E0091CEC8 /* CartListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0CBA2379396E0091CEC8 /* CartListCoordinator.swift */; };
@@ -70,9 +68,18 @@
 		CFE308AC2397B62C00EF0601 /* ManualAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AB2397B62C00EF0601 /* ManualAddCell.swift */; };
 		CFE308AE2397BF5E00EF0601 /* ManualAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AD2397BF5E00EF0601 /* ManualAddCoordinator.swift */; };
 		CFE308B02397C43C00EF0601 /* AddItemProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308AF2397C43C00EF0601 /* AddItemProduct.swift */; };
-		CFE308B3239942F300EF0601 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */; };
-		CFE308B4239942F300EF0601 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */; };
 		CFE308B62399435F00EF0601 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B52399435F00EF0601 /* ProductRepository.swift */; };
+		CFE308B9239970B100EF0601 /* AddProductTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308B8239970B100EF0601 /* AddProductTextFieldCell.swift */; };
+		CFE308BB239970B700EF0601 /* AddProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308BA239970B700EF0601 /* AddProductController.swift */; };
+		CFE308BD239970C000EF0601 /* AddProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308BC239970C000EF0601 /* AddProductPresenter.swift */; };
+		CFE308C4239BFBB100EF0601 /* AddProductTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308C3239BFBB100EF0601 /* AddProductTextViewCell.swift */; };
+		CFE308C7239C035A00EF0601 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308C5239C035A00EF0601 /* Item+CoreDataClass.swift */; };
+		CFE308C8239C035A00EF0601 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308C6239C035A00EF0601 /* Item+CoreDataProperties.swift */; };
+		CFE308CB239C039500EF0601 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308C9239C039500EF0601 /* Product+CoreDataClass.swift */; };
+		CFE308CC239C039500EF0601 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308CA239C039500EF0601 /* Product+CoreDataProperties.swift */; };
+		CFE308CE239C046F00EF0601 /* AddProductSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308CD239C046F00EF0601 /* AddProductSelectionCell.swift */; };
+		CFE308D0239C183B00EF0601 /* UITextField+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */; };
+		CFE308D2239C18D600EF0601 /* UITextView+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */; };
 		CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */; };
 		CFE78D1F237EFE4400EBE2AA /* ScannerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */; };
 /* End PBXBuildFile section */
@@ -146,8 +153,6 @@
 		CF6E0CAC2372F2410091CEC8 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Formatting.swift"; sourceTree = "<group>"; };
 		CF6E0CB023742ACB0091CEC8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF6E0CBA2379396E0091CEC8 /* CartListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartListCoordinator.swift; sourceTree = "<group>"; };
@@ -168,9 +173,18 @@
 		CFE308AB2397B62C00EF0601 /* ManualAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddCell.swift; sourceTree = "<group>"; };
 		CFE308AD2397BF5E00EF0601 /* ManualAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddCoordinator.swift; sourceTree = "<group>"; };
 		CFE308AF2397C43C00EF0601 /* AddItemProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemProduct.swift; sourceTree = "<group>"; };
-		CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CFE308B52399435F00EF0601 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		CFE308B8239970B100EF0601 /* AddProductTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductTextFieldCell.swift; sourceTree = "<group>"; };
+		CFE308BA239970B700EF0601 /* AddProductController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductController.swift; sourceTree = "<group>"; };
+		CFE308BC239970C000EF0601 /* AddProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductPresenter.swift; sourceTree = "<group>"; };
+		CFE308C3239BFBB100EF0601 /* AddProductTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductTextViewCell.swift; sourceTree = "<group>"; };
+		CFE308C5239C035A00EF0601 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFE308C6239C035A00EF0601 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFE308C9239C039500EF0601 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFE308CA239C039500EF0601 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFE308CD239C046F00EF0601 /* AddProductSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductSelectionCell.swift; sourceTree = "<group>"; };
+		CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+DoneButton.swift"; sourceTree = "<group>"; };
+		CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+DoneButton.swift"; sourceTree = "<group>"; };
 		CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKnownProducts.swift; sourceTree = "<group>"; };
 		CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,10 +350,10 @@
 		CF6E0C55237167390091CEC8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CFE308B1239942F300EF0601 /* Product+CoreDataClass.swift */,
-				CFE308B2239942F300EF0601 /* Product+CoreDataProperties.swift */,
-				CF6E0CB2237433D40091CEC8 /* Item+CoreDataClass.swift */,
-				CF6E0CB3237433D40091CEC8 /* Item+CoreDataProperties.swift */,
+				CFE308C9239C039500EF0601 /* Product+CoreDataClass.swift */,
+				CFE308CA239C039500EF0601 /* Product+CoreDataProperties.swift */,
+				CFE308C5239C035A00EF0601 /* Item+CoreDataClass.swift */,
+				CFE308C6239C035A00EF0601 /* Item+CoreDataProperties.swift */,
 				CF6E0CB4237433D40091CEC8 /* Cart+CoreDataClass.swift */,
 				CF6E0CB5237433D40091CEC8 /* Cart+CoreDataProperties.swift */,
 				CF6E0C57237167390091CEC8 /* ItemModel.xcdatamodeld */,
@@ -350,6 +364,7 @@
 		CF6E0C5E237167390091CEC8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				CFE308B7239970A200EF0601 /* AddProduct */,
 				CFE308A32396D94E00EF0601 /* ManualAdd */,
 				CF1EF0372394152200336EAA /* AddItem */,
 				CF6E0C9123719D740091CEC8 /* MainViewCoordinator.swift */,
@@ -421,6 +436,8 @@
 				CF6E0C9B2371E2EE0091CEC8 /* UIStackView+Maker.swift */,
 				CF6E0C9D2371E3540091CEC8 /* UITableView+Registration.swift */,
 				CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */,
+				CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */,
+				CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -508,6 +525,26 @@
 			isa = PBXGroup;
 			children = (
 				CFE308AB2397B62C00EF0601 /* ManualAddCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CFE308B7239970A200EF0601 /* AddProduct */ = {
+			isa = PBXGroup;
+			children = (
+				CFE308C2239A919B00EF0601 /* Views */,
+				CFE308BA239970B700EF0601 /* AddProductController.swift */,
+				CFE308BC239970C000EF0601 /* AddProductPresenter.swift */,
+			);
+			path = AddProduct;
+			sourceTree = "<group>";
+		};
+		CFE308C2239A919B00EF0601 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CFE308B8239970B100EF0601 /* AddProductTextFieldCell.swift */,
+				CFE308CD239C046F00EF0601 /* AddProductSelectionCell.swift */,
+				CFE308C3239BFBB100EF0601 /* AddProductTextViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -632,22 +669,26 @@
 				CF3D5BF5237B4B5D00F5D484 /* ItemListCoordinator.swift in Sources */,
 				CF6E0CBB2379396E0091CEC8 /* CartListCoordinator.swift in Sources */,
 				CF6E0C83237184A90091CEC8 /* DataError.swift in Sources */,
+				CFE308CE239C046F00EF0601 /* AddProductSelectionCell.swift in Sources */,
 				CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */,
 				CF6E0C952371A2C10091CEC8 /* Logger.swift in Sources */,
+				CFE308BD239970C000EF0601 /* AddProductPresenter.swift in Sources */,
 				CF6E0C88237199BF0091CEC8 /* ScreenAssembler.swift in Sources */,
-				CFE308B3239942F300EF0601 /* Product+CoreDataClass.swift in Sources */,
-				CF6E0CB6237433D40091CEC8 /* Item+CoreDataClass.swift in Sources */,
+				CFE308D2239C18D600EF0601 /* UITextView+DoneButton.swift in Sources */,
 				CF6E0C6A237167390091CEC8 /* ItemEntity.swift in Sources */,
 				CF6E0C7F2371834D0091CEC8 /* CartListController.swift in Sources */,
-				CF6E0CB7237433D40091CEC8 /* Item+CoreDataProperties.swift in Sources */,
 				CF1EF040239447CB00336EAA /* AddItem.swift in Sources */,
 				CFE308B62399435F00EF0601 /* ProductRepository.swift in Sources */,
+				CFE308D0239C183B00EF0601 /* UITextField+DoneButton.swift in Sources */,
 				CFE308AE2397BF5E00EF0601 /* ManualAddCoordinator.swift in Sources */,
+				CFE308CC239C039500EF0601 /* Product+CoreDataProperties.swift in Sources */,
+				CFE308BB239970B700EF0601 /* AddProductController.swift in Sources */,
 				CF1EF039239415E300336EAA /* AddItemView.swift in Sources */,
 				CF6E0C8C23719A1C0091CEC8 /* ModuleAssembler.swift in Sources */,
 				CF6E0CAD2372F2410091CEC8 /* ItemListView.swift in Sources */,
 				CF6E0C7923717FB70091CEC8 /* ItemListPresenter.swift in Sources */,
 				CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */,
+				CFE308B9239970B100EF0601 /* AddProductTextFieldCell.swift in Sources */,
 				CF6E3923237C45C1007F92F2 /* CreateNewCart.swift in Sources */,
 				CF6E0CAB2372EF170091CEC8 /* ItemCell.swift in Sources */,
 				CF6E0C9023719AF00091CEC8 /* DomainAssembly.swift in Sources */,
@@ -659,11 +700,14 @@
 				CF6E0C9E2371E3540091CEC8 /* UITableView+Registration.swift in Sources */,
 				CF6E3929237C45F5007F92F2 /* RemoveAllCarts.swift in Sources */,
 				CF6E0C81237183770091CEC8 /* CartListPresenter.swift in Sources */,
+				CFE308C7239C035A00EF0601 /* Item+CoreDataClass.swift in Sources */,
 				CF6E0C6B237167390091CEC8 /* CartEntity.swift in Sources */,
+				CFE308CB239C039500EF0601 /* Product+CoreDataClass.swift in Sources */,
 				CF1EF03B239415EE00336EAA /* AddItemController.swift in Sources */,
 				CF1EF03D2394404100336EAA /* AddItemPresenter.swift in Sources */,
 				CF6E0C62237167390091CEC8 /* DatabaseServiceImpl.swift in Sources */,
 				CF6E0C66237167390091CEC8 /* ItemModel.xcdatamodeld in Sources */,
+				CFE308C8239C035A00EF0601 /* Item+CoreDataProperties.swift in Sources */,
 				CF6E0C7D237182610091CEC8 /* UIColor+Colors.swift in Sources */,
 				CF6E0C61237167390091CEC8 /* ProductService.swift in Sources */,
 				CFE308B02397C43C00EF0601 /* AddItemProduct.swift in Sources */,
@@ -675,7 +719,7 @@
 				CF6E392D237C49E3007F92F2 /* CommitChange.swift in Sources */,
 				CFE308AC2397B62C00EF0601 /* ManualAddCell.swift in Sources */,
 				CF417864237D2F19009A11D6 /* ProductError.swift in Sources */,
-				CFE308B4239942F300EF0601 /* Product+CoreDataProperties.swift in Sources */,
+				CFE308C4239BFBB100EF0601 /* AddProductTextViewCell.swift in Sources */,
 				CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */,
 				CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */,
 				CF6E0C9C2371E2EE0091CEC8 /* UIStackView+Maker.swift in Sources */,

@@ -11,11 +11,13 @@ import UIKit
 internal protocol ManualAddPresenter {
     func load()
     func addItemToCart(_ item: ItemEntity, withController: ManualAddController)
+    func showAddNewProduct(withController controller: ManualAddController)
 }
 
 internal protocol ManualAddDelegate: class {
     func didLoad(products: [ItemEntity])
     func presentController(_ controller: UIViewController)
+    func showController(_ controller: UIViewController)
 }
 
 internal class ManualAddPresenterImpl: ManualAddPresenter {
@@ -54,5 +56,9 @@ internal class ManualAddPresenterImpl: ManualAddPresenter {
     
     internal func addItemToCart(_ item: ItemEntity, withController: ManualAddController) {
         delegate?.presentController(coordinator.presentAddItem(item, forController: withController))
+    }
+    
+    internal func showAddNewProduct(withController controller: ManualAddController) {
+        delegate?.showController(coordinator.showAddNewProduct())
     }
 }

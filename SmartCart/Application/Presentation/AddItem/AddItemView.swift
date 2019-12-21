@@ -51,7 +51,7 @@ internal class AddItemView: UIView {
     }
     
     internal var size: String = "" {
-        didSet { sizeLabel.text = "Size: " + size }
+        didSet { sizeLabel.text = "Size: \(size)" }
     }
     
     internal var amount: Int = 0 {
