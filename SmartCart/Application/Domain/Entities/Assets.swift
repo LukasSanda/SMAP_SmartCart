@@ -14,6 +14,7 @@ internal enum Assets {
     
     static let removeBin: UIImage = UIImage(named: "removeBin") ?? UIImage()
     static let delete: UIImage = UIImage(named: "remove") ?? UIImage()
+    static let buttonMore: UIImage = UIImage(named: "buttonMore") ?? UIImage()
     
     // MARK: - Home Screen
     
@@ -39,5 +40,9 @@ internal enum Assets {
     
     enum AddProduct {
         static let select: UIImage = UIImage(named: "select") ?? UIImage()
+    }
+    
+    enum Settings {
+        static let mapTracking: UIImage = UIImage(named: "mapTracking") ?? UIImage()
     }
 }

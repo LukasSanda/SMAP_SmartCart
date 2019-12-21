@@ -10,6 +10,7 @@ import UIKit
 
 internal protocol MainViewCoordinator {
     func showCartList()
+    func notifyLastCart()
 }
 
 internal class MainViewCoordinatorImpl: MainViewCoordinator {
@@ -31,6 +32,10 @@ internal class MainViewCoordinatorImpl: MainViewCoordinator {
     
     internal func showCartList() {
         navigationController.show(screenAssembly.cartListController(), sender: nil)
+    }
+    
+    internal func notifyLastCart() {
+        navigationController.show(screenAssembly.openLastCart(), sender: nil)
     }
 }
 

@@ -15,7 +15,9 @@ extension ModuleAssembler: ScreenAssembly {
             commitChange: resolve(),
             getKnownProducts: resolve(),
             addItemProduct: resolve(),
-            addItem: resolve())
+            addItem: resolve(),
+            marketsRepository: resolve(),
+            cartRepository: resolve())
         let presenter = CartListPresenterImpl(
             loadCarts: resolve(),
             removeCart: resolve(),
@@ -25,7 +27,28 @@ extension ModuleAssembler: ScreenAssembly {
         
         let controller = CartListController(presenter: presenter)
         presenter.delegate = controller
-        coordinator.delegate = controller
+        return controller
+    }
+    
+    func openLastCart() -> CartListController {
+        let coordinator = CartListCoordinatorImpl(
+            commitChange: resolve(),
+            getKnownProducts: resolve(),
+            addItemProduct: resolve(),
+            addItem: resolve(),
+            marketsRepository: resolve(),
+            cartRepository: resolve())
+        let presenter = CartListPresenterImpl(
+            loadCarts: resolve(),
+            removeCart: resolve(),
+            removeAllCarts: resolve(),
+            createCart: resolve(),
+            coordinator: coordinator)
+        
+        let controller = CartListController(presenter: presenter)
+        presenter.delegate = controller
+        presenter.showLastCart()
+        
         return controller
     }
 }

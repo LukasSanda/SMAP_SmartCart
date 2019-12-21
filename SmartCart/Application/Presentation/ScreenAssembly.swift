@@ -10,4 +10,5 @@ import Foundation
 
 internal protocol ScreenAssembly {
     func cartListController() -> CartListController
+    func openLastCart() -> CartListController
 }

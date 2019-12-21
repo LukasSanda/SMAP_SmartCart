@@ -41,7 +41,6 @@ internal class CartListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.rightBarButtonItem?.isEnabled = false
         presenter.load()
     }
 }
@@ -53,7 +52,7 @@ extension CartListController: CartCellDelegate {
             return
         }
         
-        deleteConfirmation(forCart: carts[index.row])
+        presenter.removeCart(carts[index.row])
     }
 }
 
@@ -61,20 +60,20 @@ extension CartListController: CartCellDelegate {
 extension CartListController: CartListDelegate {
     func didLoadAvailableCarts(_ carts: [Cart]) {
         guard !carts.isEmpty else {
-            navigationItem.rightBarButtonItem?.isEnabled = false
             contentView.isTableHidden = true
             logger.logInfo(message: "Successfully fetched but loaded empty array.")
             return
         }
         
-        navigationItem.rightBarButtonItem?.isEnabled = true
         contentView.isTableHidden = false
         self.carts = carts
     }
-}
-
-// MARK: - CartListCoordinatorDelegate
-extension CartListController: CartListCoordinatorDelegate {
+    
+    func presentController(_ controller: UIViewController) {
+        controller.modalPresentationStyle = .formSheet
+        navigationController?.present(controller, animated: true, completion: nil)
+    }
+    
     func showController(_ controller: UIViewController) {
         navigationController?.show(controller, sender: nil)
     }
@@ -144,25 +143,8 @@ extension CartListController: UITableViewDataSource {
 // MARK: - Action Selector
 private extension CartListController {
     @objc
-    func removeButtonDidTap() {
-        let alertController = UIAlertController(
-            title: "Delete All Carts",
-            message: "You are about to delete all available carts. Are you sure you want to continue?",
-            preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(
-            title: "Proceed",
-            style: .destructive) { [weak self] _ in
-                guard let self = self else { return }
-                self.presenter.removeAllCarts {
-                    self.presenter.load()
-                }
-        })
-        alertController.addAction(UIAlertAction(
-            title: "Cancel",
-            style: .cancel,
-            handler: nil))
-        alertController.view.tintColor = .black
-        self.present(alertController, animated: true, completion: nil)
+    func buttonMoreDidTap() {
+        presenter.showMenu()
     }
 }
 
@@ -195,27 +177,8 @@ private extension CartListController {
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .trash,
-            target: self,
-            action: #selector(removeButtonDidTap))
-    }
-    
-    func deleteConfirmation(forCart cart: Cart) {
-        let alertController = UIAlertController(
-            title: "Remove Item",
-            message: "You are about to delete selected cart. Are you sure you want to continue?",
-            preferredStyle: .alert)
-        alertController.view.tintColor = .black
-        
-        alertController.addAction(
-            UIAlertAction(
-                title: "Delete",
-                style: .destructive) { _ in
-                    self.presenter.removeCart(cart)
-        })
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        navigationController?.present(alertController, animated: true, completion: nil)
-    }
+            image: Assets.buttonMore,
+            style: .plain,
+            target: self, action: #selector(buttonMoreDidTap))
+        }
 }
