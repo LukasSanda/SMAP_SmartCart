@@ -77,12 +77,20 @@ extension ItemListController: ItemListDelegate {
 }
 
 // MARK: - ScannerViewDelegate
-extension ItemListController: ScannerViewDelegate {
+extension ItemListController: BarcodeScannerDelegate {
     func didScanItem(_ item: ItemEntity) {
         presenter.presentScannedItem(item, forController: self)
     }
 }
 
+// MARK: - TitleScannerDelegate
+extension ItemListController: TitleScannerDelegate {
+    func didRecognizeItem(_ item: ItemEntity) {
+        presenter.presentScannedItem(item, forController: self)
+    }
+}
+
+// MARK: - AddItemDelegate
 extension ItemListController: AddItemDelegate {
     func willDisplayItemList() {
         presenter.load()
@@ -100,7 +108,7 @@ extension ItemListController: ItemListViewDelegate {
         case .scan:
             presenter.presentBarcodeScanner(forController: self)
         case .title:
-            presenter.presentTitleScanner()
+            presenter.presentTitleScanner(forController: self)
         }
     }
 }

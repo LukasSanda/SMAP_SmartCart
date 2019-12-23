@@ -1,5 +1,5 @@
 //
-//  ScannerViewPresenter.swift
+//  BarcodeScannerPresenter.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 15/11/2019.
@@ -8,15 +8,15 @@
 
 import Foundation
 
-internal protocol ScannerViewPresenter {
+internal protocol BarcodeScannerPresenter {
     func checkCode(_ code: String)
 }
 
-internal protocol ScannerViewDelegate: class {
+internal protocol BarcodeScannerDelegate: class {
     func didScanItem(_ item: ItemEntity)
 }
 
-internal class ScannerViewPresenterImpl: ScannerViewPresenter {
+internal class BarcodeScannerPresenterImpl: BarcodeScannerPresenter {
     
     // MARK: - Private Properties
     
@@ -24,7 +24,7 @@ internal class ScannerViewPresenterImpl: ScannerViewPresenter {
     
     // MARK: - Internal Properties
     
-    internal weak var delegate: ScannerViewDelegate?
+    internal weak var delegate: BarcodeScannerDelegate?
     
     // MARK: - Initialization
     

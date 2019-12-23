@@ -1,5 +1,5 @@
 //
-//  ScannerViewController.swift
+//  BarcodeScannerController.swift
 //  SmartCart
 //
 //  Created by Lukáš Šanda on 05/11/2019.
@@ -10,18 +10,18 @@ import UIKit
 import AVFoundation
 import SnapKit
 
-internal class ScannerViewController: UIViewController {
+internal class BarcodeScannerController: UIViewController {
 
     // MARK: - Private Properties
     
     private var scanner: Scanner?
     private let overlayView = UIView()
     private let cancelButton = UIButton()
-    private let presenter: ScannerViewPresenter
+    private let presenter: BarcodeScannerPresenter
     
     // MARK: - Intialization
     
-    internal init(presenter: ScannerViewPresenter) {
+    internal init(presenter: BarcodeScannerPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,7 +53,7 @@ internal class ScannerViewController: UIViewController {
 }
 
 // MARK: - Actions
-extension ScannerViewController {
+extension BarcodeScannerController {
     func handleScannedCode(_ code: String) {
         self.dismiss(animated: true) {
             self.presenter.checkCode("456123789")
@@ -68,14 +68,14 @@ extension ScannerViewController {
 }
 
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
-extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
+extension BarcodeScannerController: AVCaptureMetadataOutputObjectsDelegate {
     internal func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         self.scanner?.scannerDelegate(output, didOutput: metadataObjects, from: connection)
     }
 }
 
 // MARK: - Setup View Appereance
-private extension ScannerViewController {
+private extension BarcodeScannerController {
     func setup() {
         // Overlay frame
         overlayView.backgroundColor = .clear

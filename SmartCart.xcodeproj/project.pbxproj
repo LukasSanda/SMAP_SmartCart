@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		6AC7D8E8D20C82CE62354A13 /* Pods_SmartCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */; };
 		856BC18E9FCF44465182BCFC /* Pods_SmartCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E8B65ABCAFD21A50A9BA76 /* Pods_SmartCart.framework */; };
-		CF3D5BF5237B4B5D00F5D484 /* CartContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D5BF4237B4B5D00F5D484 /* CartContentCoordinator.swift */; };
-		CF41785E237C9990009A11D6 /* TextScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41785D237C9990009A11D6 /* TextScannerViewController.swift */; };
-		CF417860237C9C1A009A11D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF41785F237C9C1A009A11D6 /* GoogleService-Info.plist */; };
 		CF1EF039239415E300336EAA /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF038239415E300336EAA /* AddItemView.swift */; };
 		CF1EF03B239415EE00336EAA /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF03A239415EE00336EAA /* AddItemController.swift */; };
 		CF1EF03D2394404100336EAA /* AddItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF03C2394404100336EAA /* AddItemPresenter.swift */; };
 		CF1EF040239447CB00336EAA /* AddItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF03F239447CB00336EAA /* AddItem.swift */; };
 		CF3D5BF5237B4B5D00F5D484 /* ItemListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D5BF4237B4B5D00F5D484 /* ItemListCoordinator.swift */; };
+		CF41785E237C9990009A11D6 /* TitleScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41785D237C9990009A11D6 /* TitleScannerController.swift */; };
+		CF417860237C9C1A009A11D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF41785F237C9C1A009A11D6 /* GoogleService-Info.plist */; };
 		CF417864237D2F19009A11D6 /* ProductError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF417863237D2F19009A11D6 /* ProductError.swift */; };
 		CF645A9C23A8A50100463F9D /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF645A9B23A8A50100463F9D /* SettingsController.swift */; };
 		CF645A9E23A8A50800463F9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF645A9D23A8A50800463F9D /* SettingsView.swift */; };
@@ -33,7 +32,7 @@
 		CF6E0C66237167390091CEC8 /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C57237167390091CEC8 /* ItemModel.xcdatamodeld */; };
 		CF6E0C6A237167390091CEC8 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C5C237167390091CEC8 /* ItemEntity.swift */; };
 		CF6E0C6B237167390091CEC8 /* CartEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C5D237167390091CEC8 /* CartEntity.swift */; };
-		CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */; };
+		CF6E0C6E23716B120091CEC8 /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C6D23716B120091CEC8 /* BarcodeScannerController.swift */; };
 		CF6E0C71237179920091CEC8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; };
 		CF6E0C72237179920091CEC8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF6E0C7723717F9C0091CEC8 /* ItemListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C7623717F9C0091CEC8 /* ItemListController.swift */; };
@@ -90,7 +89,8 @@
 		CFE308D0239C183B00EF0601 /* UITextField+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */; };
 		CFE308D2239C18D600EF0601 /* UITextView+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */; };
 		CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */; };
-		CFE78D1F237EFE4400EBE2AA /* ScannerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */; };
+		CFE78D1F237EFE4400EBE2AA /* BarcodeScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */; };
+		CFFE82C423AEA2D900E5B7FE /* TitleScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,18 +118,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1EA988EA25BBA507798A2DFD /* Pods-SmartCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.debug.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.debug.xcconfig"; sourceTree = "<group>"; };
+		244EC6DB845CC7156737E88E /* Pods-SmartCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCart.release.xcconfig"; path = "Target Support Files/Pods-SmartCart/Pods-SmartCart.release.xcconfig"; sourceTree = "<group>"; };
+		25E8B65ABCAFD21A50A9BA76 /* Pods_SmartCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B08E8785721823CD8C3F62FA /* Pods-SmartCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCart.debug.xcconfig"; path = "Target Support Files/Pods-SmartCart/Pods-SmartCart.debug.xcconfig"; sourceTree = "<group>"; };
 		CF1EF038239415E300336EAA /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		CF1EF03A239415EE00336EAA /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		CF1EF03C2394404100336EAA /* AddItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemPresenter.swift; sourceTree = "<group>"; };
 		CF1EF03F239447CB00336EAA /* AddItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItem.swift; sourceTree = "<group>"; };
 		CF3D5BF4237B4B5D00F5D484 /* ItemListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCoordinator.swift; sourceTree = "<group>"; };
-		CF417863237D2F19009A11D6 /* ProductError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductError.swift; sourceTree = "<group>"; };
-		1EA988EA25BBA507798A2DFD /* Pods-SmartCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.debug.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.debug.xcconfig"; sourceTree = "<group>"; };
-		244EC6DB845CC7156737E88E /* Pods-SmartCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCart.release.xcconfig"; path = "Target Support Files/Pods-SmartCart/Pods-SmartCart.release.xcconfig"; sourceTree = "<group>"; };
-		25E8B65ABCAFD21A50A9BA76 /* Pods_SmartCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B08E8785721823CD8C3F62FA /* Pods-SmartCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCart.debug.xcconfig"; path = "Target Support Files/Pods-SmartCart/Pods-SmartCart.debug.xcconfig"; sourceTree = "<group>"; };
-		CF41785D237C9990009A11D6 /* TextScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScannerViewController.swift; sourceTree = "<group>"; };
+		CF41785D237C9990009A11D6 /* TitleScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScannerController.swift; sourceTree = "<group>"; };
 		CF41785F237C9C1A009A11D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CF417863237D2F19009A11D6 /* ProductError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductError.swift; sourceTree = "<group>"; };
 		CF645A9B23A8A50100463F9D /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		CF645A9D23A8A50800463F9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF645A9F23A8A51100463F9D /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		CF6E0C58237167390091CEC8 /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 		CF6E0C5C237167390091CEC8 /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
 		CF6E0C5D237167390091CEC8 /* CartEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartEntity.swift; sourceTree = "<group>"; };
-		CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		CF6E0C6D23716B120091CEC8 /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
 		CF6E0C70237179920091CEC8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		CF6E0C7623717F9C0091CEC8 /* ItemListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListController.swift; sourceTree = "<group>"; };
 		CF6E0C7823717FB70091CEC8 /* ItemListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListPresenter.swift; sourceTree = "<group>"; };
@@ -187,8 +187,6 @@
 		CF787446235D7D800061AC90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF787449235D7D800061AC90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF78744B235D7D800061AC90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D43EA3A60D16D60BBC1931D4 /* Pods-SmartCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.release.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.release.xcconfig"; sourceTree = "<group>"; };
 		CFE308A42396D95A00EF0601 /* ManualAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddController.swift; sourceTree = "<group>"; };
 		CFE308A62396D96000EF0601 /* ManualAddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddPresenter.swift; sourceTree = "<group>"; };
 		CFE308A82396D96800EF0601 /* ManualAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddView.swift; sourceTree = "<group>"; };
@@ -208,7 +206,10 @@
 		CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+DoneButton.swift"; sourceTree = "<group>"; };
 		CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+DoneButton.swift"; sourceTree = "<group>"; };
 		CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKnownProducts.swift; sourceTree = "<group>"; };
-		CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewPresenter.swift; sourceTree = "<group>"; };
+		CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerPresenter.swift; sourceTree = "<group>"; };
+		CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScannerPresenter.swift; sourceTree = "<group>"; };
+		D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D43EA3A60D16D60BBC1931D4 /* Pods-SmartCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.release.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,9 +450,8 @@
 		CF6E0C7423717F690091CEC8 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				CF6E0C6D23716B120091CEC8 /* ScannerViewController.swift */,
-				CFE78D1E237EFE4400EBE2AA /* ScannerViewPresenter.swift */,
-				CF41785D237C9990009A11D6 /* TextScannerViewController.swift */,
+				CFFE82C223AEA2C300E5B7FE /* Title */,
+				CFFE82C123AEA2BD00E5B7FE /* Barcode */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -600,6 +600,24 @@
 				CFE308C3239BFBB100EF0601 /* AddProductTextViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CFFE82C123AEA2BD00E5B7FE /* Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				CF6E0C6D23716B120091CEC8 /* BarcodeScannerController.swift */,
+				CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */,
+			);
+			path = Barcode;
+			sourceTree = "<group>";
+		};
+		CFFE82C223AEA2C300E5B7FE /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				CF41785D237C9990009A11D6 /* TitleScannerController.swift */,
+				CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */,
+			);
+			path = Title;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -838,8 +856,8 @@
 				CF6E0C8A237199E40091CEC8 /* ScreenAssembly.swift in Sources */,
 				CF6E0C7723717F9C0091CEC8 /* ItemListController.swift in Sources */,
 				CFE308A52396D95A00EF0601 /* ManualAddController.swift in Sources */,
-				CF6E0C7723717F9C0091CEC8 /* CartContentController.swift in Sources */,
-				CF41785E237C9990009A11D6 /* TextScannerViewController.swift in Sources */,
+				CF6E0C7723717F9C0091CEC8 /* ItemListController.swift in Sources */,
+				CF41785E237C9990009A11D6 /* TitleScannerController.swift in Sources */,
 				CF6E0C9E2371E3540091CEC8 /* UITableView+Registration.swift in Sources */,
 				CF6E3929237C45F5007F92F2 /* RemoveAllCarts.swift in Sources */,
 				CF6E0C81237183770091CEC8 /* CartListPresenter.swift in Sources */,
@@ -858,15 +876,16 @@
 				CF6E0C972371D87C0091CEC8 /* Assets.swift in Sources */,
 				CF6E3927237C45DA007F92F2 /* LoadAllCarts.swift in Sources */,
 				CF6E0C9A2371D9300091CEC8 /* CartCell.swift in Sources */,
-				CFE78D1F237EFE4400EBE2AA /* ScannerViewPresenter.swift in Sources */,
+				CFE78D1F237EFE4400EBE2AA /* BarcodeScannerPresenter.swift in Sources */,
 				CFE308A72396D96000EF0601 /* ManualAddPresenter.swift in Sources */,
 				CF6E392D237C49E3007F92F2 /* CommitChange.swift in Sources */,
 				CFE308AC2397B62C00EF0601 /* ManualAddCell.swift in Sources */,
 				CF417864237D2F19009A11D6 /* ProductError.swift in Sources */,
 				CFE308C4239BFBB100EF0601 /* AddProductTextViewCell.swift in Sources */,
-				CF6E0C6E23716B120091CEC8 /* ScannerViewController.swift in Sources */,
+				CF6E0C6E23716B120091CEC8 /* BarcodeScannerController.swift in Sources */,
 				CF6E0CAF23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift in Sources */,
 				CF6E0C9C2371E2EE0091CEC8 /* UIStackView+Maker.swift in Sources */,
+				CFFE82C423AEA2D900E5B7FE /* TitleScannerPresenter.swift in Sources */,
 				CF6E0C9223719D740091CEC8 /* MainViewCoordinator.swift in Sources */,
 				CF645AA023A8A51100463F9D /* SettingsPresenter.swift in Sources */,
 				CF6E0C8E23719ADD0091CEC8 /* DomainAssembler.swift in Sources */,
