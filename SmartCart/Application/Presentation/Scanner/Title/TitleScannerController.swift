@@ -14,7 +14,7 @@ internal class TitleScannerController: UIViewController, UINavigationControllerD
     
     // MARK: - Properties
     
-    private var imagePicker: UIImagePickerController!
+    private var imagePicker: UIImagePickerController?
     private let button = UIButton()
     
     private let presenter: TitleScannerPresenter
@@ -24,28 +24,46 @@ internal class TitleScannerController: UIViewController, UINavigationControllerD
     internal init(presenter: TitleScannerPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        setup()
     }
     
     @available(*, unavailable)
     internal required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        self.imagePicker = vc
+        
+        
+        self.view.addSubview(vc.view)
+        vc.view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate
 extension TitleScannerController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imagePicker.dismiss(animated: true, completion: nil)
+        guard let imagePicker = imagePicker else { return }
+        imagePicker.view.removeFromSuperview()
         
-        guard let image = info[.originalImage] as? UIImage else { return }
-        recognizeTextInImage(image)
+        guard let image = info[.originalImage] as? UIImage, let finalIamge = image.fixedOrientation() else { return }
+        recognizeTextInImage(finalIamge)
     }
     
     func recognizeTextInImage(_ image: UIImage) {
         let vision = Vision.vision()
         let options = VisionCloudTextRecognizerOptions()
-        options.languageHints = ["en", "cs"]
+        options.modelType = .sparse
         let textRecognizer = vision.onDeviceTextRecognizer()
         let visionImage = VisionImage(image: image)
         
@@ -55,34 +73,9 @@ extension TitleScannerController: UIImagePickerControllerDelegate {
                 return
             }
             
-            self.presenter.didRecognizeText(result.text)
-        }
-    }
-}
-
-// MARK: - Action Selectors
-private extension TitleScannerController {
-    @objc
-    func takePhoto() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.allowsEditing = true
-        vc.delegate = self
-        present(vc, animated: true)
-        //navigationController?.present(imagePicker, animated: true, completion: nil)
-    }
-}
-
-// MARK: - Setup View Appereance
-private extension TitleScannerController {
-    func setup() {
-        view.backgroundColor = .white
-        
-        button.setTitle("Photo", for: .normal)
-        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
-        view.addSubview(button)
-        button.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            self.dismiss(animated: true) {
+                self.presenter.didRecognizeText(result.text)
+            }
         }
     }
 }

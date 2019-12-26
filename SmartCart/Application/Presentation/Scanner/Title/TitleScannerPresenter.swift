@@ -14,6 +14,7 @@ internal protocol TitleScannerPresenter {
 
 internal protocol TitleScannerDelegate: class {
     func didRecognizeItem(_ item: ItemEntity)
+    func didNotRecognizeItem()
 }
 
 internal class TitleScannerPresenterImpl: TitleScannerPresenter {
@@ -41,8 +42,11 @@ internal class TitleScannerPresenterImpl: TitleScannerPresenter {
                 products.forEach {
                     if text.contains($0.title) && text.contains($0.desc) {
                         self.delegate?.didRecognizeItem($0)
+                        return
                     }
                 }
+                
+                self.delegate?.didNotRecognizeItem()
                 
             case .failure(let error):
                 logger.logError(message: error.localizedDescription)

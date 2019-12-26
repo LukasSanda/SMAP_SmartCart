@@ -91,6 +91,7 @@
 		CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */; };
 		CFE78D1F237EFE4400EBE2AA /* BarcodeScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */; };
 		CFFE82C423AEA2D900E5B7FE /* TitleScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */; };
+		CFFE82C623B0EADA00E5B7FE /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,7 @@
 		CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetKnownProducts.swift; sourceTree = "<group>"; };
 		CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerPresenter.swift; sourceTree = "<group>"; };
 		CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScannerPresenter.swift; sourceTree = "<group>"; };
+		CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43EA3A60D16D60BBC1931D4 /* Pods-SmartCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.release.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -489,6 +491,7 @@
 				CF6E0CAE23741BE70091CEC8 /* NSMutableAttributedString+Formatting.swift */,
 				CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */,
 				CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */,
+				CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				CFE308B62399435F00EF0601 /* ProductRepository.swift in Sources */,
 				CFE308D0239C183B00EF0601 /* UITextField+DoneButton.swift in Sources */,
 				CFE308AE2397BF5E00EF0601 /* ManualAddCoordinator.swift in Sources */,
+				CFFE82C623B0EADA00E5B7FE /* UIImage+Orientation.swift in Sources */,
 				CFE308CC239C039500EF0601 /* Product+CoreDataProperties.swift in Sources */,
 				CFE308BB239970B700EF0601 /* AddProductController.swift in Sources */,
 				CF1EF039239415E300336EAA /* AddItemView.swift in Sources */,

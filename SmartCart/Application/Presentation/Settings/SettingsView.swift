@@ -186,7 +186,7 @@ private extension SettingsView {
         mapView.snp.makeConstraints { make in
             make.top.equalTo(moreInfoButton.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(20)
-            make.height.greaterThanOrEqualTo(200)
+            make.height.greaterThanOrEqualTo(300)
         }
         
         shopLocationView.isUserInteractionEnabled = false

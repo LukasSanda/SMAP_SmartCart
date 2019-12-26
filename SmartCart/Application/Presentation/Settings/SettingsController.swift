@@ -18,6 +18,13 @@ internal class SettingsController: UIViewController {
     private let locationManager = CLLocationManager()
     private let presenter: SettingsPresenter
     
+    private var userLocation: CLLocation? {
+        willSet {
+            guard userLocation == nil, let location = newValue else { return }
+            setRegionOnUserLocation(location)
+        }
+    }
+    
     // MARK: - Initialization
     
     internal init(presenter: SettingsPresenter) {
@@ -49,21 +56,25 @@ internal class SettingsController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension SettingsController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-      var view: MKMarkerAnnotationView
-      
-      if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker")
-        as? MKMarkerAnnotationView {
-        dequeuedView.annotation = annotation
-        view = dequeuedView
+        var view: MKMarkerAnnotationView?
         
-      } else {
-        view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-        view.canShowCallout = true
-        view.calloutOffset = CGPoint(x: 0, y: 5)
-        view.rightCalloutAccessoryView = UIButton(type: .close)
-      }
+        if annotation.coordinate == mapView.userLocation.coordinate {
+            return nil
+            
+        } else if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker")
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+            
+        } else {
+            let calloutView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+            calloutView.canShowCallout = true
+            calloutView.calloutOffset = CGPoint(x: 0, y: 5)
+            calloutView.rightCalloutAccessoryView = UIButton(type: .close)
+            view = calloutView
+        }
         
-      return view
+        return view
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -83,8 +94,11 @@ extension SettingsController: MKMapViewDelegate {
 // MARK: - CLLocationManagerDelegate
 extension SettingsController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-
+        guard let userLocation = locations.last else { return }
+        self.userLocation = userLocation
+    }
+    
+    func setRegionOnUserLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(
                 latitude: location.coordinate.latitude,
@@ -92,7 +106,7 @@ extension SettingsController: CLLocationManagerDelegate {
             span: MKCoordinateSpan(
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01))
-
+        
         contentView.mapView.setRegion(region, animated: false)
     }
 }
@@ -167,5 +181,11 @@ private extension SettingsController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+    }
+}
+
+internal extension CLLocationCoordinate2D {
+    static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 }

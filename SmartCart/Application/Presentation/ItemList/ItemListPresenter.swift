@@ -17,6 +17,8 @@ internal protocol ItemListPresenter {
     func presentTitleScanner(forController controller: ItemListController)
     func presentBarcodeScanner(forController controller: ItemListController)
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController)
+    func didNotRecognizeItem()
+    func presentAddNewProduct()
 }
 
 internal protocol ItemListDelegate: class {
@@ -94,6 +96,10 @@ internal class ItemListPresenterImpl: ItemListPresenter {
         delegate?.showController(coordinator.presentManualAdd())
     }
     
+    internal func presentAddNewProduct() {
+        delegate?.showController(coordinator.showAddNewProduct())
+    }
+    
     internal func presentBarcodeScanner(forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentBarcodeScanner(forController: controller))
     }
@@ -104,5 +110,26 @@ internal class ItemListPresenterImpl: ItemListPresenter {
     
     internal func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentScannedItem(item, forController: controller))
+    }
+    
+    internal func didNotRecognizeItem() {
+        let controller = UIAlertController(
+            title: "Scanned Unkwnown Product",
+            message: "You have scanned product that we dont have in our database. Please, add this product manually.",
+            preferredStyle: .alert)
+        
+        controller.addAction(UIAlertAction(
+            title: "Add",
+            style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                self.presentAddNewProduct()
+        })
+        
+        controller.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil))
+        
+        delegate?.presentController(controller)
     }
 }

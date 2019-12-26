@@ -10,6 +10,7 @@ import UIKit
 
 internal protocol ItemListCoordinator {
     func presentManualAdd() -> UIViewController
+    func showAddNewProduct() -> UIViewController
     func presentBarcodeScanner(forController itemListController: ItemListController) -> UIViewController
     func presentTitleScanner(forController itemListController: ItemListController) -> UIViewController
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) -> UIViewController
@@ -59,6 +60,13 @@ internal class ItemListCoordinatorImpl: ItemListCoordinator {
         let presenter = AddItemPresenterImpl(addItem: addItem)
         presenter.delegate = controller
         let controller = AddItemController(presenter: presenter, item: item)
+        return controller
+    }
+    
+    internal func showAddNewProduct() -> UIViewController {
+        let presenter = AddProductPresenterImpl(addItemProduct: addItemProduct)
+        let controller = AddProductController(presenter: presenter)
+        presenter.delegate = controller
         return controller
     }
 }
