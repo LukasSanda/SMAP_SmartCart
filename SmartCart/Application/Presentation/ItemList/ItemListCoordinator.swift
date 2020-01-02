@@ -10,7 +10,9 @@ import UIKit
 
 internal protocol ItemListCoordinator {
     func presentManualAdd() -> UIViewController
-    func presentScanner(forController itemListController: ItemListController) -> UIViewController
+    func showAddNewProduct() -> UIViewController
+    func presentBarcodeScanner(forController itemListController: ItemListController) -> UIViewController
+    func presentTitleScanner(forController itemListController: ItemListController) -> UIViewController
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) -> UIViewController
 }
 
@@ -40,9 +42,16 @@ internal class ItemListCoordinatorImpl: ItemListCoordinator {
         return controller
     }
     
-    internal func presentScanner(forController itemListController: ItemListController) -> UIViewController {
-        let presenter = ScannerViewPresenterImpl(getKnownProducts: getKnownProducts)
-        let controller = ScannerViewController(presenter: presenter)
+    internal func presentBarcodeScanner(forController itemListController: ItemListController) -> UIViewController {
+        let presenter = BarcodeScannerPresenterImpl(getKnownProducts: getKnownProducts)
+        let controller = BarcodeScannerController(presenter: presenter)
+        presenter.delegate = itemListController
+        return controller
+    }
+    
+    internal func presentTitleScanner(forController itemListController: ItemListController) -> UIViewController {
+        let presenter = TitleScannerPresenterImpl(getKnownProducts: getKnownProducts)
+        let controller = TitleScannerController(presenter: presenter)
         presenter.delegate = itemListController
         return controller
     }
@@ -51,6 +60,13 @@ internal class ItemListCoordinatorImpl: ItemListCoordinator {
         let presenter = AddItemPresenterImpl(addItem: addItem)
         presenter.delegate = controller
         let controller = AddItemController(presenter: presenter, item: item)
+        return controller
+    }
+    
+    internal func showAddNewProduct() -> UIViewController {
+        let presenter = AddProductPresenterImpl(addItemProduct: addItemProduct)
+        let controller = AddProductController(presenter: presenter)
+        presenter.delegate = controller
         return controller
     }
 }

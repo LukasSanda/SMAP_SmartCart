@@ -10,7 +10,7 @@ import UIKit
 
 internal class ManualAddController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Private Properties
     
     private let searchController = UISearchController(searchResultsController: nil)
     private let presenter: ManualAddPresenter
@@ -21,6 +21,8 @@ internal class ManualAddController: UIViewController {
     private var products = [ItemEntity]() {
         didSet { contentView.tableView.reloadData() }
     }
+    
+    // MARK: - Internal Properties
     
     internal var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -146,6 +148,7 @@ private extension ManualAddController {
             title: "Add New Product",
             message: "You are about to add unknown product. Are you sure you want to proceed to the add screen?",
             preferredStyle: .alert)
+        
         alertController.addAction(UIAlertAction(
             title: "Proceed",
             style: .default) { [weak self] _ in

@@ -18,6 +18,13 @@ internal class SettingsController: UIViewController {
     private let locationManager = CLLocationManager()
     private let presenter: SettingsPresenter
     
+    private var userLocation: CLLocation? {
+        willSet {
+            guard userLocation == nil, let location = newValue else { return }
+            setRegionOnUserLocation(location)
+        }
+    }
+    
     // MARK: - Initialization
     
     internal init(presenter: SettingsPresenter) {
@@ -36,66 +43,18 @@ internal class SettingsController: UIViewController {
         super.viewWillAppear(animated)
         presenter.load()
         
+        // If user allowed location manager
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         }
     }
+    
     override internal func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 }
 
-// MARK: - MKMapViewDelegate
-extension SettingsController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-      var view: MKMarkerAnnotationView
-      
-      if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker")
-        as? MKMarkerAnnotationView {
-        dequeuedView.annotation = annotation
-        view = dequeuedView
-        
-      } else {
-        view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-        view.canShowCallout = true
-        view.calloutOffset = CGPoint(x: 0, y: 5)
-        view.rightCalloutAccessoryView = UIButton(type: .close)
-      }
-        
-      return view
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation else { return }
-        presenter.removeLocation(location.coordinate)
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        contentView.isPinSelected = true
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        contentView.isPinSelected = false
-    }
-}
-
-// MARK: - CLLocationManagerDelegate
-extension SettingsController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-
-        let region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(
-                latitude: location.coordinate.latitude,
-                longitude: location.coordinate.longitude),
-            span: MKCoordinateSpan(
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01))
-
-        contentView.mapView.setRegion(region, animated: false)
-    }
-}
 
 // MARK: - SettingsPresenter
 extension SettingsController: SettingsDelegate {
@@ -123,10 +82,72 @@ extension SettingsController: SettingsDelegate {
     }
 }
 
+// MARK: - MKMapViewDelegate
+extension SettingsController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var view: MKMarkerAnnotationView?
+        
+        // User Pin
+        if annotation.coordinate == mapView.userLocation.coordinate {
+            return nil
+            
+        } else if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView {
+            // Market Pin
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+            
+        } else {
+            // Callout of Market Pin
+            let calloutView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+            calloutView.canShowCallout = true
+            calloutView.calloutOffset = CGPoint(x: 0, y: 5)
+            calloutView.rightCalloutAccessoryView = UIButton(type: .close)
+            view = calloutView
+        }
+        
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let location = view.annotation else { return }
+        presenter.removeLocation(location.coordinate)
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        contentView.isPinSelected = true
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        contentView.isPinSelected = false
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension SettingsController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let userLocation = locations.last else { return }
+        self.userLocation = userLocation
+    }
+    
+    func setRegionOnUserLocation(_ location: CLLocation) {
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude),
+            span: MKCoordinateSpan(
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01))
+        
+        contentView.mapView.setRegion(region, animated: false)
+    }
+}
+
 // MARK: - SettingsViewDelegate
 extension SettingsController: SettingsViewDelegate {
     func deleteDataDidTap() {
-        presenter.deleteAllData()
+        presenter.deleteAllData {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func saveLocationDidTap() {

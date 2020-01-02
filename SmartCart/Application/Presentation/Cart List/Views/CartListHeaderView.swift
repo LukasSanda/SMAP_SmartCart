@@ -33,6 +33,7 @@ internal class CartListHeaderView: UITableViewHeaderFooterView {
     }
 }
 
+// MARK: - Setup View Appereance
 private extension CartListHeaderView {
     func setup() {
         contentView.backgroundColor = .white

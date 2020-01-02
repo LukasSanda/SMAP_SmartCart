@@ -58,6 +58,7 @@ internal class ManualAddCell: UITableViewCell {
     }
 }
 
+// MARK: - Setup View Appereance
 private extension ManualAddCell {
     func setup() {
         selectedBackgroundView = UIView()

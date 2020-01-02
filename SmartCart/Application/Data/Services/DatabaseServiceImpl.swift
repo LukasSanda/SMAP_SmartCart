@@ -46,13 +46,13 @@ internal class DatabaseServiceImpl: DatabaseService {
         self.saveContext()
     }
     
-    func removeAll(_ completion: @escaping (Result<Void, Error>) -> Void) {
+    internal func removeAll(_ completion: @escaping (Result<Void, Error>) -> Void) {
         self.removeAllData { result in
             completion(result)
         }
     }
     
-    func removeObject(_ object: NSManagedObject, _ completion: @escaping (Result<Void, Error>) -> Void) {
+    internal func removeObject(_ object: NSManagedObject, _ completion: @escaping (Result<Void, Error>) -> Void) {
         self.remove(object) { result in
             completion(result)
         }

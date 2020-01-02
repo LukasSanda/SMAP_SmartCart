@@ -34,12 +34,12 @@ internal class CartListController: UIViewController {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override internal func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.load()
     }
@@ -79,6 +79,7 @@ extension CartListController: CartListDelegate {
     }
 }
 
+// MARK: - CartListViewDelegate
 extension CartListController: CartListViewDelegate {
     func createNewDidTap() {
         presenter.createNewCart()

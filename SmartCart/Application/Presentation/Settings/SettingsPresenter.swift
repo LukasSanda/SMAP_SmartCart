@@ -12,7 +12,7 @@ import CoreLocation
 internal protocol SettingsPresenter {
     func saveLocation(_ location: CLLocationCoordinate2D)
     func removeLocation(_ location: CLLocationCoordinate2D)
-    func deleteAllData()
+    func deleteAllData(_ completion: @escaping () -> Void)
     func load()
 }
 
@@ -33,6 +33,8 @@ internal class SettingsPresenterImpl: SettingsPresenter {
     
     internal weak var delegate: SettingsDelegate?
     
+    // MARK: - Initialization
+    
     internal init(marketsRepository: SupermarketRepository, cartRepository: CartRepository) {
         self.marketsRepository = marketsRepository
         self.cartRepository = cartRepository
@@ -40,7 +42,7 @@ internal class SettingsPresenterImpl: SettingsPresenter {
     
     // MARK: - Methods
     
-    func load() {
+    internal func load() {
         delegate?.didLoadStoredSupermarkets(marketsRepository.getStoredMarkets())
     }
     
@@ -57,17 +59,24 @@ internal class SettingsPresenterImpl: SettingsPresenter {
         }
     }
     
-    internal func deleteAllData() {
+    internal func deleteAllData(_ completion: @escaping () -> Void) {
         let controller = UIAlertController(
-            title: "Delete All Data", message: "You are about to delete all stored data. Are you sure you want to continue?", preferredStyle: .alert)
+            title: "Delete All Data",
+            message: "You are about to delete all stored data. Are you sure you want to continue?",
+            preferredStyle: .alert)
+        
         controller.view.tintColor = .black
+        
         controller.addAction(UIAlertAction(
             title: "Proceed",
             style: .destructive,
             handler: { [weak self] _ in
                 guard let self = self else { return }
-                self.eraseData()
+                self.eraseData {
+                    completion()
+                }
         }))
+        
         controller.addAction(UIAlertAction(
             title: "Cancel",
             style: .cancel,
@@ -79,15 +88,25 @@ internal class SettingsPresenterImpl: SettingsPresenter {
 
 // MARK: - Helpers
 private extension SettingsPresenterImpl {
-    func eraseData() {
+    func eraseData(_ completion: @escaping () -> Void) {
+        let group = DispatchGroup()
         // Remove All carts with items
-        cartRepository.removeAllCarts { _ in }
+        group.enter()
+        cartRepository.removeAllCarts { _ in
+            group.leave()
+        }
         // Remove All Markets
-        marketsRepository.removeAllMarkets { }
-        
+        group.enter()
+        marketsRepository.removeAllMarkets {
+            group.leave()
+        }
         // Stop monitoring all regions
         for region in locationManager.monitoredRegions {
             locationManager.stopMonitoring(for: region)
+        }
+        
+        group.notify(queue: .main) {
+            completion()
         }
     }
     
@@ -103,6 +122,7 @@ private extension SettingsPresenterImpl {
     
     func stopMonitoringGeofece(forLoation location: CLLocationCoordinate2D) {
         locationManager.monitoredRegions.forEach {
+            // Region identifier is contains its latitude and longitude
             guard $0.identifier.contains(location.latitude.description) && $0.identifier.contains(location.longitude.description) else { return }
             
             locationManager.stopMonitoring(for: $0)

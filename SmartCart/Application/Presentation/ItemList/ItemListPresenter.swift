@@ -14,8 +14,11 @@ internal protocol ItemListPresenter {
     func removeAllItems()
     func editAmount(forItem item: Item, increase: Bool)
     func presentManualAdd()
-    func presentScanner(forController controller: ItemListController)
+    func presentTitleScanner(forController controller: ItemListController)
+    func presentBarcodeScanner(forController controller: ItemListController)
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController)
+    func didNotRecognizeItem(scannedWithBarcode: Bool, forController controller: ItemListController)
+    func presentAddNewProduct()
 }
 
 internal protocol ItemListDelegate: class {
@@ -92,11 +95,54 @@ internal class ItemListPresenterImpl: ItemListPresenter {
     internal func presentManualAdd() {
         delegate?.showController(coordinator.presentManualAdd())
     }
-    internal func presentScanner(forController controller: ItemListController) {
-        delegate?.presentController(coordinator.presentScanner(forController: controller))
+    
+    internal func presentAddNewProduct() {
+        delegate?.showController(coordinator.showAddNewProduct())
+    }
+    
+    internal func presentBarcodeScanner(forController controller: ItemListController) {
+        delegate?.presentController(coordinator.presentBarcodeScanner(forController: controller))
+    }
+    
+    internal func presentTitleScanner(forController controller: ItemListController) {
+        delegate?.presentController(coordinator.presentTitleScanner(forController: controller))
     }
     
     internal func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController) {
         delegate?.presentController(coordinator.presentScannedItem(item, forController: controller))
+    }
+    
+    internal func didNotRecognizeItem(scannedWithBarcode: Bool, forController controller: ItemListController) {
+        let alertController = UIAlertController(
+            title: "Scanned Unkwnown Product",
+            message: "You have scanned product that we probably dont have in our database. Please, retake the photo or add this product manually.",
+            preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(
+            title: "Add",
+            style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                self.presentAddNewProduct()
+        })
+        
+        
+        alertController.addAction(UIAlertAction(
+            title: "Retake",
+            style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                
+                if scannedWithBarcode {
+                    self.presentBarcodeScanner(forController: controller)
+                } else {
+                    self.presentTitleScanner(forController: controller)
+                }
+        })
+        
+        alertController.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil))
+        
+        delegate?.presentController(alertController)
     }
 }
