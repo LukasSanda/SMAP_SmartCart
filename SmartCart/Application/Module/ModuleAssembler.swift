@@ -14,8 +14,4 @@ internal class ModuleAssembler {
     
     internal var databaseService: DatabaseService?
     internal var productService: ProductService?
-    
-    // MARK: - Initialization
-    
-    internal init() { }
 }

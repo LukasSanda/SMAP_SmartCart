@@ -17,7 +17,7 @@ internal protocol ItemListPresenter {
     func presentTitleScanner(forController controller: ItemListController)
     func presentBarcodeScanner(forController controller: ItemListController)
     func presentScannedItem(_ item: ItemEntity, forController controller: ItemListController)
-    func didNotRecognizeItem()
+    func didNotRecognizeItem(scannedWithBarcode: Bool, forController controller: ItemListController)
     func presentAddNewProduct()
 }
 
@@ -112,24 +112,37 @@ internal class ItemListPresenterImpl: ItemListPresenter {
         delegate?.presentController(coordinator.presentScannedItem(item, forController: controller))
     }
     
-    internal func didNotRecognizeItem() {
-        let controller = UIAlertController(
+    internal func didNotRecognizeItem(scannedWithBarcode: Bool, forController controller: ItemListController) {
+        let alertController = UIAlertController(
             title: "Scanned Unkwnown Product",
-            message: "You have scanned product that we dont have in our database. Please, add this product manually.",
+            message: "You have scanned product that we probably dont have in our database. Please, retake the photo or add this product manually.",
             preferredStyle: .alert)
         
-        controller.addAction(UIAlertAction(
+        alertController.addAction(UIAlertAction(
             title: "Add",
             style: .default) { [weak self] _ in
                 guard let self = self else { return }
                 self.presentAddNewProduct()
         })
         
-        controller.addAction(UIAlertAction(
+        
+        alertController.addAction(UIAlertAction(
+            title: "Retake",
+            style: .default) { [weak self] _ in
+                guard let self = self else { return }
+                
+                if scannedWithBarcode {
+                    self.presentBarcodeScanner(forController: controller)
+                } else {
+                    self.presentTitleScanner(forController: controller)
+                }
+        })
+        
+        alertController.addAction(UIAlertAction(
             title: "Cancel",
             style: .cancel,
             handler: nil))
         
-        delegate?.presentController(controller)
+        delegate?.presentController(alertController)
     }
 }

@@ -43,13 +43,42 @@ internal class SettingsController: UIViewController {
         super.viewWillAppear(animated)
         presenter.load()
         
+        // If user allowed location manager
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         }
     }
+    
     override internal func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+}
+
+
+// MARK: - SettingsPresenter
+extension SettingsController: SettingsDelegate {
+    func didLoadStoredSupermarkets(_ locations: [CLLocationCoordinate2D]?) {
+        contentView.mapView.removeAnnotations(contentView.mapView.annotations)
+        
+        guard let locations = locations else { return }
+        
+        var annotations = [MKPointAnnotation]()
+        for location in locations {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = "Remove"
+            
+            annotations.append(annotation)
+        }
+        
+        DispatchQueue.main.async {
+            self.contentView.mapView.addAnnotations(annotations)
+        }
+    }
+    
+    func presentController(_ controller: UIViewController) {
+        navigationController?.present(controller, animated: true, completion: nil)
     }
 }
 
@@ -58,15 +87,17 @@ extension SettingsController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var view: MKMarkerAnnotationView?
         
+        // User Pin
         if annotation.coordinate == mapView.userLocation.coordinate {
             return nil
             
-        } else if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker")
-            as? MKMarkerAnnotationView {
+        } else if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView {
+            // Market Pin
             dequeuedView.annotation = annotation
             view = dequeuedView
             
         } else {
+            // Callout of Market Pin
             let calloutView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
             calloutView.canShowCallout = true
             calloutView.calloutOffset = CGPoint(x: 0, y: 5)
@@ -111,36 +142,12 @@ extension SettingsController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - SettingsPresenter
-extension SettingsController: SettingsDelegate {
-    func didLoadStoredSupermarkets(_ locations: [CLLocationCoordinate2D]?) {
-        contentView.mapView.removeAnnotations(contentView.mapView.annotations)
-        
-        guard let locations = locations else { return }
-        
-        var annotations = [MKPointAnnotation]()
-        for location in locations {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
-            annotation.title = "Remove"
-            
-            annotations.append(annotation)
-        }
-        
-        DispatchQueue.main.async {
-            self.contentView.mapView.addAnnotations(annotations)
-        }
-    }
-    
-    func presentController(_ controller: UIViewController) {
-        navigationController?.present(controller, animated: true, completion: nil)
-    }
-}
-
 // MARK: - SettingsViewDelegate
 extension SettingsController: SettingsViewDelegate {
     func deleteDataDidTap() {
-        presenter.deleteAllData()
+        presenter.deleteAllData {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func saveLocationDidTap() {
@@ -181,11 +188,5 @@ private extension SettingsController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-    }
-}
-
-internal extension CLLocationCoordinate2D {
-    static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
-        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 }

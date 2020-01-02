@@ -40,7 +40,17 @@ internal class TitleScannerPresenterImpl: TitleScannerPresenter {
             switch result {
             case .success(let products):
                 products.forEach {
-                    if text.contains($0.title) && text.contains($0.desc) {
+                    // Text without \n
+                    let trimmedText = text
+                        .replacingOccurrences(of: "\n", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .replacingOccurrences(of: "'", with: "")
+                        .lowercased()
+                    // Title and Desc without whitespaces
+                    let trimmedTitle = $0.title.replacingOccurrences(of: " ", with: "").lowercased()
+                    let trimmedDesc = $0.desc.replacingOccurrences(of: " ", with: "").lowercased()
+                    
+                    if trimmedText.contains(trimmedTitle) && trimmedText.contains(trimmedDesc) {
                         self.delegate?.didRecognizeItem($0)
                         return
                     }

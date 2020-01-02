@@ -63,6 +63,7 @@ extension TitleScannerController: UIImagePickerControllerDelegate {
     func recognizeTextInImage(_ image: UIImage) {
         let vision = Vision.vision()
         let options = VisionCloudTextRecognizerOptions()
+        options.languageHints = ["cs", "en"]
         options.modelType = .sparse
         let textRecognizer = vision.onDeviceTextRecognizer()
         let visionImage = VisionImage(image: image)

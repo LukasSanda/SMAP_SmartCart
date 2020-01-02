@@ -14,6 +14,7 @@ internal protocol BarcodeScannerPresenter {
 
 internal protocol BarcodeScannerDelegate: class {
     func didScanItem(_ item: ItemEntity)
+    func didScanUnknownItem()
 }
 
 internal class BarcodeScannerPresenterImpl: BarcodeScannerPresenter {
@@ -43,7 +44,7 @@ internal class BarcodeScannerPresenterImpl: BarcodeScannerPresenter {
                 let item = products.first { $0.ean.elementsEqual(code) }
                 
                 guard let foundedItem = item else {
-                    logger.logInfo(message: "Loaded unknown product with EAN code: \(code).")
+                    self.delegate?.didScanUnknownItem()
                     return
                 }
                 

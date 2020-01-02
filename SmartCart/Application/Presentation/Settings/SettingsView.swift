@@ -96,7 +96,6 @@ internal class SettingsView: UIView {
 private extension SettingsView {
     @objc
     func saveButtonDidTap() {
-        print(mapView.centerCoordinate)
         delegate?.saveLocationDidTap()
     }
     
@@ -117,8 +116,17 @@ private extension SettingsView {
     func setup() {
         backgroundColor = .white
         setupContainerView()
+        
         setupFavoriteContainer()
+        setupShopTitle()
+        setupShopDesc()
+        setupMapView()
+        setupSaveShopLocation()
+        
         setupDeleteDataContainer()
+        setupDeleteDataTitle()
+        setupDeleteDataDesc()
+        setupDeleteDataButton()
     }
     
     func setupContainerView() {
@@ -143,11 +151,6 @@ private extension SettingsView {
             make.top.equalToSuperview().offset(10)
             make.left.right.equalToSuperview().inset(20)
         }
-        
-        setupShopTitle()
-        setupShopDesc()
-        setupMapView()
-        setupSaveShopLocation()
     }
     
     func setupShopTitle() {
@@ -224,10 +227,6 @@ private extension SettingsView {
             make.left.right.equalToSuperview().inset(20)
             make.bottom.greaterThanOrEqualToSuperview().inset(20)
         }
-        
-        setupDeleteDataTitle()
-        setupDeleteDataDesc()
-        setupDeleteDataButton()
     }
     
     func setupDeleteDataTitle() {

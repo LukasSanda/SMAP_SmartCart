@@ -49,7 +49,7 @@ internal class ItemListCoordinatorImpl: ItemListCoordinator {
         return controller
     }
     
-    func presentTitleScanner(forController itemListController: ItemListController) -> UIViewController {
+    internal func presentTitleScanner(forController itemListController: ItemListController) -> UIViewController {
         let presenter = TitleScannerPresenterImpl(getKnownProducts: getKnownProducts)
         let controller = TitleScannerController(presenter: presenter)
         presenter.delegate = itemListController

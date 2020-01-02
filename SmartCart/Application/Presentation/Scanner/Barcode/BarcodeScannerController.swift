@@ -47,17 +47,14 @@ internal class BarcodeScannerController: UIViewController {
         setup()
         
         self.scanner = Scanner(withViewController: self, view: self.view, eanHandler: handleScannedCode(_:))
-        
-        handleScannedCode("")
     }
 }
 
 // MARK: - Actions
-extension BarcodeScannerController {
+private extension BarcodeScannerController {
     func handleScannedCode(_ code: String) {
         self.dismiss(animated: true) {
-            self.presenter.checkCode("456123789")
-            //self.presenter.checkCode(code)
+            self.presenter.checkCode(code)
         }
     }
     
