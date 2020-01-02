@@ -47,8 +47,6 @@ internal class BarcodeScannerController: UIViewController {
         setup()
         
         self.scanner = Scanner(withViewController: self, view: self.view, eanHandler: handleScannedCode(_:))
-        
-        handleScannedCode("")
     }
 }
 

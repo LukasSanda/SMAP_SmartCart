@@ -145,7 +145,9 @@ extension SettingsController: CLLocationManagerDelegate {
 // MARK: - SettingsViewDelegate
 extension SettingsController: SettingsViewDelegate {
     func deleteDataDidTap() {
-        presenter.deleteAllData()
+        presenter.deleteAllData {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func saveLocationDidTap() {

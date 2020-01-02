@@ -78,6 +78,10 @@ extension ItemListController: ItemListDelegate {
 
 // MARK: - ScannerViewDelegate
 extension ItemListController: BarcodeScannerDelegate {
+    func didScanUnknownItem() {
+        presenter.didNotRecognizeItem(scannedWithBarcode: true, forController: self)
+    }
+    
     func didScanItem(_ item: ItemEntity) {
         presenter.presentScannedItem(item, forController: self)
     }
@@ -86,7 +90,7 @@ extension ItemListController: BarcodeScannerDelegate {
 // MARK: - TitleScannerDelegate
 extension ItemListController: TitleScannerDelegate {
     func didNotRecognizeItem() {
-        presenter.didNotRecognizeItem()
+        presenter.didNotRecognizeItem(scannedWithBarcode: false, forController: self)
     }
     
     func didRecognizeItem(_ item: ItemEntity) {

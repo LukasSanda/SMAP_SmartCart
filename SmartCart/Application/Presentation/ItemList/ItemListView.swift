@@ -139,16 +139,6 @@ private extension ItemListView {
             make.height.equalTo(50)
         }
         
-        let separator = UIView()
-        separator.backgroundColor = .secondaryColor
-        buttonContainer.addSubview(separator)
-        
-        separator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(10)
-            make.width.equalTo(2)
-        }
-        
         buttonManualAdd.tag = CartItemButtonsTag.addManually.rawValue
         buttonManualAdd.setImage(Assets.ItemList.addToCart.withRenderingMode(.alwaysTemplate), for: .normal)
         buttonBarcodeScan.tag = CartItemButtonsTag.scan.rawValue

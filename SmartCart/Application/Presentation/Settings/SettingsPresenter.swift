@@ -12,7 +12,7 @@ import CoreLocation
 internal protocol SettingsPresenter {
     func saveLocation(_ location: CLLocationCoordinate2D)
     func removeLocation(_ location: CLLocationCoordinate2D)
-    func deleteAllData()
+    func deleteAllData(_ completion: @escaping () -> Void)
     func load()
 }
 
@@ -59,7 +59,7 @@ internal class SettingsPresenterImpl: SettingsPresenter {
         }
     }
     
-    internal func deleteAllData() {
+    internal func deleteAllData(_ completion: @escaping () -> Void) {
         let controller = UIAlertController(
             title: "Delete All Data",
             message: "You are about to delete all stored data. Are you sure you want to continue?",
@@ -72,7 +72,9 @@ internal class SettingsPresenterImpl: SettingsPresenter {
             style: .destructive,
             handler: { [weak self] _ in
                 guard let self = self else { return }
-                self.eraseData()
+                self.eraseData {
+                    completion()
+                }
         }))
         
         controller.addAction(UIAlertAction(
@@ -86,14 +88,25 @@ internal class SettingsPresenterImpl: SettingsPresenter {
 
 // MARK: - Helpers
 private extension SettingsPresenterImpl {
-    func eraseData() {
+    func eraseData(_ completion: @escaping () -> Void) {
+        let group = DispatchGroup()
         // Remove All carts with items
-        cartRepository.removeAllCarts { _ in }
+        group.enter()
+        cartRepository.removeAllCarts { _ in
+            group.leave()
+        }
         // Remove All Markets
-        marketsRepository.removeAllMarkets { }
+        group.enter()
+        marketsRepository.removeAllMarkets {
+            group.leave()
+        }
         // Stop monitoring all regions
         for region in locationManager.monitoredRegions {
             locationManager.stopMonitoring(for: region)
+        }
+        
+        group.notify(queue: .main) {
+            completion()
         }
     }
     
