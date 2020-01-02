@@ -12,13 +12,6 @@ internal class AddItemView: UIView {
     
     // MARK: - Private Properties
     
-    internal enum ButtonTag: Int {
-        case increase
-        case decrease
-        case addToCart
-        case close
-    }
-    
     private let backgroundView = UIView()
     
     private let contentView = UIView()
@@ -71,6 +64,13 @@ internal class AddItemView: UIView {
     
     internal var closeTitle: String = "" {
         didSet { closeButton.setTitle(closeTitle, for: .normal) }
+    }
+    
+    internal enum ButtonTag: Int {
+        case increase
+        case decrease
+        case addToCart
+        case close
     }
     
     // MARK: - Initialization

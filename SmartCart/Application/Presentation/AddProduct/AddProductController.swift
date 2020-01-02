@@ -116,7 +116,10 @@ internal extension AddProductController {
 // MARK: - AddProductSelectionDelegate
 extension AddProductController: AddProductSelectionDelegate {
     func didSelectCell(_ cell: AddProductSelectionCell) {
-        let controller = UIAlertController(title: "Product Category", message: "Please, choose one of the listed category for your product.", preferredStyle: .actionSheet)
+        let controller = UIAlertController(
+            title: "Product Category",
+            message: "Please, choose one of the listed category for your product.",
+            preferredStyle: .actionSheet)
         controller.view.tintColor = .black
         
         for type in ItemCategoryType.allCases {
@@ -189,7 +192,13 @@ extension AddProductController: AddProductTextFieldCellDelegate {
 private extension AddProductController {
     @objc
     func doneDidTap() {
-        presenter.add(title: productTitle, ean: productEan, description: productDescription, price: productPrice, size: productSize, category: productCategory)
+        presenter.add(
+            title: productTitle,
+            ean: productEan,
+            description: productDescription,
+            price: productPrice,
+            size: productSize,
+            category: productCategory)
     }
 }
 

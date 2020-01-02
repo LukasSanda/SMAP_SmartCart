@@ -57,6 +57,7 @@ internal class AddItemImpl: AddItem {
     }
 }
 
+// MARK: - Helpers
 private extension AddItemImpl {
     func checkItemIfAlreadyExists(_ item: ItemEntity, inCart cart: Cart) -> Bool {
         return cart.items?.allObjects.contains(where: { storedItem in

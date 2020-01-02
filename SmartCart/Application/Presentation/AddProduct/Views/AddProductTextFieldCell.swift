@@ -52,12 +52,10 @@ extension AddProductTextFieldCell: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if isPriceCell, !(textField.text?.isEmpty ?? true) {
-            guard let text = textField.text else { return }
-            let range = text.index(text.endIndex, offsetBy: -3)..<text.endIndex
-            
-            textField.text?.removeSubrange(range)
-        }
+        guard isPriceCell, !(textField.text?.isEmpty ?? true), let text = textField.text else { return }
+        
+        let range = text.index(text.endIndex, offsetBy: -3)..<text.endIndex
+        textField.text?.removeSubrange(range)
     }
 }
 

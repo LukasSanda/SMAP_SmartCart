@@ -35,9 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Setup Firebase for Vision Framework
         FirebaseApp.configure()
+        // Setup Notifications for beacon enter
         setupNotifications()
-
+        // Application flow init
         let navigationController = UINavigationController()
         let assembler = ModuleAssembler()
         mainCoordinator = MainViewCoordinatorImpl(navigationController: navigationController, assembler: assembler)
@@ -76,7 +78,7 @@ private extension AppDelegate {
     }
     
     func scheduleNotification(forRegion region: CLRegion) {
-        let snoozeAction = UNNotificationAction(
+        let openCartAction = UNNotificationAction(
             identifier: NotificationType.openCart.rawValue,
             title: "Open Cart",
             options: [.foreground])
@@ -88,7 +90,7 @@ private extension AppDelegate {
         
         let category = UNNotificationCategory(
             identifier: "User Actions",
-            actions: [snoozeAction, deleteAction],
+            actions: [openCartAction, deleteAction],
             intentIdentifiers: [],
             options: [])
         
@@ -96,10 +98,11 @@ private extension AppDelegate {
         
         let content = UNMutableNotificationContent()
         content.title = "Available Cart"
-        content.body = "You are close to the selected market. In the past, you have created cart with some products. Would you like to open the cart?"
+        content.body = "You are close to one of saved market's location. In the past, you have created cart with some products. Would you like to open the cart?"
         content.sound = .default
         content.categoryIdentifier = "User Actions"
         
+        // Trigger after 2 seconds
         let request = UNNotificationRequest(
             identifier: region.identifier,
             content: content,
@@ -109,7 +112,6 @@ private extension AppDelegate {
         
         notificationCenter.add(request) { error in
             guard let error = error else { return }
-            
             logger.logError(message: error.localizedDescription)
         }
     }

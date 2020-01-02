@@ -84,9 +84,8 @@ internal class AddProductPresenterImpl: AddProductPresenter {
         }
         
         guard emptyFields.areAllSatisfied() else {
-            delegate?
-                .showEmptyFieldsNotification(
-                    withController: createEmptyFieldsNotification(withStruct: emptyFields))
+            delegate?.showEmptyFieldsNotification(
+                withController: createEmptyFieldsAlert(withStruct: emptyFields))
             return
         }
         
@@ -97,7 +96,7 @@ internal class AddProductPresenterImpl: AddProductPresenter {
 }
 
 private extension AddProductPresenterImpl {
-    func createEmptyFieldsNotification(withStruct emptyFields: EmptyFields) -> UIAlertController {
+    func createEmptyFieldsAlert(withStruct emptyFields: EmptyFields) -> UIAlertController {
         var missingFields: String = ""
         
         if emptyFields.isTitleEmpty {

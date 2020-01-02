@@ -31,7 +31,6 @@
 		CF6E0C64237167390091CEC8 /* CartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C53237167390091CEC8 /* CartRepository.swift */; };
 		CF6E0C66237167390091CEC8 /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C57237167390091CEC8 /* ItemModel.xcdatamodeld */; };
 		CF6E0C6A237167390091CEC8 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C5C237167390091CEC8 /* ItemEntity.swift */; };
-		CF6E0C6B237167390091CEC8 /* CartEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C5D237167390091CEC8 /* CartEntity.swift */; };
 		CF6E0C6E23716B120091CEC8 /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6E0C6D23716B120091CEC8 /* BarcodeScannerController.swift */; };
 		CF6E0C71237179920091CEC8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; };
 		CF6E0C72237179920091CEC8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF6E0C70237179920091CEC8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -92,6 +91,7 @@
 		CFE78D1F237EFE4400EBE2AA /* BarcodeScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */; };
 		CFFE82C423AEA2D900E5B7FE /* TitleScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */; };
 		CFFE82C623B0EADA00E5B7FE /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */; };
+		CFFE82C823B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C723B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +147,6 @@
 		CF6E0C53237167390091CEC8 /* CartRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartRepository.swift; sourceTree = "<group>"; };
 		CF6E0C58237167390091CEC8 /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 		CF6E0C5C237167390091CEC8 /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
-		CF6E0C5D237167390091CEC8 /* CartEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartEntity.swift; sourceTree = "<group>"; };
 		CF6E0C6D23716B120091CEC8 /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
 		CF6E0C70237179920091CEC8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		CF6E0C7623717F9C0091CEC8 /* ItemListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListController.swift; sourceTree = "<group>"; };
@@ -210,6 +209,7 @@
 		CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerPresenter.swift; sourceTree = "<group>"; };
 		CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScannerPresenter.swift; sourceTree = "<group>"; };
 		CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		CFFE82C723B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
 		D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartCartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43EA3A60D16D60BBC1931D4 /* Pods-SmartCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartCartTests.release.xcconfig"; path = "Target Support Files/Pods-SmartCartTests/Pods-SmartCartTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -389,7 +389,6 @@
 				CF6E0C51237167390091CEC8 /* Scanner.swift */,
 				CF6E0C55237167390091CEC8 /* CoreData */,
 				CF6E0C5C237167390091CEC8 /* ItemEntity.swift */,
-				CF6E0C5D237167390091CEC8 /* CartEntity.swift */,
 				CF6E0C942371A2C10091CEC8 /* Logger.swift */,
 				CF6E0C962371D87C0091CEC8 /* Assets.swift */,
 			);
@@ -492,6 +491,7 @@
 				CFE308CF239C183B00EF0601 /* UITextField+DoneButton.swift */,
 				CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */,
 				CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */,
+				CFFE82C723B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -823,6 +823,7 @@
 			files = (
 				CF78743E235D7D7F0061AC90 /* AppDelegate.swift in Sources */,
 				CF6E3925237C45D0007F92F2 /* LoadLastCart.swift in Sources */,
+				CFFE82C823B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				CFE308A92396D96800EF0601 /* ManualAddView.swift in Sources */,
 				CF6E0CB9237433D40091CEC8 /* Cart+CoreDataProperties.swift in Sources */,
 				CF6E0CA82372CB090091CEC8 /* CartListHeaderView.swift in Sources */,
@@ -866,7 +867,6 @@
 				CF6E3929237C45F5007F92F2 /* RemoveAllCarts.swift in Sources */,
 				CF6E0C81237183770091CEC8 /* CartListPresenter.swift in Sources */,
 				CFE308C7239C035A00EF0601 /* Item+CoreDataClass.swift in Sources */,
-				CF6E0C6B237167390091CEC8 /* CartEntity.swift in Sources */,
 				CFE308CB239C039500EF0601 /* Product+CoreDataClass.swift in Sources */,
 				CF1EF03B239415EE00336EAA /* AddItemController.swift in Sources */,
 				CF1EF03D2394404100336EAA /* AddItemPresenter.swift in Sources */,

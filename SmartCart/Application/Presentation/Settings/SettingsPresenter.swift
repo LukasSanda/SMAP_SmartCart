@@ -33,6 +33,8 @@ internal class SettingsPresenterImpl: SettingsPresenter {
     
     internal weak var delegate: SettingsDelegate?
     
+    // MARK: - Initialization
+    
     internal init(marketsRepository: SupermarketRepository, cartRepository: CartRepository) {
         self.marketsRepository = marketsRepository
         self.cartRepository = cartRepository
@@ -40,7 +42,7 @@ internal class SettingsPresenterImpl: SettingsPresenter {
     
     // MARK: - Methods
     
-    func load() {
+    internal func load() {
         delegate?.didLoadStoredSupermarkets(marketsRepository.getStoredMarkets())
     }
     
@@ -59,8 +61,12 @@ internal class SettingsPresenterImpl: SettingsPresenter {
     
     internal func deleteAllData() {
         let controller = UIAlertController(
-            title: "Delete All Data", message: "You are about to delete all stored data. Are you sure you want to continue?", preferredStyle: .alert)
+            title: "Delete All Data",
+            message: "You are about to delete all stored data. Are you sure you want to continue?",
+            preferredStyle: .alert)
+        
         controller.view.tintColor = .black
+        
         controller.addAction(UIAlertAction(
             title: "Proceed",
             style: .destructive,
@@ -68,6 +74,7 @@ internal class SettingsPresenterImpl: SettingsPresenter {
                 guard let self = self else { return }
                 self.eraseData()
         }))
+        
         controller.addAction(UIAlertAction(
             title: "Cancel",
             style: .cancel,
@@ -84,7 +91,6 @@ private extension SettingsPresenterImpl {
         cartRepository.removeAllCarts { _ in }
         // Remove All Markets
         marketsRepository.removeAllMarkets { }
-        
         // Stop monitoring all regions
         for region in locationManager.monitoredRegions {
             locationManager.stopMonitoring(for: region)
@@ -103,6 +109,7 @@ private extension SettingsPresenterImpl {
     
     func stopMonitoringGeofece(forLoation location: CLLocationCoordinate2D) {
         locationManager.monitoredRegions.forEach {
+            // Region identifier is contains its latitude and longitude
             guard $0.identifier.contains(location.latitude.description) && $0.identifier.contains(location.longitude.description) else { return }
             
             locationManager.stopMonitoring(for: $0)

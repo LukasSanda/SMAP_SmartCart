@@ -9,6 +9,7 @@
 import Foundation
 
 extension ModuleAssembler: DomainAssembly {
+    
     // MARK: - Services
     func resolve() -> DatabaseService {
         if let databaseService = databaseService {
@@ -74,11 +75,12 @@ extension ModuleAssembler: DomainAssembly {
         return GetKnownProductsImpl(repository: resolve())
     }
     
-    func resolve() -> AddItem {
-        return AddItemImpl(loadLastCart: resolve(), databaseService: resolve())
-    }
-    
     func resolve() -> AddItemProduct {
         return AddItemProductImpl(productRepository: resolve())
+    }
+    
+    // MARK: - Use-Cases Item
+    func resolve() -> AddItem {
+        return AddItemImpl(loadLastCart: resolve(), databaseService: resolve())
     }
 }
