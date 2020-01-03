@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6AC7D8E8D20C82CE62354A13 /* Pods_SmartCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05F14B15F919839A542D1FE /* Pods_SmartCartTests.framework */; };
-		856BC18E9FCF44465182BCFC /* Pods_SmartCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E8B65ABCAFD21A50A9BA76 /* Pods_SmartCart.framework */; };
 		CF1EF039239415E300336EAA /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF038239415E300336EAA /* AddItemView.swift */; };
 		CF1EF03B239415EE00336EAA /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF03A239415EE00336EAA /* AddItemController.swift */; };
 		CF1EF03D2394404100336EAA /* AddItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EF03C2394404100336EAA /* AddItemPresenter.swift */; };
@@ -89,6 +88,7 @@
 		CFE308D2239C18D600EF0601 /* UITextView+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE308D1239C18D600EF0601 /* UITextView+DoneButton.swift */; };
 		CFE78D1D237EFB6B00EBE2AA /* GetKnownProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1C237EFB6B00EBE2AA /* GetKnownProducts.swift */; };
 		CFE78D1F237EFE4400EBE2AA /* BarcodeScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE78D1E237EFE4400EBE2AA /* BarcodeScannerPresenter.swift */; };
+		CFEAC2D123BF23C300DBF9DE /* Pods_SmartCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E8B65ABCAFD21A50A9BA76 /* Pods_SmartCart.framework */; };
 		CFFE82C423AEA2D900E5B7FE /* TitleScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C323AEA2D900E5B7FE /* TitleScannerPresenter.swift */; };
 		CFFE82C623B0EADA00E5B7FE /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C523B0EADA00E5B7FE /* UIImage+Orientation.swift */; };
 		CFFE82C823B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE82C723B513B000E5B7FE /* CLLocationCoordinate2D+Equatable.swift */; };
@@ -127,6 +127,7 @@
 		CF1EF03A239415EE00336EAA /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		CF1EF03C2394404100336EAA /* AddItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemPresenter.swift; sourceTree = "<group>"; };
 		CF1EF03F239447CB00336EAA /* AddItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItem.swift; sourceTree = "<group>"; };
+		CF31161523BF235200F43673 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		CF3D5BF4237B4B5D00F5D484 /* ItemListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCoordinator.swift; sourceTree = "<group>"; };
 		CF41785D237C9990009A11D6 /* TitleScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScannerController.swift; sourceTree = "<group>"; };
 		CF41785F237C9C1A009A11D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -229,7 +230,7 @@
 			files = (
 				CF6E0CB123742ACB0091CEC8 /* libz.tbd in Frameworks */,
 				CF6E0C71237179920091CEC8 /* SnapKit.framework in Frameworks */,
-				856BC18E9FCF44465182BCFC /* Pods_SmartCart.framework in Frameworks */,
+				CFEAC2D123BF23C300DBF9DE /* Pods_SmartCart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +264,11 @@
 				CF1EF03F239447CB00336EAA /* AddItem.swift */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		CF31161623BF235200F43673 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CF417862237D2C0C009A11D6 /* Repositories */ = {
@@ -439,6 +445,7 @@
 		CF6E0C6F237179920091CEC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF31161523BF235200F43673 /* Pods.xcodeproj */,
 				CF6E392E237C8A90007F92F2 /* SwiftOCR.framework */,
 				CF6E0CB023742ACB0091CEC8 /* libz.tbd */,
 				CF6E0C70237179920091CEC8 /* SnapKit.framework */,
@@ -696,6 +703,12 @@
 			mainGroup = CF787431235D7D7F0061AC90;
 			productRefGroup = CF78743B235D7D7F0061AC90 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CF31161623BF235200F43673 /* Products */;
+					ProjectRef = CF31161523BF235200F43673 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CF787439235D7D7F0061AC90 /* SmartCart */,
