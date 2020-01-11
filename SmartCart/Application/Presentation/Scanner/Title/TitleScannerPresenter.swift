@@ -39,16 +39,22 @@ internal class TitleScannerPresenterImpl: TitleScannerPresenter {
         getKnownProducts.get { result in
             switch result {
             case .success(let products):
+                // Trimm text
+                let trimmedText = text
+                    .folding(options: .diacriticInsensitive, locale: .current)
+                    .replacingOccurrences(of: "\n", with: "")
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: "'", with: "")
+                    .lowercased()
+
                 products.forEach {
-                    // Text without \n
-                    let trimmedText = text
-                        .replacingOccurrences(of: "\n", with: "")
-                        .replacingOccurrences(of: " ", with: "")
-                        .replacingOccurrences(of: "'", with: "")
-                        .lowercased()
                     // Title and Desc without whitespaces
-                    let trimmedTitle = $0.title.replacingOccurrences(of: " ", with: "").lowercased()
-                    let trimmedDesc = $0.desc.replacingOccurrences(of: " ", with: "").lowercased()
+                    let trimmedTitle = $0.title
+                        .folding(options: .diacriticInsensitive, locale: .current)
+                        .replacingOccurrences(of: " ", with: "").lowercased()
+                    let trimmedDesc = $0.desc
+                        .folding(options: .diacriticInsensitive, locale: .current)
+                        .replacingOccurrences(of: " ", with: "").lowercased()
                     
                     if trimmedText.contains(trimmedTitle) && trimmedText.contains(trimmedDesc) {
                         self.delegate?.didRecognizeItem($0)

@@ -73,6 +73,7 @@ private extension AddItemController {
         contentView.title = item.title
         contentView.descriptionText = item.desc
         contentView.size = item.size
+        contentView.price = item.price
         contentView.image = category.getImage()
         contentView.buttonTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
     }

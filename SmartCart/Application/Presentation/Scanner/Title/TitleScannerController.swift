@@ -42,7 +42,6 @@ internal class TitleScannerController: UIViewController, UINavigationControllerD
         vc.delegate = self
         self.imagePicker = vc
         
-        
         self.view.addSubview(vc.view)
         vc.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -78,5 +77,9 @@ extension TitleScannerController: UIImagePickerControllerDelegate {
                 self.presenter.didRecognizeText(result.text)
             }
         }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

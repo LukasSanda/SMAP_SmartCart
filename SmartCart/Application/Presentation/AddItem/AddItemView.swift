@@ -22,6 +22,7 @@ internal class AddItemView: UIView {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let sizeLabel = UILabel()
+    private let priceLabel = UILabel()
     
     private let amountLabel = UILabel()
     private let increaseButton = UIButton()
@@ -45,6 +46,10 @@ internal class AddItemView: UIView {
     
     internal var size: String = "" {
         didSet { sizeLabel.text = "Size: \(size)" }
+    }
+    
+    internal var price: Double = .nan {
+        didSet { priceLabel.text = String(format: "Price: %.2f,- Kč", price) }
     }
     
     internal var amount: Int = 0 {
@@ -105,6 +110,7 @@ private extension AddItemView {
         setupTitleLabel()
         setupDescriptionLabel()
         setupSizeLabel()
+        setupPriceLabel()
         setupAmountLabels()
         setupButtons()
     }
@@ -151,7 +157,7 @@ private extension AddItemView {
         contentView.addSubview(increaseButton)
         
         increaseButton.snp.makeConstraints { make in
-            make.top.greaterThanOrEqualTo(sizeLabel.snp.bottom).offset(20)
+            make.top.greaterThanOrEqualTo(priceLabel.snp.bottom).offset(20)
             make.size.equalTo(48)
             make.bottom.right.equalToSuperview().inset(20)
         }
@@ -176,6 +182,18 @@ private extension AddItemView {
             make.centerY.equalTo(increaseButton)
             make.left.equalToSuperview().inset(32)
             make.right.equalTo(decreaseButton.snp.left).inset(16)
+        }
+    }
+    
+    func setupPriceLabel() {
+        priceLabel.font = UIFont.systemFont(ofSize: 14, weight: .heavy)
+        priceLabel.textAlignment = .center
+        priceLabel.textColor = .gray
+        contentView.addSubview(priceLabel)
+        
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(sizeLabel.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
         }
     }
     
